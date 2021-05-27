@@ -25,3 +25,5 @@
 | - | - | - | - |
 | Poster and Video | 8 | 8 |
 | Figma | 6 | 6 |
+| Configuring Laravel | 4 | 0 |
+| Integrating MongoDB | 8 | 0 |
