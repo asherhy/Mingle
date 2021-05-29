@@ -21,8 +21,8 @@
 
 ---
 ## Project Log
-| Task Done      | Hours spent by Hong Yong | Hours spent by Rickie | Remarks |
-| - | - | - | - |
+| Task Done      | Hours spent by Hong Yong | Hours spent by Rickie | Date | Remarks |
+| - | - | - | - | - |
 | Poster and Video | 8 | 8 |
 | Figma | 6 | 6 |
 | Configuring Laravel | 4 | 0 |
