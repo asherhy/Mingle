@@ -24,6 +24,10 @@
 | Task Done      | Hours spent by Hong Yong | Hours spent by Rickie | Date | Remarks |
 | - | - | - | - | - |
 | Poster and Video | 8 | 8 |
+| Team meeting to decide on features | 5 | 5 |
 | Figma | 6 | 6 |
+| Team meeting with Mentor | 1 | 1 |
 | Configuring Laravel | 4 | 0 |
-| Integrating MongoDB | 8 | 0 |
+| Integrating MongoDB to backend | 8 | 0 |
+| Backend Login system coding | 5 | 0 |
+| Integrating React SPA to Laravel | 8 | 0 |
