@@ -23,8 +23,9 @@
 ## Project Log
 | Task Done      | Hours spent by Hong Yong | Hours spent by Ming Gao Rickie | Date | Remarks |
 | - | - | - | - | - |
-| Poster and Video | 8 | 8 | 12/05/2021 | 1) 
-| Team meeting to decide on features | 5 | 5 | 14/05/2021 |
+| Poster and Video Discussion | 4 | 4 | 11/05/2021 |
+| Poster and Video | 8 | 8 | 12/05/2021 |
+| Team meeting to decide on features | 5 | 5 | 14/05/2021 | 1) 
 | Figma | 6 | 6 | 17/0/2021 |
 | Team meeting | 2 | 2 | 18/05/2021 | Discuss features of web app |
 | Team meeting with Mentor | 1 | 1 | 20/05/2021 |
