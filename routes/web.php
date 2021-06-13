@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
+Auth::routes();  
+Route::get('/home/change', 'UserController@edit')->name('changePw');
+Route::put('/home', 'UserController@update')->name('updatePw');
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', 'HomeController@index')->name('home');                                          
