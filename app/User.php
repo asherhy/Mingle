@@ -48,6 +48,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Major::class)->withTimestamps();
     }
 
+    public function modules()
+    {
+        return $this->belongsToMany(Module::class)->withTimestamps();
+    }
+
     public function assignRole($role)
     {
         if(is_string($role)) {
@@ -62,6 +67,14 @@ class User extends Authenticatable
             $major = Major::whereName($major)->firstOrFail();
         }
         $this->majors()->sync($major, false);
+    }
+
+    public function assignModule($module)
+    {
+        if(is_string($module)) {
+            $module = Module::whereName($module)->firstOrFail();
+        }
+        $this->modules()->sync($module, false);
     }
 
     public function allRoles()

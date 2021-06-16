@@ -15,7 +15,7 @@ class ModuleSeeder extends Seeder
     {
         $responses = Http::get('https://api.nusmods.com/v2/2020-2021/moduleList.json')->json();
         foreach ($responses as $response)  {
-            DB::table('roles')->insert([
+            DB::table('modules')->insert([
                 [
                     'moduleCode' => $response['moduleCode'],
                     'title' => $response['title']
