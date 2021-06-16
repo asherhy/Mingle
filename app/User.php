@@ -43,12 +43,25 @@ class User extends Authenticatable
         return $this->belongsToMany(Role::class)->withTimestamps();
     }
 
+    public function majors()
+    {
+        return $this->belongsToMany(Major::class)->withTimestamps();
+    }
+
     public function assignRole($role)
     {
         if(is_string($role)) {
             $role = Role::whereName($role)->firstOrFail();
         }
         $this->roles()->sync($role, false);
+    }
+
+    public function assignMajor($major)
+    {
+        if(is_string($major)) {
+            $major = Major::whereName($major)->firstOrFail();
+        }
+        $this->majors()->sync($major, false);
     }
 
     public function allRoles()

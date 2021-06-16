@@ -20,5 +20,6 @@ Route::get('/', function () {
 Auth::routes();  
 Route::get('/home/change', 'UserController@edit')->name('changePw');
 Route::put('/home', 'UserController@update')->name('updatePw');
+Route::get('/profile', 'UserController@show')->name('profile');
 
 Route::get('/home', 'HomeController@index')->name('home');                                          

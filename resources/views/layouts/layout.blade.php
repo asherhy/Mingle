@@ -11,7 +11,7 @@
         <title>mingle</title>
         
     </head>
-    <body>
+    <body style="background:#DEF2F1;">
         <nav class="navbar navbar-custom navbar-expand-lg fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}" >
@@ -53,18 +53,25 @@
                             <li class="nav-item mx-2">
                                 <a class="nav-link" href="#">Board</a>
                             </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link" href="#">Request</a>
+                            </li>
                         </ul>
 
                         <ul class="navbar-nav navbar-right ml-auto">
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position:relative; padding-left:50px;" v-pre >
+                                    <img src="/images/avatars/{{ Auth::user()->avatar }}" style="width:40px; height:40px; position:absolute; top:0px; left:0px; border-radius:50%">
                                     {{ Auth::user()->name }}
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('changePw')}}">
-                                    Change Password
-                                </a>
+                                    <a class="dropdown-item" href="{{ route('profile') }}">
+                                        Profile
+                                    </a>
+                                    <a class="dropdown-item" href="{{ route('changePw') }}">
+                                        Change Password
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
@@ -82,6 +89,8 @@
                 </div>
             </div>
         </nav>
+
+        @yield('modals')
 
 
         @yield('content')
