@@ -87,6 +87,19 @@ body {
     margin-left: 15px;
 }
 
+.card.request-card .card-body {
+    max-height: 300px;
+    overflow-y: auto;
+    /* hide scrollbar */
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+}
+
+/* hide scrollbar for Chrome, Safari and Opera */
+.card.request-card .card-body::-webkit-scrollbar {
+    display: none;
+}
+
 .banner {
     padding: 10px 30px;
     background-color: #fafafa;

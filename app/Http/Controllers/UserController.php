@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Major;
+use App\Module;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -18,6 +20,19 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+   /**
+     * Show the form for editing the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show()
+    {
+        $modules = Module::all();
+        $majors = Major::all();
+        //dd($majors);
+        return view('user.show', compact('majors'));
     }
 
     /**
@@ -38,7 +53,7 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request)
     {
       $request->validate([
         'oldPassword' => ['required', new MatchOldPassword],
@@ -51,5 +66,24 @@ class UserController extends Controller
         return redirect()->back();
     
 
+    }
+
+        /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function profileUpdate(Request $request)
+    {
+        $user = Auth::user();
+        $user->update([
+          'name' => $request->name,
+          'telegram' => $request->telegram,
+          'gender' => $request->gender,
+          'matric_year' => $request->matricYear
+        ]);
+        $user->assignMajor((int)$request->major);
+        return redirect()->back();
     }
 }

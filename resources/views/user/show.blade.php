@@ -12,13 +12,13 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form enctype="multipart/form-data" action="#" method="POST">
+                <form enctype="multipart/form-data" action="{{ route('updateProfile') }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="container">
                         <div class="form-group form-row">
                             <label for="name" class="col-form-label col-md-4">Name</label>
-                            <div class="col-md-8"><input type="name" class="form-control" id="name" value="{{ Auth::user()->name }}"></div>
+                            <div class="col-md-8"><input type="name" name="name" class="form-control" id="name" value="{{ Auth::user()->name }}" required></div>
                         </div>
                         <div class="form-group form-row">
                             <label for="profile-img" class="col-form-label col-md-4">Update Profile Image</label>
@@ -29,38 +29,51 @@
                         </div>
                         <div class="form-group form-row">
                             <label for="email" class="col-form-label col-md-4">Email</label>
-                            <div class="col-md-8"><input type="email" class="form-control" id="email" value="{{ Auth::user()->email }}"></div>
+                            <div class="col-md-8"><input type="email" class="form-control" id="email" value="{{ Auth::user()->email }}" disabled></div>
                         </div>
                         <div class="form-group form-row">
                             <label for="telegram" class="col-form-label col-md-4">Telegram</label>
-                            <div class="col-md-8"><input type="telegram" class="form-control" id="telegram" value="{{ Auth::user()->telegram }}"></div>
+                            <div class="input-group col-md-8">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">@</span>
+                                </div>
+                                <input type="telegram" class="form-control" name='telegram' id="telegram" value="{{ Auth::user()->telegram }}" required>
+                            </div>
                         </div>
                         <div class="form-group form-row">
                             <label for="major" class="col-form-label col-md-4">Major</label>
                             <div class="col-md-8 my-auto">
-                                <select type="major" class="form-control" id="major">
-                                    <option selected>Choose Your Major</option>
-                                    <option value="1">-</option>
+                                <select type="major" name="major" class="form-control" id="major" required>
+                                    <option value ="">Choose Your Major</option>
+                                    @foreach($majors as $major)
+                                        <option {{ Auth::user()->majors->first() != null &&
+                                            Auth::user()->majors->first()->id == $major->id ? "selected" : ""}} value="{{ $major->id }}">
+                                          {{ $major->name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
                         <div class="form-group form-row">
                             <label for="matric-year" class="col-form-label col-md-4">Matric Year</label>
                             <div class="col-md-8 my-auto">
-                                <select type="matric-year" class="form-control" id="matric-year">
-                                    <option selected>Choose Your Matric Year</option>
-                                    <option value="1">-</option>
+                                <select type="matric-year" name="matricYear" class="form-control" id="matric-year" required>
+                                    <option value ="">Choose Your Matric Year</option>
+                                    <option {{ Auth::user()->matric_year == "2018" ? "selected" : ""}} value="2018">2018</option>
+                                    <option {{ Auth::user()->matric_year == "2019" ? "selected" : ""}} value="2019">2019</option>
+                                    <option {{ Auth::user()->matric_year == "2020" ? "selected" : ""}} value="2020">2020</option>
+                                    <option {{ Auth::user()->matric_year == "2021" ? "selected" : ""}} value="2021">2021</option>
                                 </select>
                             </div>
                         </div>
                         <div class="form-group form-row">
                             <label for="gender" class="col-form-label col-md-4">Gender</label>
                             <div class="col-md-8 my-auto">
-                                <select type="gender" class="form-control" id="gender">
-                                    <option selected>Choose Your Gender</option>
-                                    <option value="1">Female</option>
-                                    <option value="2">Male</option>
-                                    <option value="3">Other</option>
+                                <select type="gender" name="gender" class="form-control" id="gender" required>
+                                    <option value="">Choose Your Gender</option>
+                                    <option {{ Auth::user()->gender == "1" ? "selected" : ""}} value="1">Female</option>
+                                    <option {{ Auth::user()->gender == "2" ? "selected" : ""}} value="2">Male</option>
+                                    <option {{ Auth::user()->gender == "3" ? "selected" : ""}} value="3">Other</option>
                                 </select>
                             </div>
                         </div>
@@ -94,13 +107,13 @@
                             </div>
                             <div class="col-sm-6 mb-2">
                                 <h3 class="text-dark text-left">Telegram</h3>
-                                <p class="card-text text-muted">{{ Auth::user()->telegram }}</p>
+                                <p class="card-text text-muted">@ {{ Auth::user()->telegram }}</p>
                             </div>
                         </div>
                         <div class="row p-2">
                             <div class="col-sm-6 mb-2">
                                 <h3 class="text-dark text-left">Major</h3>
-                                <p class="card-text text-muted">{{ Auth::user()->major }}</p>
+                                <p class="card-text text-muted">{{ Auth::user()->majors->first() != null ? Auth::user()->majors->first()->name : "-"}}</p>
                             </div>
                             <div class="col-sm-6 mb-2">
                                 <h3 class="text-dark text-left">Matric Year</h3>
@@ -110,7 +123,7 @@
                         <div class="row p-2">
                             <div class="col-sm-6 mb-2">
                                 <h3 class="text-dark text-left">Gender</h3>
-                                <p class="card-text text-muted">{{ Auth::user()->gender }}</p>
+                                <p class="card-text text-muted">{{ Auth::user()->gender == 1 ? "Female" : (Auth::user()->gender == 2 ? "Male" : "Others") }}</p>
                             </div>
                         </div>
                         <h3 class="card-title pb-3 border-bottom text-dark text-left">Modules</h3>
