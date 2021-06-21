@@ -26,3 +26,13 @@ Route::get('/profile', 'UserController@show')->name('profile');
 Route::put('/profile', 'UserController@profileUpdate')->name('updateProfile');
 
 Route::get('/home', 'HomeController@index')->name('home');                                          
+
+Route::get('/boards', 'PostController@index')->name('post.index');    
+Route::get('/boards/create', 'PostController@create')->name('post.create');  
+Route::post('/boards/store', 'PostController@store')->name('post.store');                                          
+Route::get('/boards/{post}', 'PostController@show')->name('post.show');
+
+
+Route::get('/test', function () {
+    return view('post.index');
+});

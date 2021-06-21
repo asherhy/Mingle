@@ -51,7 +51,7 @@
                                 <a class="nav-link" href="#">Quick Match</a>
                             </li>
                             <li class="nav-item mx-2">
-                                <a class="nav-link" href="#">Board</a>
+                                <a class="nav-link" href="{{ route('post.index') }}">Board</a>
                             </li>
                             <li class="nav-item mx-2">
                                 <a class="nav-link" href="#">Request</a>

@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Module::class)->withTimestamps();
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     public function assignRole($role)
     {
         if(is_string($role)) {

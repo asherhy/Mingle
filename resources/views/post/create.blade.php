@@ -11,24 +11,48 @@
                 </div>
                 <div class="card-body">
                     <div class="container">
-                        <form>
+                        <form method="POST" action="{{ route('post.store') }}">
+                            @csrf
                             <div class="form-group form-row mb-4">
                                 <label for="title" class="col-form-label col-md-2">Title</label>
-                                <div class="col-md-10"><input type="title" class="form-control" id="title"></div>
+                                <div class="col-md-10">
+                                    <input type="title" name="title" class="form-control @error('title') is-invalid @enderror" id="title" value="{{ old('title') }}" required>
+                                    @error('title')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                                
                             </div>
                             <div class="form-group form-row mb-4">
                                 <label for="module" class="col-form-label col-md-2">Module</label>
                                 <div class="col-md-10 my-auto">
-                                    <select type="module" class="form-control" id="module">
-                                        <option selected>Choose Your Module</option>
-                                        <option value="1">N/A</option>
+                                    <select type="module" class="form-control @error('module') is-invalid @enderror" name="module" id="module" required>
+                                        <option value="">Choose Your Module</option>
+                                        @foreach($modules as $module)
+                                            <option value="{{ $module->id }}">{{ $module->moduleCode }}</option>
+                                        @endforeach
                                     </select>
+                                
+                                    @error('module')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group form-row mb-4">
                                 <label for="description" class="col-form-label col-md-2">Description</label>
                                 <div class="col-md-10 my-auto">
-                                    <textarea type="description" class="form-control" id="description" style="height:100px;"></textarea>
+                                    <textarea type="description" name="detail" class="form-control @error('detail') is-invalid @enderror"
+                                         id="description" style="height:100px;" value="{{ old('detail') }}" required>
+                                    </textarea>
+                                    @error('detail')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group form-row">
