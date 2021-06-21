@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="modal fade" id="editProfileModal" role="dialog">
-    <div class="modal-dialog modal-lg modal-dialog-centered" role="content">
+    <div class="modal-dialog modal-lg" role="content">
         <div class="modal-content" style="border-radius:15px;">
             <div class="modal-header" style="background-color: #3aafa9; border-top-left-radius:15px; border-top-right-radius:15px">
                 <h3 class="modal-title text-white">Edit Profile</h3>
@@ -43,38 +43,40 @@
                         <div class="form-group form-row">
                             <label for="major" class="col-form-label col-md-4">Major</label>
                             <div class="col-md-8 my-auto">
-                                <select type="major" name="major" class="form-control" id="major" required>
-                                    <option value ="">Choose Your Major</option>
-                                    @foreach($majors as $major)
-                                        <option {{ Auth::user()->majors->first() != null &&
-                                            Auth::user()->majors->first()->id == $major->id ? "selected" : ""}} value="{{ $major->id }}">
-                                          {{ $major->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
+                                <multiselect-component :fields="{{ json_encode($majors->pluck('name')->all()) }}" pholder="{{ __('Select Your Major(s)') }}"></multiselect-component>
                             </div>
                         </div>
                         <div class="form-group form-row">
                             <label for="matric-year" class="col-form-label col-md-4">Matric Year</label>
                             <div class="col-md-8 my-auto">
-                                <select type="matric-year" name="matricYear" class="form-control" id="matric-year" required>
+                                <?php $years = ['2018', '2019', '2020', '2021']; ?>
+                                <singleselect-component :fields='{{ json_encode($years) }}' pholder="{{ __('Choose Your Matric Year') }}"></singleselect-component>
+                                <!-- <select type="matric-year" name="matricYear" class="form-control" id="matric-year" required>
                                     <option value ="">Choose Your Matric Year</option>
                                     <option {{ Auth::user()->matric_year == "2018" ? "selected" : ""}} value="2018">2018</option>
                                     <option {{ Auth::user()->matric_year == "2019" ? "selected" : ""}} value="2019">2019</option>
                                     <option {{ Auth::user()->matric_year == "2020" ? "selected" : ""}} value="2020">2020</option>
                                     <option {{ Auth::user()->matric_year == "2021" ? "selected" : ""}} value="2021">2021</option>
-                                </select>
+                                </select> -->
                             </div>
                         </div>
                         <div class="form-group form-row">
                             <label for="gender" class="col-form-label col-md-4">Gender</label>
                             <div class="col-md-8 my-auto">
-                                <select type="gender" name="gender" class="form-control" id="gender" required>
+                                <?php $genders = ['Female', 'Male', 'Other']; ?>
+                                <singleselect-component :fields='{{ json_encode($genders) }}' pholder="{{ __('Choose Your Gender') }}"></singleselect-component>
+                                <!-- <select type="gender" name="gender" class="form-control" id="gender" required>
                                     <option value="">Choose Your Gender</option>
                                     <option {{ Auth::user()->gender == "1" ? "selected" : ""}} value="1">Female</option>
                                     <option {{ Auth::user()->gender == "2" ? "selected" : ""}} value="2">Male</option>
                                     <option {{ Auth::user()->gender == "3" ? "selected" : ""}} value="3">Other</option>
-                                </select>
+                                </select> -->
+                            </div>
+                        </div>
+                        <div class="form-group form-row">
+                            <label for="modules" class="col-form-label col-md-4">Modules</label>
+                            <div class="col-md-8 my-auto">
+                                <multiselect-component :fields="{{ json_encode($modules->pluck('moduleCode')->all()) }}" pholder="{{ __('Select Your Modules') }}"></multiselect-component>
                             </div>
                         </div>
                         <div class="form-group form-row">
