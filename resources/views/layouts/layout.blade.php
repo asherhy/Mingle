@@ -6,7 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="Li Ming Gao Rickie and Asher" />
 
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app2.css') }}" rel="stylesheet">
 
         <title>mingle</title>
         
@@ -51,7 +51,7 @@
                                 <a class="nav-link" href="#">Quick Match</a>
                             </li>
                             <li class="nav-item mx-2">
-                                <a class="nav-link" href="{{ route('post.index') }}">Board</a>
+                                <a class="nav-link" href="{{route('post.index')}}">Board</a>
                             </li>
                             <li class="nav-item mx-2">
                                 <a class="nav-link" href="#">Request</a>
@@ -90,10 +90,9 @@
             </div>
         </nav>
 
-        @yield('modals')
-
-
-        @yield('content')
+        <div id="app">
+            @yield('content')
+        </div>
 
         <footer class="footer d-flex align-items-center">
             <div class="container">

@@ -43,40 +43,31 @@
                         <div class="form-group form-row">
                             <label for="major" class="col-form-label col-md-4">Major</label>
                             <div class="col-md-8 my-auto">
-                                <multiselect-component :fields="{{ json_encode($majors->pluck('name')->all()) }}" pholder="{{ __('Select Your Major(s)') }}"></multiselect-component>
+                                <multiselect-component :fields="{{ json_encode($majors->pluck('name')->all()) }}" attri="{{ __('majors[]') }}" :preselects="{{ json_encode(Auth::user()->majors->pluck('name')->all()) }}"
+                                 pholder="{{ __('Select Your Major(s)') }}"></multiselect-component>
                             </div>
                         </div>
                         <div class="form-group form-row">
                             <label for="matric-year" class="col-form-label col-md-4">Matric Year</label>
                             <div class="col-md-8 my-auto">
-                                <?php $years = ['2018', '2019', '2020', '2021']; ?>
-                                <singleselect-component :fields='{{ json_encode($years) }}' pholder="{{ __('Choose Your Matric Year') }}"></singleselect-component>
-                                <!-- <select type="matric-year" name="matricYear" class="form-control" id="matric-year" required>
-                                    <option value ="">Choose Your Matric Year</option>
-                                    <option {{ Auth::user()->matric_year == "2018" ? "selected" : ""}} value="2018">2018</option>
-                                    <option {{ Auth::user()->matric_year == "2019" ? "selected" : ""}} value="2019">2019</option>
-                                    <option {{ Auth::user()->matric_year == "2020" ? "selected" : ""}} value="2020">2020</option>
-                                    <option {{ Auth::user()->matric_year == "2021" ? "selected" : ""}} value="2021">2021</option>
-                                </select> -->
+                                <?php $years = ['2018', '2019', '2020', '2021', '2022']; ?>
+                                <singleselect-component :fields='{{ json_encode($years) }}' attri="{{ __('matric') }}" preselects="{{ Auth::user()->matric_year }}"
+                                pholder="{{ __('Choose Your Matric Year') }}"></singleselect-component>
                             </div>
                         </div>
                         <div class="form-group form-row">
                             <label for="gender" class="col-form-label col-md-4">Gender</label>
                             <div class="col-md-8 my-auto">
                                 <?php $genders = ['Female', 'Male', 'Other']; ?>
-                                <singleselect-component :fields='{{ json_encode($genders) }}' pholder="{{ __('Choose Your Gender') }}"></singleselect-component>
-                                <!-- <select type="gender" name="gender" class="form-control" id="gender" required>
-                                    <option value="">Choose Your Gender</option>
-                                    <option {{ Auth::user()->gender == "1" ? "selected" : ""}} value="1">Female</option>
-                                    <option {{ Auth::user()->gender == "2" ? "selected" : ""}} value="2">Male</option>
-                                    <option {{ Auth::user()->gender == "3" ? "selected" : ""}} value="3">Other</option>
-                                </select> -->
+                                <singleselect-component :fields='{{ json_encode($genders) }}' attri="{{ __('gender') }}" preselects="{{ Auth::user()->gender == 'Female' ? 'Female' : (Auth::user()->gender == 'Male' ? 'Male' : 'Other') }}"
+                                pholder="{{ __('Choose Your Gender') }}"></singleselect-component>
                             </div>
                         </div>
                         <div class="form-group form-row">
                             <label for="modules" class="col-form-label col-md-4">Modules</label>
                             <div class="col-md-8 my-auto">
-                                <multiselect-component :fields="{{ json_encode($modules->pluck('moduleCode')->all()) }}" pholder="{{ __('Select Your Modules') }}"></multiselect-component>
+                                <multiselect-component :fields="{{ json_encode($modules->pluck('moduleCode')->all()) }}" attri="{{ __('modules[]') }}" :preselects="{{json_encode(Auth::user()->modules->pluck('moduleCode')->all())}}"
+                                 pholder="{{ __('Select Your Modules') }}"></multiselect-component>
                             </div>
                         </div>
                         <div class="form-group form-row">
@@ -101,6 +92,11 @@
                 </div>
                 <div class="col-md-8">
                     <div class="card-body">
+                        @if ($errors->any())
+                            @foreach ($errors->all() as $error)
+                                <div class="alert alert-danger" role="alert">{{$error}}</div>
+                            @endforeach
+                        @endif
                         <h3 class="card-title pb-3 border-bottom text-dark text-left">Information</h3>
                         <div class="row p-2">
                             <div class="col-sm-6 mb-2">
@@ -115,7 +111,13 @@
                         <div class="row p-2">
                             <div class="col-sm-6 mb-2">
                                 <h3 class="text-dark text-left">Major</h3>
-                                <p class="card-text text-muted">{{ Auth::user()->majors->first() != null ? Auth::user()->majors->first()->name : "-"}}</p>
+                                @if( Auth::user()->majors->first() != null )
+                                    @foreach(Auth::user()->majors as $m)
+                                        <p class="card-text text-muted">{{ $m->name }}</p>
+                                    @endforeach
+                                @else
+                                    <p class="card-text text-muted">-</p>
+                                @endif
                             </div>
                             <div class="col-sm-6 mb-2">
                                 <h3 class="text-dark text-left">Matric Year</h3>
@@ -124,11 +126,20 @@
                         </div>
                         <div class="row p-2">
                             <div class="col-sm-6 mb-2">
+                                <h3 class="text-dark text-left">Modules</h3>
+                                @if( Auth::user()->modules->first() != null )
+                                    @foreach(Auth::user()->modules as $m)
+                                        <p class="card-text text-muted">{{ $m->moduleCode }}</p>
+                                    @endforeach
+                                @else
+                                    <p class="card-text text-muted">-</p>
+                                @endif
+                            </div>
+                            <div class="col-sm-6 mb-2">
                                 <h3 class="text-dark text-left">Gender</h3>
-                                <p class="card-text text-muted">{{ Auth::user()->gender == 1 ? "Female" : (Auth::user()->gender == 2 ? "Male" : "Others") }}</p>
+                                <p class="card-text text-muted">{{ Auth::user()->gender == 'Female' ? "Female" : (Auth::user()->gender == 'Male' ? "Male" : "Others") }}</p>
                             </div>
                         </div>
-                        <h3 class="card-title pb-3 border-bottom text-dark text-left">Modules</h3>
                         <div class="row p-2"><button type="button" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#editProfileModal">
                             Edit
                         </button></div>

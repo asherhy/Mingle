@@ -77,7 +77,7 @@ class User extends Authenticatable
     public function assignModule($module)
     {
         if(is_string($module)) {
-            $module = Module::whereName($module)->firstOrFail();
+            $module = Module::where('moduleCode', $module)->firstOrFail();
         }
         $this->modules()->sync($module, false);
     }

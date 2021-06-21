@@ -32,7 +32,7 @@ class UserController extends Controller
         $modules = Module::all();
         $majors = Major::all();
         //dd($majors);
-        return view('user.show', compact('majors'));
+        return view('user.show', compact('majors', 'modules'));
     }
 
     /**
@@ -77,13 +77,28 @@ class UserController extends Controller
     public function profileUpdate(Request $request)
     {
         $user = Auth::user();
+        $request->validate([
+          'majors' => ['required', 'array', 'max:3'],
+          'modules' => ['required', 'array', 'max:5'],
+          'matric' => ['required'],
+          'gender' => ['required'],
+          'name' => ['required'],
+          'telegram' => ['required']
+        ]);
         $user->update([
           'name' => $request->name,
           'telegram' => $request->telegram,
           'gender' => $request->gender,
-          'matric_year' => $request->matricYear
+          'matric_year' => $request->matric
         ]);
-        $user->assignMajor((int)$request->major);
+        $user->majors()->detach();
+        $user->modules()->detach();
+        foreach($request->majors as $major) {
+          $user->assignMajor($major);
+        }
+        foreach($request->modules as $module) {
+          $user->assignModule($module);
+        }
         return redirect()->back();
     }
 }

@@ -24,6 +24,16 @@ Vue.component(
     require("./components/ExampleComponent.vue").default
 );
 
+Vue.component(
+    "multiselect-component",
+    require("./components/multiselectComponent.vue").default
+);
+
+Vue.component(
+    "singleselect-component",
+    require("./components/singleselectComponent.vue").default
+);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
