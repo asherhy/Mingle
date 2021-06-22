@@ -27,6 +27,10 @@ class CreatePostsTable extends Migration
             ->references('id')
             ->on('users')
             ->onDelete('cascade');
+
+            $table->foreign('module_id')
+            ->references('id')
+            ->on('modules');
         });
 
         // Schema::create('post_user', function (Blueprint $table) {
