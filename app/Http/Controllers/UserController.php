@@ -30,7 +30,13 @@ class UserController extends Controller
     public function show()
     {
         $modules = Module::all();
+        if(!isset($modules)) {
+          $modules = [];
+        }
         $majors = Major::all();
+        if(!isset($majors)) {
+          $majors = [];
+        }
         //dd($majors);
         return view('user.show', compact('majors', 'modules'));
     }
