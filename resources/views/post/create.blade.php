@@ -28,13 +28,8 @@
                             <div class="form-group form-row mb-4">
                                 <label for="module" class="col-form-label col-md-2">Module</label>
                                 <div class="col-md-10 my-auto">
-                                    <select type="module" class="form-control @error('module') is-invalid @enderror" name="module" id="module" required>
-                                        <option value="">Choose Your Module</option>
-                                        @foreach($modules as $module)
-                                            <option value="{{ $module->id }}">{{ $module->moduleCode }}</option>
-                                        @endforeach
-                                    </select>
-                                
+                                    <multiselect-component :fields="{{ json_encode($modules->pluck('moduleCode')->all()) }}" attri="{{ __('modules[]') }}" :preselects="{{ json_encode(Auth::user()->modules->pluck('moduleCode')->all()) }}"
+                                    pholder="{{ __('Select Your Modules') }}"></multiselect-component>
                                     @error('module')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
