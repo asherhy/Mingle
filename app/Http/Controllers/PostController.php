@@ -50,16 +50,18 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+
+
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
-            'module' => ['required', 'integer'],
+            'modules' => ['required', 'string'],
             'detail' => ['required', 'string'],
           ]);
 
         $post = Post::create([
             'user_id' => Auth::user()->id,
             'title' => $request->title,
-            'module_id' => $request->module,
+            'module_id' => Module::where('moduleCode', $request->modules)->firstOrFail()->id,
             'status' => 'Active',
             'type' => '',
             'detail' => $request->detail
