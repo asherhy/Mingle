@@ -144,7 +144,7 @@
                             </button>
                             <a class="btn btn-primary float-right mr-2" role="button" data-toggle="modal" data-target="#editPostModal">Edit</a>
                         </form>
-                    @else
+                    @elseif($post->status == "Active")
                         <a class="btn btn-primary float-right" role="button" data-toggle="modal" data-target="#createRequestModal">Request Position</a>
                     @endif
                 </div>

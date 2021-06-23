@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Post extends Model
+class PostRequest extends Model
 {
     /**
      * The attributes that are mass assignable.
@@ -12,7 +12,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'user_id', 'title', 'detail', 'module_id', 'status', 'type'
+        'user_id', 'post_id', 'detail', 'info', 'status'
     ];
 
     public function user()
@@ -20,13 +20,9 @@ class Post extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function module()
+    public function post()
     {
-        return $this->belongsTo(Module::class);
+        return $this->belongsTo(Post::class);
     }
 
-    public function postRequests()
-    {
-        return $this->hasMany(PostRequest::class);
-    }
 }
