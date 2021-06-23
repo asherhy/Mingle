@@ -46,20 +46,34 @@
                 <div class="card-header m-0 pb-0 pt-3 border-0" style="border-top-left-radius:10px; border-top-right-radius:10px;">
                     <div class="row pt-2 pb-2">
                         <img class="my-auto ml-4" src="/images/avatars/{{ Auth::user()->avatar }}" style="width:60px; height:60px; position:relative; border-radius:50%">
-                        <div class="pl-4">
-                            <h3 class="my-auto text-left text-dark">{{ $post->title }}</h3>
-                            <p class="mb-0" style="font-size:15px;">Author: {{ $post->user->name }}</p>
+                        <div class="pl-4 my-auto">
+                            <div class="row pl-3 p-0">
+                                <p class="mb-0 mr-auto" style="font-size:20px;">Author: {{ $post->user->name }}</p>
+                            </div>
+                            <p class="text-muted mb-0" style="font-size:12px; font-weight:300px;">Posted on {{ $post->created_at }}</p>
                         </div>
-                        <a class="ml-auto mr-4 close" type="button" role="button" href="" style="font-size:20px;">
+                        @if ($post->status == 'Active')
+                            <p class="badge badge-success ml-auto mb-auto mr-4">Active</p>
+                        @else
+                            <p class="badge badge-danger ml-auto mb-auto mr-4">Inactive</p>
+                        @endif
+                        <a class="ml-0 mr-4 close" type="button" role="button" href="" style="font-size:20px;">
                             &times;
                         </a>
                     </div>
                 </div>
                 <div class="card-body">
-                    <p class="card-text">{{ $post->detail }}</p>
+                    <div class="container">
+                        <h2 class="text-left text-dark card-title" style="font-weight:500;">{{ $post->title }}</h2>
+                        <p class="card-text" style="font-size:18px;">{{ $post->detail }}</p>
+                    </div>
                 </div>
                 <div class="card-footer">
+                    <!-- if post doesn't belong to user show request position button -->
                     <a class="btn btn-primary float-right" role="button" data-toggle="modal" data-target="#createRequestModal">Request Position</a>
+                    <!-- if post belongs to user show delete and edit button -->
+                    <button class="btn btn-danger float-right" type="submit">Delete</button>
+                    <a class="btn btn-primary float-right mr-2" role="button" href="#">Edit</a>
                 </div>
             </div>
         </div>
