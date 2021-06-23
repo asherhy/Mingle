@@ -23,13 +23,18 @@
                                         </span>
                                     @enderror
                                 </div>
-                                
+                            </div>
+                            <div class="form-group form-row mb-4">
+                                <label for="type" class="col-form-label col-md-2">Type</label>
+                                <div class="col-md-10">
+                                    <input type="type" name="type" class="form-control" id="type" required>
+                                </div>
                             </div>
                             <div class="form-group form-row mb-4">
                                 <label for="module" class="col-form-label col-md-2">Module</label>
                                 <div class="col-md-10 my-auto">
-                                    <singleselect-component :fields="{{ json_encode($modules->pluck('moduleCode')->all()) }}" attri="{{ __('modules') }}"
-                                    pholder="{{ __('Select Your Modules') }}"></singleselect-component>
+                                    <singleselect-component :fields="{{ json_encode($fullTitles) }}" attri="{{ __('modules') }}"
+                                    pholder="{{ __('Select Your Module') }}"></singleselect-component>
                                     @error('module')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
