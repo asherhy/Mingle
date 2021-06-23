@@ -32,14 +32,26 @@ class PostController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function myposts()
+    {
+        return view('post.myposts');
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        $modules = Module::all();
-        return view('post.create', compact('modules'));
+        // $modules = Module::all();
+        $fullTitles = Module::all('moduleCode', 'title')->pluck("full-title");
+        // dd($fullTitles);
+        return view('post.create', compact('fullTitles'));
     }
 
     /**
