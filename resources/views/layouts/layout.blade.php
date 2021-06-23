@@ -54,7 +54,7 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Board </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="min-width:200px;">
                                     <a class="dropdown-item" href="{{route('post.index')}}">All Posts</a>
-                                    <a class="dropdown-item" href="#">My Posts</a>
+                                    <a class="dropdown-item" href="{{route('post.myposts')}}">My Posts</a>
                                 </div>
                             </li>
                             <li class="nav-item mx-2">
