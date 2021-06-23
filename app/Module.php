@@ -15,4 +15,9 @@ class Module extends Model
     {
         return $this->hasMany(Post::class);
     }
+
+    public function getFullTitleAttribute()
+    {
+       return "{$this->moduleCode} {$this->title}";
+    }
 }
