@@ -27,7 +27,12 @@
                             <div class="form-group form-row mb-4">
                                 <label for="type" class="col-form-label col-md-2">Type</label>
                                 <div class="col-md-10">
-                                    <input type="type" name="type" class="form-control" id="type" required>
+                                    <input type="type" name="type" class="form-control @error('type') is-invalid @enderror" id="type" value="{{ old('type') }}" required>
+                                    @error('type')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="form-group form-row mb-4">
