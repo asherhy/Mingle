@@ -20,27 +20,28 @@
                 </div>
                 <div class="card-body">
                     <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4 p-5">
-                        <div class="col mb-3">
-                            <div class="card request-card">
-                                <div class="card-header m-0 pb-0 pt-3 border-0">
-                                    <div class="row pt-2 pb-0">
-                                        <img class="my-auto ml-3" src="/images/avatars/{{ Auth::user()->avatar }}" style="width:40px; height:40px; position:relative; border-radius:50%">
-                                        <div class="pl-3">
-                                            <h5 class="m-0 text-left text-dark">Title</h5>
-                                            <p class="m-0" style="font-size:14px;">Author:</p>
+                        @foreach($posts as $post)
+                            <div class="col mb-3">
+                                <div class="card request-card">
+                                    <div class="card-header m-0 pb-0 pt-3 border-0">
+                                        <div class="row pt-2 pb-0">
+                                            <img class="my-auto ml-3" src="/images/avatars/{{ Auth::user()->avatar }}" style="width:40px; height:40px; position:relative; border-radius:50%">
+                                            <div class="pl-3">
+                                                <h5 class="m-0 text-left text-dark">{{ $post->title }}</h5>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-body">
-                                    <p class="text-muted card-subtitle text-left mb-2">Posted on </p>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed convallis arcu eget eros venenatis pellentesque. Maecenas a orci vehicula, finibus velit eget, ultricies augue. In purus velit, fermentum eget nulla feugiat, suscipit feugiat metus.</p>
-                                </div>
-                                <div class="card-footer pt-0" style="background:none; border:none;">
-                                    <button class="btn btn-sm btn-danger float-right ml-2" type="submit">Delete</button>
-                                    <a class="btn btn-sm btn-primary pt-1 ml-auto float-right" href="#" role="button">Edit</a>
+                                    <div class="card-body">
+                                        <p class="text-muted card-subtitle text-left mb-2">Posted on {{ $post->created_at }}</p>
+                                        <p class="card-text">{{ $post->detail }}</p>
+                                    </div>
+                                    <div class="card-footer pt-0" style="background:none; border:none;">
+                                        <button class="btn btn-sm btn-danger float-right ml-2" type="submit">Delete</button>
+                                        <a class="btn btn-sm btn-primary pt-1 ml-auto float-right" href="#" role="button">Edit</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
