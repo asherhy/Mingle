@@ -17,8 +17,9 @@ class ModuleSeeder extends Seeder
         foreach ($responses as $response)  {
             DB::table('modules')->insert([
                 [
-                    'moduleCode' => $response['moduleCode'],
-                    'title' => $response['title']
+                    'code' => $response['moduleCode'],
+                    'title' => $response['title'],
+                    'code_title' => $response['moduleCode']." ".$response['title']
                 ]
             ]);
          }
