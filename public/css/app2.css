@@ -87,6 +87,10 @@ body {
     margin-left: 15px;
 }
 
+.card.request-card {
+    border-radius: 15px;
+}
+
 .card.request-card .card-body {
     max-height: 300px;
     overflow-y: auto;
@@ -120,7 +124,7 @@ a.brand:hover {
 }
 
 div.card {
-    border-radius: 20px;
+    border-radius: 15px;
 }
 
 div.card div.card-header {
@@ -131,6 +135,8 @@ div.card div.card-header {
     padding-top: 40px;
     color: black;
     margin: auto;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
 .card-body form.signup {
@@ -138,6 +144,10 @@ div.card div.card-header {
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
     padding-bottom: 30px;
+}
+
+.clickable-card:hover {
+    text-decoration: none;
 }
 
 .container .card.signup {
