@@ -66,7 +66,7 @@
                         <div class="form-group form-row">
                             <label for="modules" class="col-form-label col-md-4">Modules</label>
                             <div class="col-md-8 my-auto">
-                                <multiselect-component :fields="{{ json_encode($modules->pluck('moduleCode')->all()) }}" attri="{{ __('modules[]') }}" :preselects="{{json_encode(Auth::user()->modules->pluck('moduleCode')->all())}}"
+                                <multiselect-component :fields="{{ json_encode($modules->pluck('code_title')->all()) }}" attri="{{ __('modules[]') }}" :preselects="{{json_encode(Auth::user()->modules->pluck('code_title')->all())}}"
                                  pholder="{{ __('Select Your Modules') }}"></multiselect-component>
                             </div>
                         </div>
@@ -105,10 +105,30 @@
                             </div>
                             <div class="col-sm-6 mb-2">
                                 <h3 class="text-dark text-left">Telegram</h3>
-                                <p class="card-text text-muted">@ {{ Auth::user()->telegram }}</p>
+                                <p class="card-text text-muted">{{ "@".Auth::user()->telegram }}</p>
                             </div>
                         </div>
                         <div class="row p-2">
+                            <div class="col-sm-6 mb-2">
+                                <h3 class="text-dark text-left">Gender</h3>
+                                <p class="card-text text-muted">{{ Auth::user()->gender == 'Female' ? "Female" : (Auth::user()->gender == 'Male' ? "Male" : "Others") }}</p>
+                            </div>
+                            <div class="col-sm-6 mb-2">
+                                <h3 class="text-dark text-left">Matric Year</h3>
+                                <p class="card-text text-muted">{{ Auth::user()->matric_year ?? "-" }}</p>
+                            </div>
+                        </div>
+                        <div class="row p-2">
+                            <div class="col-sm-6 mb-2">
+                                <h3 class="text-dark text-left">Modules</h3>
+                                @if( Auth::user()->modules->first() != null )
+                                    @foreach(Auth::user()->modules as $m)
+                                        <p class="card-text text-muted">{{ $m->code_title }}</p>
+                                    @endforeach
+                                @else
+                                    <p class="card-text text-muted">-</p>
+                                @endif
+                            </div>
                             <div class="col-sm-6 mb-2">
                                 <h3 class="text-dark text-left">Major</h3>
                                 @if( Auth::user()->majors->first() != null )
@@ -118,26 +138,6 @@
                                 @else
                                     <p class="card-text text-muted">-</p>
                                 @endif
-                            </div>
-                            <div class="col-sm-6 mb-2">
-                                <h3 class="text-dark text-left">Matric Year</h3>
-                                <p class="card-text text-muted">{{ Auth::user()->matric_year }}</p>
-                            </div>
-                        </div>
-                        <div class="row p-2">
-                            <div class="col-sm-6 mb-2">
-                                <h3 class="text-dark text-left">Modules</h3>
-                                @if( Auth::user()->modules->first() != null )
-                                    @foreach(Auth::user()->modules as $m)
-                                        <p class="card-text text-muted">{{ $m->moduleCode }}</p>
-                                    @endforeach
-                                @else
-                                    <p class="card-text text-muted">-</p>
-                                @endif
-                            </div>
-                            <div class="col-sm-6 mb-2">
-                                <h3 class="text-dark text-left">Gender</h3>
-                                <p class="card-text text-muted">{{ Auth::user()->gender == 'Female' ? "Female" : (Auth::user()->gender == 'Male' ? "Male" : "Others") }}</p>
                             </div>
                         </div>
                         <div class="row p-2"><button type="button" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#editProfileModal">
