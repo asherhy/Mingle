@@ -27,12 +27,12 @@ Route::put('/profile', 'UserController@profileUpdate')->name('updateProfile');
 
 Route::get('/home', 'HomeController@index')->name('home');                                          
 
-Route::get('/boards', 'PostController@index')->name('post.index');    
+Route::get('/boards/allposts', 'PostController@index')->name('post.index');
+Route::get('/boards/myposts', 'PostController@myposts')->name('post.myposts');    
 Route::get('/boards/create', 'PostController@create')->name('post.create');  
 Route::post('/boards/store', 'PostController@store')->name('post.store');                                          
 Route::get('/boards/{post}', 'PostController@show')->name('post.show');
 
-
 Route::get('/test', function () {
-    return view('post.index');
+    return view('request.index');
 });
