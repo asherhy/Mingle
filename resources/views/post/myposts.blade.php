@@ -36,6 +36,7 @@
                                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed convallis arcu eget eros venenatis pellentesque. Maecenas a orci vehicula, finibus velit eget, ultricies augue. In purus velit, fermentum eget nulla feugiat, suscipit feugiat metus.</p>
                                 </div>
                                 <div class="card-footer pt-0" style="background:none; border:none;">
+                                    <a class="btn btn-sm btn-primary" href="#">View Requests</a>
                                     <button class="btn btn-sm btn-danger float-right ml-2" type="submit">Delete</button>
                                     <a class="btn btn-sm btn-primary pt-1 ml-auto float-right" href="#" role="button">Edit</a>
                                 </div>
