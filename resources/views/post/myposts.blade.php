@@ -40,7 +40,7 @@
                                             </div>
                                         </div>
                                         <div class="card-body pt-2">
-                                            <p class="badge text-white text-left mb-1" style="background:#3aafa9; font-size:12px;">{{ $modules[$post->module_id - 1] }}</p>
+                                            <p class="badge text-white text-left mb-1" style="background:#3aafa9; font-size:12px;">{{ $post->module->code }}</p>
                                             <p class="card-text">{{ $post->detail }}</p>
                                         </div>
                                     </div>

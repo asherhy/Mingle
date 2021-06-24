@@ -40,8 +40,7 @@ class PostController extends Controller
     public function myposts()
     {
         $posts = Auth::user()->posts;
-        $modules = Module::all()->pluck('code_title');
-        return view('post.myposts', compact('posts', 'modules'));
+        return view('post.myposts', compact('posts'));
     }
 
     /**
