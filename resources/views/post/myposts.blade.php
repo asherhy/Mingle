@@ -23,19 +23,28 @@
                         @foreach($posts as $post)
                             <div class="col mb-3">
                                 <div class="card request-card">
-                                    <div class="card-header m-0 pb-0 pt-3 border-0">
-                                        <div class="row pt-2 pb-0">
-                                            <img class="my-auto ml-3" src="/images/avatars/{{ Auth::user()->avatar }}" style="width:40px; height:40px; position:relative; border-radius:50%">
-                                            <div class="pl-3">
-                                                <h5 class="m-0 text-left text-dark">{{ $post->title }}</h5>
+                                    <div style="transform: rotate(0);">
+                                        <div class="card-header m-0 pb-0 pt-3 border-0">
+                                            <div class="row pt-2 pb-0">
+                                                <img class="my-auto ml-3" src="/images/avatars/{{ Auth::user()->avatar }}" style="width:40px; height:40px; position:relative; border-radius:50%">
+                                                <div class="pl-3 my-auto">
+                                                    <a class="stretched-link clickable-card" href="{{route('post.show', $post)}}">
+                                                        <h5 class="m-0 text-left text-dark mb-1 mt-1">{{ $post->title }}</h5>
+                                                    </a>
+                                                @if ($post->created_at == $post->updated_at)
+                                                    <p class="text-muted text-left mb-0" style="font-size:10px; font-weight:300;">Posted on {{ $post->created_at }}</p>
+                                                @else
+                                                    <p class="text-muted text-left mb-0" style="font-size:10px; font-weight:300;">Edited on {{ $post->updated_at }}</p>
+                                                @endif
+                                                </div>
                                             </div>
                                         </div>
+                                        <div class="card-body pt-2">
+                                            <p class="badge text-white text-left mb-1" style="background:#3aafa9; font-size:12px;">{{ $modules[$post->module_id - 1] }}</p>
+                                            <p class="card-text">{{ $post->detail }}</p>
+                                        </div>
                                     </div>
-                                    <div class="card-body">
-                                        <p class="text-muted card-subtitle text-left mb-2">Posted on {{ $post->created_at }}</p>
-                                        <p class="card-text">{{ $post->detail }}</p>
-                                    </div>
-                                    <div class="card-footer pt-0" style="background:none; border:none;">
+                                    <div class="card-footer pt-2" style="background:none; border:none;">
                                         <button class="btn btn-sm btn-danger float-right ml-2" type="submit">Delete</button>
                                         <a class="btn btn-sm btn-primary pt-1 ml-auto float-right" href="#" role="button">Edit</a>
                                     </div>
