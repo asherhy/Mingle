@@ -29,7 +29,8 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        return view('post.index', compact('posts'));
+        $modules = Module::all()->pluck('code_title');
+        return view('post.index', compact('posts', 'modules'));
     }
 
     /**
