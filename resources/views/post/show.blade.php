@@ -142,11 +142,10 @@
                                         <div class="col-12">
                                             <div class="row pt-1 pb-1">
                                                 <div class="col-1 d-flex justify-content-center pr-0">
-                                                    <?php $user = $users->find($postRequest->user_id) ?>
-                                                    <img class="mx-auto" src="/images/avatars/{{ $user->avatar }}" style="width:40px; height:40px; position:relative; border-radius:50%">
+                                                    <img class="mx-auto" src="/images/avatars/{{ $postRequest->user->avatar }}" style="width:40px; height:40px; position:relative; border-radius:50%">
                                                 </div>
                                                 <div class="col-10 pl-0 my-auto p-2 pl-3 pr-3 ml-4" style="width:100%; background:#def2f1; height:auto; border-radius: 20px;">
-                                                        <p class="pb-0 mb-0 text-left" style="font-size:12px; font-weight:bold;">{{ $user->name }}</p>
+                                                        <p class="pb-0 mb-0 text-left" style="font-size:12px; font-weight:bold;">{{ $postRequest->user->name}}</p>
                                                         <p class="mb-1 text-left" style="font-size:15px; font-weight:400;">{{ $postRequest->detail }}</p>
                                                         <p class="text-left text-muted mb-0 pt-1" style="font-size:12px; font-weight:400;">{{ "Request made on " .$postRequest->created_at }}
                                                 </div>

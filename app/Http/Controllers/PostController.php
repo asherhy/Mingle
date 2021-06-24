@@ -29,8 +29,7 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::all();
-        $modules = Module::all()->pluck('code_title');
-        return view('post.index', compact('posts', 'modules'));
+        return view('post.index', compact('posts'));
     }
 
     /**
@@ -95,8 +94,7 @@ class PostController extends Controller
         $modules = Module::all()->pluck('code_title');
         $types = ["Active", "Closed"];
         $postRequests = $post->postRequests->where('post_id', $post->id);
-        $users = User::all()->find($postRequests->pluck('user_id'));
-        return view('post.show', compact('post', 'modules', 'types', 'postRequests', 'users'));
+        return view('post.show', compact('post', 'modules', 'types', 'postRequests'));
     }
 
     /**
