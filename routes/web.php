@@ -30,9 +30,13 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/boards/allposts', 'PostController@index')->name('post.index');
 Route::get('/boards/myposts', 'PostController@myposts')->name('post.myposts');    
 Route::get('/boards/create', 'PostController@create')->name('post.create');  
-Route::post('/boards/store', 'PostController@store')->name('post.store');                                          
+Route::post('/boards/create', 'PostController@store')->name('post.store');                                          
 Route::get('/boards/{post}', 'PostController@show')->name('post.show');
+Route::put('/boards/{post}', 'PostController@update')->name('post.update');
+Route::delete('/boards/{post}', 'PostController@destroy')->name('post.delete');
 
-Route::get('/test', function () {
-    return view('request.index');
-});
+
+Route::get('/posts/{post}/request/create', 'PostRequestController@create')->name('request.post.create');    
+Route::post('/posts/{post}/request/create', 'PostRequestController@store')->name('request.post.store');    
+
+

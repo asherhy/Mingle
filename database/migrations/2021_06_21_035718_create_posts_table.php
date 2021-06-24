@@ -19,7 +19,7 @@ class CreatePostsTable extends Migration
             $table->text('detail');
             $table->string('title');
             $table->unsignedBigInteger('module_id');
-            $table->string('status');
+            $table->enum('status', ['Active', 'Closed']);  
             $table->string('type');
             $table->timestamps();
 
@@ -33,23 +33,7 @@ class CreatePostsTable extends Migration
             ->on('modules');
         });
 
-        // Schema::create('post_user', function (Blueprint $table) {
-        //     $table->primary(['user_id', 'post_id']);
-        //     $table->unsignedBigInteger('user_id');
-        //     $table->unsignedBigInteger('post_id');
-        //     $table->string('title');
-        //     $table->text('detail');
-        //     $table->timestamps();
-
-        //     $table->foreign('user_id')
-        //         ->references('id')
-        //         ->on('users')
-        //         ->onDelete('cascade');
-
-        //     $table->foreign('post_id')
-        //         ->references('id')
-        //         ->on('post')
-        // });
+     
     }
 
     /**

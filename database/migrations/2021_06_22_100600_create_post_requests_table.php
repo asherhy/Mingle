@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateModulesTable extends Migration
+class CreatePostRequestsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,13 @@ class CreateModulesTable extends Migration
      */
     public function up()
     {
-        Schema::create('modules', function (Blueprint $table) {
+        Schema::create('post_requests', function (Blueprint $table) {
             $table->id();
-            $table->string('code');
-            $table->string('title');
-            $table->string('code_title');
-            $table->string('label')->nullable();
-            $table->timestamps();
-        });
-
-        Schema::create('module_user', function (Blueprint $table) {
-            $table->primary(['user_id', 'module_id']);
             $table->unsignedBigInteger('user_id');
-            $table->unsignedBigInteger('module_id');
+            $table->unsignedBigInteger('post_id');
+            $table->text('detail');
+            $table->enum('status', ['Pending', 'Accepted', 'Rejected', 'Deleted']);
+            $table->boolean('info');  
             $table->timestamps();
 
             $table->foreign('user_id')
@@ -33,10 +27,10 @@ class CreateModulesTable extends Migration
                 ->on('users')
                 ->onDelete('cascade');
 
-            $table->foreign('module_id')
+            $table->foreign('post_id')
                 ->references('id')
-                ->on('modules')
-                ->onDelete('cascade');
+                ->on('posts');
+
         });
     }
 
@@ -47,6 +41,6 @@ class CreateModulesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('modules');
+        Schema::dropIfExists('post_requests');
     }
 }

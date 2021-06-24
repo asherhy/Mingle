@@ -58,6 +58,11 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function postRequests()
+    {
+        return $this->hasMany(PostRequest::class);
+    }
+
     public function assignRole($role)
     {
         if(is_string($role)) {
@@ -77,7 +82,7 @@ class User extends Authenticatable
     public function assignModule($module)
     {
         if(is_string($module)) {
-            $module = Module::where('moduleCode', $module)->firstOrFail();
+            $module = Module::where('code_title', $module)->firstOrFail();
         }
         $this->modules()->sync($module, false);
     }

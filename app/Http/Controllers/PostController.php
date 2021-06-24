@@ -38,7 +38,8 @@ class PostController extends Controller
      */
     public function myposts()
     {
-        return view('post.myposts');
+        $posts = Auth::user()->posts;
+        return view('post.myposts', compact('posts'));
     }
 
     /**
@@ -48,10 +49,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        // $modules = Module::all();
-        $fullTitles = Module::all('moduleCode', 'title')->pluck("full-title");
-        // dd($fullTitles);
-        return view('post.create', compact('fullTitles'));
+        $modules = Module::all()->pluck('code_title');
+        return view('post.create', compact('modules'));
     }
 
     /**
@@ -62,20 +61,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'modules' => ['required', 'string'],
             'detail' => ['required', 'string'],
+            'type' => ['required', 'string'],
+
           ]);
 
         $post = Post::create([
             'user_id' => Auth::user()->id,
             'title' => $request->title,
-            'module_id' => Module::where('moduleCode', $request->modules)->firstOrFail()->id,
+            'module_id' => Module::where('code_title', $request->modules)->firstOrFail()->id,
             'status' => 'Active',
-            'type' => '',
+            'type' => $request->type,
             'detail' => $request->detail
         ]);
 
@@ -90,18 +89,9 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
-        return view('post.show', compact('post'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Post  $post
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Post $post)
-    {
-        //
+        $modules = Module::all()->pluck('code_title');
+        $types = ["Active", "Closed"];
+        return view('post.show', compact('post', 'modules', 'types'));
     }
 
     /**
@@ -113,7 +103,26 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        if($post->user_id !== Auth::user()->id){
+            abort(403);
+        }
+        $request->validate([
+            'title' => ['required', 'string', 'max:255'],
+            'modules' => ['required', 'string'],
+            'detail' => ['required', 'string'],
+            'type' => ['required', 'string'],
+            'status' => ['required', 'string'],
+          ]);
+
+        $post->update([
+            'title' => $request->title,
+            'module_id' => Module::where('code_title', $request->modules)->firstOrFail()->id,
+            'status' => $request->status,
+            'type' => $request->type,
+            'detail' => $request->detail
+        ]);
+
+        return redirect(route('post.show', $post));
     }
 
     /**
@@ -124,6 +133,17 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        if($post->user_id !== Auth::user()->id){
+            abort(403);
+        }
+        foreach ($post->postRequests as $req) {
+            if( $req->status == "Pending") {
+                $req->update([
+                    "status" => "Deleted"
+                ]);
+            }
+        }
+        $post->delete();
+        return redirect(route('post.myposts'));
     }
 }
