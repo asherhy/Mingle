@@ -28,9 +28,9 @@
                                             <div class="row pt-2 pb-0">
                                                 <img class="my-auto ml-3" src="/images/avatars/{{ Auth::user()->avatar }}" style="width:40px; height:40px; position:relative; border-radius:50%">
                                                 <div class="pl-3 my-auto">
-                                                    <a class="stretched-link clickable-card" href="{{route('post.show', $post)}}">
+                                                    <!-- <a class="stretched-link clickable-card" href="{{route('post.show', $post)}}"> -->
                                                         <h5 class="m-0 text-left text-dark mb-1 mt-1">{{ $post->title }}</h5>
-                                                    </a>
+                                                    <!-- </a> -->
                                                 @if ($post->created_at == $post->updated_at)
                                                     <p class="text-muted text-left mb-0" style="font-size:10px; font-weight:300;">Posted on {{ $post->created_at }}</p>
                                                 @else
@@ -46,7 +46,7 @@
                                     </div>
                                     <div class="card-footer pt-2" style="background:none; border:none;">
                                         <button class="btn btn-sm btn-danger float-right ml-2" type="submit">Delete</button>
-                                        <a class="btn btn-sm btn-primary pt-1 ml-auto float-right" href="#" role="button">Edit</a>
+                                        <a class="btn btn-sm btn-primary pt-1 ml-auto float-right" href="{{ route('post.show', $post) }}" role="button">Open</a>
                                     </div>
                                 </div>
                             </div>
