@@ -133,17 +133,16 @@
                 <div class="card-body pt-2">
                     <div class="container">
                         <h2 class="text-left card-title mb-2 mt-3" style="font-weight:bold; color:#17252a;">{{ $post->title }}</h2>
-                        <p class="badge text-white mb-1" style="background:#3aafa9; font-size:12px;">{{ $modules[$post->module_id - 1] }}</p>
-                        <hr class="mt-1 mb-3"/>
+                        <p class="badge text-white mb-3" style="background:#3aafa9; font-size:12px;">{{ $modules[$post->module_id - 1] }}</p>
                         <p class="card-text" style="font-size:18px;">{{ $post->detail }}</p>
                             @if (count($postRequests) > 0)
                                 @if ($post->user_id == Auth::user()->id)
                                     @foreach ($postRequests as $postRequest)
+                                        <?php $user = $users->find($postRequest->user_id) ?>
                                         <hr class="mt-1 mb-3"/>
                                         <div class="col-12">
                                             <div class="row pt-1 pb-1">
                                                 <div class="col-1 d-flex justify-content-center pr-0">
-                                                    <?php $user = $users->find($postRequest->user_id) ?>
                                                     <img class="mx-auto" src="/images/avatars/{{ $user->avatar }}" style="width:40px; height:40px; position:relative; border-radius:50%">
                                                 </div>
                                                 <div class="col-10 pl-0 my-auto p-2 pl-3 pr-3 ml-4" style="width:100%; background:#def2f1; height:auto; border-radius: 20px;">
