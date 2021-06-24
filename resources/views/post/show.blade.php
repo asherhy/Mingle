@@ -50,48 +50,48 @@
             </div>
             <div class="modal-body">
                 <div class="container">
-                <form method="POST" action="{{ route('post.update', $post)}}">
-                            @csrf
-                            @method('PUT')
-                            <div class="form-group form-row mb-4">
-                                <label for="title" class="col-form-label col-md-2">Title</label>
-                                <div class="col-md-10">
-                                    <input type="title" name="title" class="form-control @error('title') is-invalid @enderror" id="title" value="{{ $post->title }}" required>
-                                </div>
+                    <form method="POST" action="{{ route('post.update', $post)}}">
+                        @csrf
+                        @method('PUT')
+                        <div class="form-group form-row mb-4">
+                            <label for="title" class="col-form-label col-md-2">Title</label>
+                            <div class="col-md-10">
+                                <input type="title" name="title" class="form-control @error('title') is-invalid @enderror" id="title" value="{{ $post->title }}" required>
                             </div>
-                            <div class="form-group form-row mb-4">
-                                <label for="type" class="col-form-label col-md-2">Type</label>
-                                <div class="col-md-10">
-                                    <input type="type" name="type" class="form-control @error('type') is-invalid @enderror" id="type" value="{{ $post->type }}" required>
-                                </div>
+                        </div>
+                        <div class="form-group form-row mb-4">
+                            <label for="type" class="col-form-label col-md-2">Type</label>
+                            <div class="col-md-10">
+                                <input type="type" name="type" class="form-control @error('type') is-invalid @enderror" id="type" value="{{ $post->type }}" required>
                             </div>
-                            <div class="form-group form-row mb-4">
-                                <label for="module" class="col-form-label col-md-2">Module</label>
-                                <div class="col-md-10 my-auto">
-                                    <singleselect-component :fields="{{ json_encode($modules) }}" attri="{{ __('modules') }}" preselects="{{ $post->module->code_title }}"
-                                    pholder="{{ __('Select Your Module') }}"></singleselect-component>
-                                </div>
+                        </div>
+                        <div class="form-group form-row mb-4">
+                            <label for="module" class="col-form-label col-md-2">Module</label>
+                            <div class="col-md-10 my-auto">
+                                <singleselect-component :fields="{{ json_encode($modules) }}" attri="{{ __('modules') }}" preselects="{{ $post->module->code_title }}"
+                                pholder="{{ __('Select Your Module') }}"></singleselect-component>
                             </div>
-                            <div class="form-group form-row mb-4">
-                                <label for="module" class="col-form-label col-md-2">Status</label>
-                                <div class="col-md-10 my-auto">
-                                    <singleselect-component :fields="{{ json_encode($types) }}" attri="{{ __('status') }}" preselects="{{ $post->status }}"
-                                    pholder="{{ __('Change Status') }}"></singleselect-component>
-                                </div>
+                        </div>
+                        <div class="form-group form-row mb-4">
+                            <label for="module" class="col-form-label col-md-2">Status</label>
+                            <div class="col-md-10 my-auto">
+                                <singleselect-component :fields="{{ json_encode($types) }}" attri="{{ __('status') }}" preselects="{{ $post->status }}"
+                                pholder="{{ __('Change Status') }}"></singleselect-component>
                             </div>
-                            <div class="form-group form-row mb-4">
-                                <label for="description" class="col-form-label col-md-2">Description</label>
-                                <div class="col-md-10 my-auto">
-                                    <textarea type="description" name="detail" class="form-control @error('detail') is-invalid @enderror"
-                                         id="description" style="height:100px;" required>
-                                         {{ $post->detail }}
-                                    </textarea>
-                                </div>
+                        </div>
+                        <div class="form-group form-row mb-4">
+                            <label for="description" class="col-form-label col-md-2">Description</label>
+                            <div class="col-md-10 my-auto">
+                                <textarea type="description" name="detail" class="form-control @error('detail') is-invalid @enderror"
+                                        id="description" style="height:100px;" required>
+                                        {{ $post->detail }}
+                                </textarea>
                             </div>
-                            <div class="form-group form-row">
-                                <button class="btn btn-success ml-auto" type="submit">Update</button>
-                            </div>
-                        </form>
+                        </div>
+                        <div class="form-group form-row">
+                            <button class="btn btn-success ml-auto" type="submit">Update</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -146,16 +146,44 @@
                                                 </div>
                                                 <div class="col-10 pl-0 my-auto p-2 pl-3 pr-3 ml-4" style="width:100%; background:#def2f1; height:auto; border-radius: 20px;">
                                                         <p class="pb-0 mb-0 text-left" style="font-size:12px; font-weight:bold;">{{ $postRequest->user->name}}</p>
+                                                        @switch($postRequest->status)
+                                                            @case("Accepted")
+                                                            <p class="badge badge-success ml-auto mb-auto mr-4">Accepted</p>
+                                                                @break
+
+                                                            @case("Rejected")
+                                                                <p class="badge badge-danger ml-auto mb-auto mr-4">Rejected</p>
+                                                                @break
+
+                                                            @case("Pending")
+                                                                <p class="badge badge-primary ml-auto mb-auto mr-4">Pending</p>
+                                                                @break
+                                                            @case("Deleted")
+                                                                <p class="badge badge-warning ml-auto mb-auto mr-4">Deleted</p>
+                                                                @break
+                                                        @endswitch
                                                         <p class="mb-1 text-left" style="font-size:15px; font-weight:400;">{{ $postRequest->detail }}</p>
                                                         <p class="text-left text-muted mb-0 pt-1" style="font-size:12px; font-weight:400;">{{ "Request made on " .$postRequest->created_at }}
                                                 </div>
                                             </div>
-                                            <div class="row p-2">
-                                                <div class="ml-auto mr-4">
-                                                    <button class="btn btn-sm btn-success mr-1" type="submit">Accept</button>
-                                                    <button class="btn btn-sm btn-danger" type="submit">Reject</button>
+                                            @if($postRequest->status == "Pending")
+                                                <div class="row p-2">
+                                                    <div class="ml-auto mr-4">
+                                                        <form method="POST" action="{{ route('request.post.update', $postRequest) }}">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="hidden" name="status" value="1">
+                                                            <button class="btn btn-sm btn-success mr-1" type="submit">Accept</button>
+                                                        </form>
+                                                        <form method="POST" action="{{ route('request.post.update', $postRequest) }}">
+                                                            @csrf
+                                                            @method('PUT')
+                                                            <input type="hidden" name="status" value="2">
+                                                            <button class="btn btn-sm btn-danger mr-1" type="submit">Reject</button>
+                                                        </form>
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            @endif
                                         </div>
                                     @endforeach
                                 @endif

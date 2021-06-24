@@ -30,7 +30,8 @@ class CreatePostsTable extends Migration
 
             $table->foreign('module_id')
             ->references('id')
-            ->on('modules');
+            ->on('modules')
+            ->onDelete('cascade');
         });
 
      

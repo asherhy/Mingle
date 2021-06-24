@@ -35,8 +35,8 @@ Route::get('/boards/{post}', 'PostController@show')->name('post.show');
 Route::put('/boards/{post}', 'PostController@update')->name('post.update');
 Route::delete('/boards/{post}', 'PostController@destroy')->name('post.delete');
 
-
-Route::get('/posts/{post}/request/create', 'PostRequestController@create')->name('request.post.create');    
-Route::post('/posts/{post}/request/create', 'PostRequestController@store')->name('request.post.store');    
+Route::get('/requests', 'PostRequestController@index')->name('request.post.index');    
+Route::post('/posts/{post}/request', 'PostRequestController@store')->name('request.post.store');    
+Route::put('/posts/request/{postRequest}', 'PostRequestController@update')->name('request.post.update');    
 
 

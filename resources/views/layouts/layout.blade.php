@@ -58,7 +58,7 @@
                                 </div>
                             </li>
                             <li class="nav-item mx-2">
-                                <a class="nav-link" href="#">Request</a>
+                                <a class="nav-link" href="{{ route('request.post.index') }}">Request</a>
                             </li>
                         </ul>
 
