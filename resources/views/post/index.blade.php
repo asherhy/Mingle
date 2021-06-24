@@ -27,19 +27,24 @@
                                         <div class="row pt-2 pb-0">
                                             <img class="my-auto ml-3" src="/images/avatars/{{ Auth::user()->avatar }}" style="width:40px; height:40px; position:relative; border-radius:50%">
                                             <div class="pl-3">
-                                                <a class="stretched-link clickable-card" href="{{route('post.show', $post)}}">
+                                                <!-- <a class="stretched-link clickable-card" href="{{route('post.show', $post)}}"> -->
                                                     <h5 class="m-0 text-left text-dark">{{ $post->title }}</h5>
-                                                </a>
+                                                <!-- </a> -->
                                                 <p class="m-0" style="font-size:14px;">Author: {{ $post->user->name }}</p>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="card-body">
-                                        <p class="text-muted card-subtitle text-left mb-2">Posted on {{ $post->created_at }}</p>
+                                        @if ($post->created_at == $post->updated_at)
+                                            <p class="text-muted card-subtitle text-left">Posted on {{ $post->created_at }}</p>
+                                        @else
+                                            <p class="text-muted card-subtitle text-left">Edited on {{ $post->updated_at }}</p>
+                                        @endif
+                                        <p class="badge text-white text-left mb-2" style="background:#3aafa9; font-size:12px;">{{ $modules[$post->module_id - 1] }}</p>
                                         <p class="card-text">{{ $post->detail }}</p>
                                     </div>
                                     <div class="card-footer pt-0" style="background:none; border:none;">
-                                        <!-- <a class="btn btn-sm btn-primary pt-1 ml-auto float-right stretched-link" href="{{route('post.show', $post)}}" role="button">Open</a> -->
+                                        <a class="btn btn-sm btn-primary mt-1 ml-auto float-right" href="{{route('post.show', $post)}}" role="button">Open</a>
                                     </div>
                                 </div>
                             </div>
