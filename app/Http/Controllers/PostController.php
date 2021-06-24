@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Module;
 use App\Post;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -39,7 +40,8 @@ class PostController extends Controller
     public function myposts()
     {
         $posts = Auth::user()->posts;
-        return view('post.myposts', compact('posts'));
+        $modules = Module::all()->pluck('code_title');
+        return view('post.myposts', compact('posts', 'modules'));
     }
 
     /**
@@ -91,7 +93,9 @@ class PostController extends Controller
     {
         $modules = Module::all()->pluck('code_title');
         $types = ["Active", "Closed"];
-        return view('post.show', compact('post', 'modules', 'types'));
+        $postRequests = $post->postRequests->where('post_id', $post->id);
+        $users = User::all()->find($postRequests->pluck('user_id'));
+        return view('post.show', compact('post', 'modules', 'types', 'postRequests', 'users'));
     }
 
     /**
