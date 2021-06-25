@@ -16,7 +16,8 @@ class PostRequestController extends Controller
      */
     public function index()
     {
-        //
+        $postRequests = Auth::user()->postRequests;
+        return view('request.post.index', compact('postRequests'));
     }
 
     /**
@@ -57,6 +58,7 @@ class PostRequestController extends Controller
             'info' => $info,
         ]);
 
+        return redirect(route('request.post.index'));
         // return to page with all request sent
     }
 
@@ -91,8 +93,21 @@ class PostRequestController extends Controller
      */
     public function update(Request $request, PostRequest $postRequest)
     {
-        //
+        if($postRequest->post->user_id !== Auth::user()->id && $postRequest->status ==  "Pending"){
+            abort(403);
+        }
+        if( $request->status == 1) {
+            $status = "Accepted";
+        } else {
+            $status = "Rejected";
+        }
+        $postRequest->update([
+            'status' => $status
+        ]);
+
+        return redirect()->back();
     }
+
 
     /**
      * Remove the specified resource from storage.

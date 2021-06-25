@@ -19,27 +19,44 @@
                 </div>
                 <div class="card-body">
                     <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4 p-5">
-                        <div class="col mb-3">
-                            <div class="card request-card">
-                                <div class="card-header m-0 pb-0 pt-3 border-0">
-                                    <div class="row pt-2 pb-0">
-                                        <img class="my-auto ml-3" src="/images/avatars/{{ Auth::user()->avatar }}" style="width:40px; height:40px; position:relative; border-radius:50%">
-                                        <div class="pl-3">
-                                            <h5 class="m-0 text-left text-dark">Title</h5>
-                                            <p class="m-0" style="font-size:14px;">Author:</p>
+                        @foreach($postRequests as $postRequest)
+                            <div class="col mb-3">
+                                <div class="card request-card">
+                                    <div class="card-header m-0 pb-0 pt-3 border-0">
+                                        <div class="row pt-2 pb-0">
+                                            <img class="my-auto ml-3" src="/images/avatars/{{ Auth::user()->avatar }}" style="width:40px; height:40px; position:relative; border-radius:50%">
+                                            <div class="pl-3">
+                                                <h5 class="m-0 text-left text-dark">{{ $postRequest->post->title }}</h5>
+                                                <p class="m-0" style="font-size:14px;">Author:{{ $postRequest->post->user->name }}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="card-body">
-                                    <p class="text-muted card-subtitle text-left mb-2">Requested on</p>
-                                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vitae pharetra metus, eget fermentum felis. In tincidunt convallis suscipit. Vivamus hendrerit libero odio, vel pharetra nisi luctus id. Morbi vel erat tortor.</p>
-                                </div>
-                                <div class="card-footer pt-0" style="background:none; border:none;">
-                                    <button class="btn btn-sm btn-danger float-right ml-2" type="submit">Delete</button>
-                                    <a class="btn btn-sm btn-primary pt-1 ml-auto float-right" href="#" role="button">Edit</a>
+                                    <div class="card-body">
+                                        <p class="text-muted card-subtitle text-left mb-2">Requested on {{ $postRequest->created_at }}</p>
+                                        @switch($postRequest->status)
+                                            @case("Accepted")
+                                            <p class="badge badge-success ml-auto mb-auto mr-4">Accepted</p>
+                                                @break
+
+                                            @case("Rejected")
+                                                <p class="badge badge-danger ml-auto mb-auto mr-4">Rejected</p>
+                                                @break
+
+                                            @case("Pending")
+                                                <p class="badge badge-primary ml-auto mb-auto mr-4">Pending</p>
+                                                @break
+                                            @case("Deleted")
+                                                <p class="badge badge-warning ml-auto mb-auto mr-4">Deleted</p>
+                                                @break
+                                        @endswitch
+                                   </div>
+                                    <div class="card-footer pt-0" style="background:none; border:none;">
+                                        <button class="btn btn-sm btn-danger float-right ml-2" type="submit">Delete</button>
+                                        <a class="btn btn-sm btn-primary pt-1 ml-auto float-right" href="#" role="button">Edit</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

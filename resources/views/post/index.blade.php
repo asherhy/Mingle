@@ -40,7 +40,7 @@
                                         @else
                                             <p class="text-muted card-subtitle text-left">Edited on {{ $post->updated_at }}</p>
                                         @endif
-                                        <p class="badge text-white text-left mb-2" style="background:#3aafa9; font-size:12px;">{{ $modules[$post->module_id - 1] }}</p>
+                                        <p class="badge text-white text-left mb-2" style="background:#3aafa9; font-size:12px;">{{ $post->module->code }}</p>
                                         <p class="card-text">{{ $post->detail }}</p>
                                     </div>
                                     <div class="card-footer pt-0" style="background:none; border:none;">
