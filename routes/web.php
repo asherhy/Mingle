@@ -40,3 +40,6 @@ Route::get('/posts/{post}/request/create', 'PostRequestController@create')->name
 Route::post('/posts/{post}/request/create', 'PostRequestController@store')->name('request.post.store');    
 
 
+Route::get('/test', function () {
+    return view('groups');
+});
