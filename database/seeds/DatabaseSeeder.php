@@ -15,7 +15,8 @@ class DatabaseSeeder extends Seeder
             RoleSeeder::class,
             MajorSeeder::class,
             ModuleSeeder::class,
-            UserSeeder::class
+            UserSeeder::class,
+            ModuleMatchSeeder::class
         ]); 
     }
 }
