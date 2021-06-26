@@ -53,6 +53,11 @@ class User extends Authenticatable
         return $this->belongsToMany(Module::class)->withTimestamps();
     }
 
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class)->withTimestamps();
+    }
+
     public function posts()
     {
         return $this->hasMany(Post::class);
@@ -85,6 +90,11 @@ class User extends Authenticatable
             $module = Module::where('code_title', $module)->firstOrFail();
         }
         $this->modules()->sync($module, false);
+    }
+
+    public function assignGroup($group)
+    {
+        $this->groups()->sync($group, false);
     }
 
     public function allRoles()
