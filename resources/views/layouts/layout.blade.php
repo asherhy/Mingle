@@ -60,6 +60,9 @@
                             <li class="nav-item mx-2">
                                 <a class="nav-link" href="{{ route('request.post.index') }}">Request</a>
                             </li>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link" href="{{ route('group.index') }}">Groups</a>
+                            </li>
                         </ul>
 
                         <ul class="navbar-nav navbar-right ml-auto">

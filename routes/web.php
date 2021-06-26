@@ -39,4 +39,6 @@ Route::get('/requests', 'PostRequestController@index')->name('request.post.index
 Route::post('/posts/{post}/request', 'PostRequestController@store')->name('request.post.store');    
 Route::put('/posts/request/{postRequest}', 'PostRequestController@update')->name('request.post.update');    
 
+Route::get('/groups', 'GroupController@index')->name('group.index');    
 
+ 

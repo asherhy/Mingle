@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Group;
 use App\Post;
 use App\PostRequest;
 use Illuminate\Http\Request;
@@ -9,6 +10,17 @@ use Illuminate\Support\Facades\Auth;
 
 class PostRequestController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -96,8 +108,24 @@ class PostRequestController extends Controller
         if($postRequest->post->user_id !== Auth::user()->id && $postRequest->status ==  "Pending"){
             abort(403);
         }
+        $post = $postRequest->post;
         if( $request->status == 1) {
             $status = "Accepted";
+            if (count($post->postRequests->where('status', 'Accepted')->where('user_id', $postRequest->user_id)) > 0) {
+                return redirect()->back();
+                // return message that this guy is already accepted.
+            } else if (count($post->postRequests->where('status','=', 'Accepted')) == 0){
+                $group = Group::create([
+                    "modules" => $post->module,
+                    'group_type' => 'post',
+                    'respective_id' => $post->id
+                ]);
+                $post->user->assignGroup($group);
+                $postRequest->user->assignGroup($group);
+            } else {
+                $group = Group::where([['group_type', '=', 'post'],['respective_id', '=', $post->id]])->firstOrFail();
+                $postRequest->user->assignGroup($group);
+            }
         } else {
             $status = "Rejected";
         }
