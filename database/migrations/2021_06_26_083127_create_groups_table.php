@@ -15,6 +15,7 @@ class CreateGroupsTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
             $table->string('modules');
             $table->enum('group_type', ['post', 'mentor', 'module group', 'study buddy']);
             $table->unsignedBigInteger('respective_id')->nullable();

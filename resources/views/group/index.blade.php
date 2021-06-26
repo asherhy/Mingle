@@ -36,12 +36,12 @@
                     <div class="tab-content" id="pills-tabContent">
                         <div class="tab-pane fade show active" id="pills-board" role="tabpanel" aria-labelledby="pills-board-tab">
                             @foreach($postGroups as $postGroup)
-                                <div class="card request-card">
+                                <div class="card">
                                     <div style="transform: rotate(0);">
                                         <div class="card-header m-0 pb-0 pt-3 border-0">
                                         </div>
                                         <div class="card-body pt-2">
-                                                <div>{{ $postGroup->post->title  }}</div>
+                                                <div>{{ $postGroup->title }}</div>
                                             @foreach($postGroup->users as $user)
                                                 <p class="badge text-white text-left mb-1" style="background:#3aafa9; font-size:12px;">{{ $user->name }}</p>
                                             @endforeach

@@ -117,6 +117,7 @@ class PostRequestController extends Controller
             } else if (count($post->postRequests->where('status','=', 'Accepted')) == 0){
                 $group = Group::create([
                     "modules" => $post->module,
+                    'title' => $post->title,
                     'group_type' => 'post',
                     'respective_id' => $post->id
                 ]);
