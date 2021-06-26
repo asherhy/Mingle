@@ -12,13 +12,14 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        $user = User::create([
-            
-            'name' => 'test',
-            'email' => 'test@test.com',
-            'password' => Hash::make('testtest')
-        
-    ]);
+        DB::table('users')->insert([
+            [
+                'name' => 'test',
+                'email' => 'test@test.com',
+                'password' => Hash::make('testtest')
+            ], 
+        ]);
+    
     
 
     $user->assignRole('student');
