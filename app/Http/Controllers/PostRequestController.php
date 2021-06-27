@@ -116,7 +116,7 @@ class PostRequestController extends Controller
                 // return message that this guy is already accepted.
             } else if (count($post->postRequests->where('status','=', 'Accepted')) == 0){
                 $group = Group::create([
-                    "modules" => $post->module,
+                    "modules" => $post->module->code,
                     'title' => $post->title,
                     'group_type' => 'post',
                     'respective_id' => $post->id
