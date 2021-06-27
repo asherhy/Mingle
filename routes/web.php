@@ -41,4 +41,5 @@ Route::put('/posts/request/{postRequest}', 'PostRequestController@update')->name
 
 Route::get('/groups', 'GroupController@index')->name('group.index');    
 
- 
+Route::get('/QuickMatch/module-group', 'ModuleMatchController@create')->name('quickmatch.module.create');    
+Route::post('/QuickMatch/module-group', 'ModuleMatchController@store')->name('quickmatch.module.store');    

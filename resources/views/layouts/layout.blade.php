@@ -47,8 +47,12 @@
                             <li class="nav-item active mx-2">
                                 <a class="nav-link" href="#">About</a>
                             </li>
-                            <li class="nav-item mx-2">
-                                <a class="nav-link" href="#">Quick Match</a>
+                            <li class="nav-item dropdown mx-2">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quick Match</a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="min-width:200px;">
+                                    <a class="dropdown-item" href="{{route('quickmatch.module.create')}}">Module Group</a>
+                                    <a class="dropdown-item" href="">Study Buddy</a>
+                                </div>
                             </li>
                             <li class="nav-item dropdown mx-2">
                                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Board </a>
