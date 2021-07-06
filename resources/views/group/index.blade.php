@@ -56,7 +56,25 @@
                             -
                         </div>
                         <div class="tab-pane fade" id="pills-module" role="tabpanel" aria-labelledby="pills-module-tab">
-
+                            @foreach($moduleGroups as $moduleGroup)
+                            <div class="card">
+                                    <div style="transform: rotate(0);">
+                                        <div class="card-header m-0 pb-0 pt-3 border-0">
+                                        </div>
+                                        <div class="card-body pt-2">
+                                            <div>Module {{$moduleGroup->modules}}</div>
+                                            @foreach($moduleGroup->user_info as $key => $val)
+                                                <div class="row p-0">
+                                                    <p class="badge text-white mt-0" style="background:#3aafa9; font-size:12px;">{{ $key }}</p>:
+                                                    <p class="badge text-white mt-0 ml-2" style="background:#3aafa9; font-size:12px;">{{ $val }}</p>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="card-footer pt-2" style="background:none; border:none;">
+                                    </div>
+                                </div>
+                            @endforeach
                         </div>
                         <div class="tab-pane fade" id="pills-study" role="tabpanel" aria-labelledby="pills-study-tab">
                             -

@@ -27,11 +27,13 @@ class GroupController extends Controller
     {
         $user = Auth::user();
         $postGroups = $user->groups->where('group_type', 'post');
+        $moduleGroups = $user->groups->where('group_type', 'module group');
+
         foreach ($postGroups as $postGroup){
             $post = Post::find($postGroup->respective_id);
             $postGroup->post = $post;
         }
-        return view('group.index', compact('postGroups'));
+        return view('group.index', compact('postGroups', 'moduleGroups'));
     }
 
     /**

@@ -24,6 +24,7 @@
                                     @enderror
                                 </div>
                             </div>
+
                             <div class="form-group form-row mb-4">
                                 <label for="type" class="col-form-label col-md-2">Type</label>
                                 <div class="col-md-10">

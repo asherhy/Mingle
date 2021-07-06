@@ -14,28 +14,6 @@
                         <form method="POST" action="{{ route('quickmatch.module.store') }}">
                             @csrf
                             <div class="form-group form-row mb-4">
-                                <label for="title" class="col-form-label col-md-2">Title</label>
-                                <div class="col-md-10">
-                                    <input type="title" name="title" class="form-control @error('title') is-invalid @enderror" id="title" value="{{ old('title') }}" required>
-                                    @error('title')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group form-row mb-4">
-                                <label for="type" class="col-form-label col-md-2">Type</label>
-                                <div class="col-md-10">
-                                    <input type="type" name="type" class="form-control @error('type') is-invalid @enderror" id="type" value="{{ old('type') }}" required>
-                                    @error('type')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-                            <div class="form-group form-row mb-4">
                                 <label for="module" class="col-form-label col-md-2">Module</label>
                                 <div class="col-md-10 my-auto">
                                     <singleselect-component :fields="{{ json_encode($modules) }}" attri="{{ __('modules') }}"
@@ -47,8 +25,10 @@
                                     @enderror
                                 </div>
                             </div>
+                            <modulematch-component></modulematch-component>
+
                             <div class="form-group form-row mb-4">
-                                <label for="description" class="col-form-label col-md-2">Description</label>
+                                <label for="description" class="col-form-label col-md-2">Intro Yourself!</label>
                                 <div class="col-md-10 my-auto">
                                     <textarea type="description" name="detail" class="form-control @error('detail') is-invalid @enderror"
                                          id="description" style="height:100px;" value="{{ old('detail') }}" required>
@@ -61,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="form-group form-row">
-                                <button class="btn btn-success ml-auto" type="submit">Post</button>
+                                <button class="btn btn-success ml-auto" type="submit">Match</button>
                             </div>
                         </form>
                     </div>
