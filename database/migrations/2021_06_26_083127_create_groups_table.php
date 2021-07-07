@@ -19,6 +19,7 @@ class CreateGroupsTable extends Migration
             $table->string('modules');
             $table->enum('group_type', ['post', 'mentor', 'module group', 'study buddy']);
             $table->unsignedBigInteger('respective_id')->nullable();
+            $table->json('user_info')->nullable();
             $table->string('label')->nullable();
             $table->timestamps();
         });

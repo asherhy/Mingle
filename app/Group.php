@@ -12,7 +12,11 @@ class Group extends Model
      * @var array
      */
     protected $fillable = [
-        'modules', 'group_type', 'respective_id', 'title'
+        'modules', 'group_type', 'respective_id', 'title', 'user_info'
+    ];
+
+    protected $casts = [
+        'user_info' => 'array',
     ];
     
     public function users()
