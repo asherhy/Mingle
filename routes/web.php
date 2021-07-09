@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();  
+Auth::routes(['verify' => true]);
 
 //users
 Route::get('/home/change', 'UserController@edit')->name('changePw');
