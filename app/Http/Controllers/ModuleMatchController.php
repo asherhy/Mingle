@@ -106,8 +106,6 @@ class ModuleMatchController extends Controller
         $m->update([
             'match_data' => $allDatas
         ]);
-        dd($allDatas);
-
 
         return redirect(route('group.index'));
 

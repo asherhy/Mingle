@@ -1,7 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-<div class="teal-container">
+<div class="teal-container min-vh-100">
     <div class="container">
          <div class="row d-flex justify-content-center">
                     <div class="card col-12 col-sm-5 signup" id="signup-form">

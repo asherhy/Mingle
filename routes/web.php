@@ -43,3 +43,20 @@ Route::get('/groups', 'GroupController@index')->name('group.index');
 
 Route::get('/QuickMatch/module-group', 'ModuleMatchController@create')->name('quickmatch.module.create');    
 Route::post('/QuickMatch/module-group', 'ModuleMatchController@store')->name('quickmatch.module.store');    
+
+
+Route::get('/test', function() {
+    return view('mentor/home');
+});
+
+Route::get('/mail', function() {
+    return view('mentor/mail');
+});
+
+Route::get('/mentor-profile', function() {
+    return view('mentor/profile');
+});
+
+Route::get('/mentees', function() {
+    return view('mentor/mentees');
+});
