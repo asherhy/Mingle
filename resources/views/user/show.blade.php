@@ -2,23 +2,26 @@
 
 @section('content')
 
-<div class="modal fade" id="editProfileModal" role="dialog">
+
+<div class="modal fade border-sharp" id="editProfileModal" role="dialog">
     <div class="modal-dialog modal-lg" role="content">
-        <div class="modal-content" style="border-radius:15px;">
-            <div class="modal-header" style="background-color: #3aafa9; border-top-left-radius:15px; border-top-right-radius:15px">
+        <div class="modal-content">
+            <div class="modal-header bg-teal py-2">
                 <h3 class="modal-title text-white">Edit Profile</h3>
-                <button type="button ml-auto" class="close" data-dismiss="modal">
+                <button type="button" class="close btn-white" data-dismiss="modal">
                     &times;
                 </button>
             </div>
-            <div class="modal-body">
+            <div class="modal-body pt-4 profile-edit-modal">
                 <form enctype="multipart/form-data" action="{{ route('updateProfile') }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="container">
-                        <div class="form-group form-row">
+                    <div class="form-group form-row">
                             <label for="name" class="col-form-label col-md-4">Name</label>
-                            <div class="col-md-8"><input type="name" name="name" class="form-control" id="name" value="{{ Auth::user()->name }}" required></div>
+                            <div class="col-md-8">
+                                <input type="name" name="name" class="form-control" id="name" value="{{ Auth::user()->name }}" required>
+                            </div>
                         </div>
                         <div class="form-group form-row">
                             <label for="profile-img" class="col-form-label col-md-4">Update Profile Image</label>
@@ -71,6 +74,12 @@
                             </div>
                         </div>
                         <div class="form-group form-row">
+                            <label for="intro" class="col-form-label col-md-4">Introduce Yourself</label>
+                            <div class="col-md-8 my-auto">
+                                <textarea class="form-control" rows="3" name="intro" id="intro"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group form-row">
                             <button class="btn btn-success ml-auto" type="submit">Submit</button>
                         </div>
                     </div>
@@ -81,69 +90,82 @@
 </div>
 
 <div class="container min-vh-100">
-    <div class="row d-flex justify-content-center">
-        <div class="card col-10">
-            <div class="row g-0 p-0">
-                <div class="col-md-4 text-center p-3" style="background-color: #3aafa9; border-top-left-radius:10px; border-bottom-left-radius:10px;">
-                    <div class="profile-image m-3">
-                        <img src="/images/avatars/{{ Auth::user()->avatar }}" style="width:70%; border-radius:50%;" alt="User-Profile-Image">
-                    </div>
-                    <h3 class="mt-5">{{ Auth::user()->name }}</h3>
+    <div class="row row-top align-items-center">
+        <div class="profile-header border-sharp card col-12 shadow-sm">
+            <div class="card-body col-12 d-inline-flex">
+                <div class="col-auto pr-4">
+                    <img class="profile-page-img" src="/images/avatars/{{ Auth::user()->avatar }}">
                 </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        @if ($errors->any())
-                            @foreach ($errors->all() as $error)
-                                <div class="alert alert-danger" role="alert">{{$error}}</div>
-                            @endforeach
-                        @endif
-                        <h3 class="card-title pb-3 border-bottom text-dark text-left">Information</h3>
-                        <div class="row p-2">
-                            <div class="col-sm-6 mb-2">
-                                <h3 class="text-dark text-left">Email</h3>
-                                <p class="card-text text-muted">{{ Auth::user()->email }}</p>
-                            </div>
-                            <div class="col-sm-6 mb-2">
-                                <h3 class="text-dark text-left">Telegram</h3>
-                                <p class="card-text text-muted">{{ "@".Auth::user()->telegram }}</p>
-                            </div>
-                        </div>
-                        <div class="row p-2">
-                            <div class="col-sm-6 mb-2">
-                                <h3 class="text-dark text-left">Gender</h3>
-                                <p class="card-text text-muted">{{ Auth::user()->gender == 'Female' ? "Female" : (Auth::user()->gender == 'Male' ? "Male" : "Others") }}</p>
-                            </div>
-                            <div class="col-sm-6 mb-2">
-                                <h3 class="text-dark text-left">Matric Year</h3>
-                                <p class="card-text text-muted">{{ Auth::user()->matric_year ?? "-" }}</p>
-                            </div>
-                        </div>
-                        <div class="row p-2">
-                            <div class="col-sm-6 mb-2">
-                                <h3 class="text-dark text-left">Modules</h3>
-                                @if( Auth::user()->modules->first() != null )
-                                    @foreach(Auth::user()->modules as $m)
-                                        <p class="card-text text-muted">{{ $m->code_title }}</p>
-                                    @endforeach
-                                @else
-                                    <p class="card-text text-muted">-</p>
-                                @endif
-                            </div>
-                            <div class="col-sm-6 mb-2">
-                                <h3 class="text-dark text-left">Major</h3>
-                                @if( Auth::user()->majors->first() != null )
-                                    @foreach(Auth::user()->majors as $m)
-                                        <p class="card-text text-muted">{{ $m->name }}</p>
-                                    @endforeach
-                                @else
-                                    <p class="card-text text-muted">-</p>
-                                @endif
-                            </div>
-                        </div>
-                        <div class="row p-2"><button type="button" class="btn btn-primary ml-auto" data-toggle="modal" data-target="#editProfileModal">
-                            Edit
-                        </button></div>
+                <div class="col my-auto pl-0">
+                    <div>
+                        <h2 class="mb-0 d-inline-block">{{ Auth::user()->name }}</h2>
                     </div>
+                    <button type="button" class="btn btn-sm btn-teal float-right" data-toggle="modal" data-target="#editProfileModal">
+                        Edit Profile
+                    </button>
+                    <!-- Major -->
+                    <p class="text-muted d-block mb-0">{{ __('Computer Science Undergraduate') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row py-2 g-3">
+        <div class="col-4">
+            <div class="card border-sharp mr-3 p-0 shadow-sm">
+                <h5 class="card-header profile-card-header text-left">Personal Information</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="fas fa-envelope fa-lg text-muted d-inline"></i>
+                        <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Email') }}</p>
+                        <p class="text-dark mb-0 pb-0 pl-4">{{ Auth::user()->email }}</p>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fab fa-telegram-plane fa-lg text-muted d-inline"></i>
+                        <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Telegram Handle') }}</p>
+                        <p class="text-dark mb-0 pb-0 pl-4">{{ "@".Auth::user()->telegram }}</p>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-venus-mars fa-lg text-muted d-inline"></i>
+                        <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Gender') }}</p>
+                        <p class="text-dark mb-0 pb-0 pl-4">{{ Auth::user()->gender == 'Female' ? "Female" : (Auth::user()->gender == 'Male' ? "Male" : "Others") }}</p>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-university fa-lg text-muted d-inline"></i>
+                        <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Matriculation Year') }}</p>
+                        <p class="text-dark mb-0 pb-0 pl-4">{{ Auth::user()->matric_year ?? "-" }}</p>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-graduation-cap fa-lg text-muted d-inline"></i>
+                        <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Major') }}</p>
+                        @if( Auth::user()->majors->first() != null )
+                            @foreach(Auth::user()->majors as $m)
+                                <p class="text-dark mb-0 pb-0 pl-4">{{ $m->name }}</p>
+                            @endforeach
+                        @else
+                            <p class="card-text text-muted">-</p>
+                        @endif
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-sharp p-0 mb-4 shadow-sm">
+                <h5 class="card-header profile-card-header text-left">About</h5>
+                <div class="card-body">
+                    <!-- Mentor Self-Introduction -->
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus mauris risus, faucibus sed porta sed, laoreet ut ipsum. Suspendisse elementum dolor ut purus lobortis cursus. Nulla facilisi. Vivamus et laoreet velit. Etiam a nulla tincidunt, tincidunt sem sed, fringilla dui. Aliquam tellus nunc, ultrices at luctus in, ultrices non ligula. Fusce sed nisl dapibus justo semper hendrerit. Curabitur eros ipsum, eleifend id justo sit amet, tempus aliquam orci.</p>
+                </div>
+            </div>
+            <div class="card border-sharp p-0 mb-3 shadow-sm">
+                <h5 class="card-header profile-card-header text-left">Modules Taken</h5>
+                <div class="card-body">
+                    @if( Auth::user()->modules->first() != null )
+                        @foreach(Auth::user()->modules as $m)
+                            <p class="text-dark mb-0 pb-0 pl-4">{{ $m->code_title }}</p>
+                        @endforeach
+                    @else
+                        <p class="card-text text-muted">-</p>
+                    @endif
                 </div>
             </div>
         </div>

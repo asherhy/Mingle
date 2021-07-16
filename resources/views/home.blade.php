@@ -4,8 +4,10 @@
 <div class="container min-vh-100">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+            <div class="card shadow-sm border-sharp">
+                <div class="card-header bg-teal">
+                    <h5 class="mb-0 text-white">{{ __('Dashboard') }}</h5>
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -14,7 +16,7 @@
                         </div>
                     @endif
 
-                    {{ __('You are logged in!') }}
+                    {{ __("Welcome back ") . Auth::user()->name }}
                 </div>
             </div>
         </div>

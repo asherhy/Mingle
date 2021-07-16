@@ -3,82 +3,117 @@
 @section('content')
 
 <div class="container min-vh-100">
-    <div class="row d-flex justify-content-center" style="padding-top:150px;">
+<div class="row row-top">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header p-3" style="width:100%; background:#3aafa9; border-top-left-radius:15px; border-top-right-radius:15px;">
-                    <div class="row p-0">
-                        <h3 class="text-left text-white pl-3">Groups</h3>
-                        <form class="form-inline my-2 my-lg-0 mx-auto pr-3">
-                            <div class="input-group">
-                                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                                <div class="input-group-append"><button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button></div>
-                            </div>
-                        </form>
-                        <a class="btn btn-primary mr-3" href="{{ route('post.create') }}" role="button">New Post</a>
-                    </div>
+            <div class="card border-sharp shadow-sm">
+                <div class="card-header bg-teal">
+                    <h2 class="mb-0 pl-2 text-white">My Groups</h2>
                 </div>
-                <div class="card-body">
-                    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <div class="card-body py-2">
+                    <ul class="nav" id="groupsTab" role="tablist">
+                        @if( $postGroups->first() != null )
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link under px-0 mx-4" href="#" id="boardDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Board <i class="fas fa-caret-down pl-1"></i></a>
+                                <div class="dropdown-menu" aria-labelledby="boardDropdown">
+                                    @foreach($postGroups as $postGroup)
+                                        <a class="dropdown-item" id="board-tab" data-toggle="tab"  href="{{ '#board'.$postGroup->id }}" role="tab" aria-controls="{{ $postGroup->title.'tab' }}" aria-selected="false">{{ $postGroup->title }}</a>
+                                    @endforeach
+                                </div>
+                            </li>
+                        @else
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link under px-0 mx-4" id="board-tab" data-toggle="tab" href="#board" role="tab" aria-controls="board" aria-selected="true">Board</a>
+                            </li>
+                        @endif
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link nav-link-tab active" id="pills-board-tab" data-toggle="pill" href="#pills-board" role="tab" aria-controls="pills-board" aria-selected="true">Board</a>
+                            <a class="nav-link under px-0 mx-4" id="mentor-tab" data-toggle="tab" href="#mentor" role="tab" aria-controls="mentor-tab" aria-selected="false">Mentor</a>
                         </li>
+                        @if( $moduleGroups->first() != null )
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link under px-0 mx-4" href="#" id="boardDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Board <i class="fas fa-caret-down pl-1"></a>
+                                <div class="dropdown-menu" aria-labelledby="boardDropdown">
+                                    @foreach($moduleGroups as $moduleGroup)
+                                        <a class="dropdown-item"id="board-tab" data-toggle="tab"  href="{{ '#module'.$moduleGroup->id }}" role="tab" aria-controls="{{ $moduleGroup->title.'tab' }}" aria-selected="false">{{ $moduleGroup->title }}</a>
+                                    @endforeach
+                                </div>
+                            </li>
+                        @else
+                            <li class="nav-item" role="presentation">
+                                <a class="nav-link under px-0 mx-4" id="module-tab" data-toggle="tab" href="#module" role="tab" aria-controls="module-tab" aria-selected="false">Module Group</a>
+                            </li>
+                        @endif
                         <li class="nav-item" role="presentation">
-                            <a class="nav-link nav-link-tab" id="pills-mentor-tab" data-toggle="pill" href="#pills-mentor" role="tab" aria-controls="pills-mentor" aria-selected="false">Mentor</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link nav-link-tab" id="pills-module-tab" data-toggle="pill" href="#pills-module" role="tab" aria-controls="pills-module" aria-selected="false">Module Group</a>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <a class="nav-link nav-link-tab" id="pills-study-tab" data-toggle="pill" href="#pills-study" role="tab" aria-controls="pills-study" aria-selected="false">Study Buddy</a>
+                            <a class="nav-link under px-0 mx-4" id="study-tab" data-toggle="tab" href="#study" role="tab" aria-controls="study-tab" aria-selected="false">Study Buddy</a>
                         </li>
                     </ul>
-                    <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="pills-board" role="tabpanel" aria-labelledby="pills-board-tab">
-                            @foreach($postGroups as $postGroup)
-                                <div class="card">
-                                    <div style="transform: rotate(0);">
-                                        <div class="card-header m-0 pb-0 pt-3 border-0">
-                                        </div>
-                                        <div class="card-body pt-2">
-                                                <div>{{ $postGroup->title }}</div>
-                                            @foreach($postGroup->users as $user)
-                                                <p class="badge text-white text-left mb-1" style="background:#3aafa9; font-size:12px;">{{ $user->name }}</p>
-                                            @endforeach
-                                        </div>
-                                    </div>
-                                    <div class="card-footer pt-2" style="background:none; border:none;">
-                                    </div>
-                                </div>
-                            @endforeach
-                        </div>
-                        <div class="tab-pane fade" id="pills-mentor" role="tabpanel" aria-labelledby="pills-mentor-tab">
-                            -
-                        </div>
-                        <div class="tab-pane fade" id="pills-module" role="tabpanel" aria-labelledby="pills-module-tab">
-                            @foreach($moduleGroups as $moduleGroup)
-                            <div class="card">
-                                    <div style="transform: rotate(0);">
-                                        <div class="card-header m-0 pb-0 pt-3 border-0">
-                                        </div>
-                                        <div class="card-body pt-2">
-                                            <div>Module {{$moduleGroup->modules}}</div>
-                                            @foreach($moduleGroup->user_info as $key => $val)
-                                                <div class="row p-0">
-                                                    <p class="badge text-white mt-0" style="background:#3aafa9; font-size:12px;">{{ $key }}</p>:
-                                                    <p class="badge text-white mt-0 ml-2" style="background:#3aafa9; font-size:12px;">{{ $val }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row p-3">
+        <div class="col-12">
+            <div class="card card-body border-sharp shadow-sm sub-card">
+                <div class="tab-content" id="groupsTabContent">
+                    <div class="tab-pane fade show active" id="default" role="tabpanel">
+                        <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ __('Select a tab to get started. ')}} &#128515;</h3>
+                    </div>
+                    @if( $postGroups->first() != null )
+                        @foreach( $postGroups as $postGroup )
+                            <div class="tab-pane fade" id="{{ 'board'.$postGroup->id }}" role="tabpanel">
+                                <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ $postGroup->title }}</h3><hr class="m-2">
+                                <div class="row col-12 p-3 justify-content-around align-items-center">
+                                    @foreach($postGroup->users as $user)
+                                        <div class="card border-sharp shadow-sm col-5 my-3">
+                                            <div class="card-body d-inline-flex">
+                                                <div class="col-auto">
+                                                    <img src="/images/avatars/{{ $user->avatar }}" style="width:60px; height:60px; border-radius:50%">
                                                 </div>
-                                            @endforeach
+                                                <div class="col my-auto">
+                                                    <h5>{{ $user->name }}</h5>
+                                                    <p class="text-muted mb-0">{{ "@".$user->telegram }}</p>
+                                                </div>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="card-footer pt-2" style="background:none; border:none;">
-                                    </div>
+                                    @endforeach
                                 </div>
-                            @endforeach
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="tab-pane fade" id="board" role="tabpanel">
+                            <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ __('You currently have no groups formed from posts. Use the board function to find one!') }} &#128515;
                         </div>
-                        <div class="tab-pane fade" id="pills-study" role="tabpanel" aria-labelledby="pills-study-tab">
-                            -
+                    @endif
+                    <div class="tab-pane fade" id="mentor" role="tabpanel">
+                        <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ __('Work in Progress') }}</h3>
+                    </div>
+                    @if( $moduleGroups->first() != null )
+                        @foreach( $moduleGroups as $moduleGroup )
+                            <div class="tab-pane fade" id="{{ 'module'.$moduleGroup->id }}" role="tabpanel">
+                                <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ $moduleGroup->title }}</h3><hr class="m-2">
+                                <div class="row col-12 p-3 justify-content-around align-items-center">
+                                    @foreach($moduleGroup->users as $user)
+                                        <div class="card border-sharp shadow-sm col-5 my-3">
+                                            <div class="card-body d-inline-flex">
+                                                <div class="col-auto">
+                                                <img src="/images/avatars/{{ $user->avatar }}" style="width:60px; height:60px; border-radius:50%">
+                                                </div>
+                                                <div class="col my-auto">
+                                                    <h5>{{ $user->name }}</h5>
+                                                    <p class="text-muted mb-0">{{ "@".$user->telegram }}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="tab-pane fade" id="module" role="tabpanel">
+                            <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ __('You currently have no module groups. Use the quick match function to find one!') }} &#128515;
                         </div>
+                    @endif
+                    <div class="tab-pane fade" id="study" role="tabpanel">
+                        <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ __('Work in Progress') }}</h3>
                     </div>
                 </div>
             </div>

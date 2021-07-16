@@ -22,7 +22,7 @@
                 </button>
                 <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
                     @guest
-                        <ul class="navbar-nav navbar-left mx-auto">
+                        <ul class="navbar-nav mx-auto">
                             <li class="nav-item mx-4">
                                 <a class="nav-link under px-0 active" href="#">Home</a>
                             </li>
@@ -34,7 +34,7 @@
                             </li>
                         </ul>
                      
-                        <ul class="navbar-nav navbar-right" style="margin-left:30px;">
+                        <ul class="navbar-nav" style="margin-left:30px;">
                             <li class="nav-item mx-4" href="{{ route('login') }}">
                                 <a class="nav-link under" href="{{ route('login') }}">Sign In</a>
                             </li>
@@ -43,7 +43,7 @@
                             </li>
                         </ul>
                     @else
-                        <ul class="navbar-nav navbar-left mx-auto">
+                        <ul class="navbar-nav mx-auto">
                             <li class="nav-item mx-4">
                                 <a class="nav-link under" href="#">Mail</a>
                             </li>
@@ -52,11 +52,11 @@
                             </li>
                         </ul>
 
-                        <ul class="navbar-nav navbar-right" style="margin-left:30px;">
+                        <ul class="navbar-nav" style="margin-left:30px;">
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position:relative; padding-left:50px;" v-pre >
+                                <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position:relative; padding-left:50px;" v-pre >
                                     <img src="/images/avatars/{{ Auth::user()->avatar }}" style="width:40px; height:40px; position:absolute; top:0px; left:0px; border-radius:50%">
-                                    {{ Auth::user()->name }}
+                                    {{ Auth::user()->name }}<i class="fas fa-caret-down pl-2"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('profile') }}">

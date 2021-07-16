@@ -3,53 +3,66 @@
 @section('content')
 
 <div class="container min-vh-100">
-    <div class="row d-flex justify-content-center" style="padding-top:150px;">
+    <div class="row row-top">
         <div class="col-12">
-            <div class="card">
-                <div class="card-header p-3" style="width:100%; background:#3aafa9; border-top-left-radius:15px; border-top-right-radius:15px;">
-                    <div class="row p-0">
-                        <h3 class="text-left text-white pl-3">Post Board</h3>
-                        <form class="form-inline my-2 my-lg-0 mx-auto pr-3">
-                            <div class="input-group">
-                                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                                <div class="input-group-append"><button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button></div>
-                            </div>
-                        </form>
-                        <a class="btn btn-primary mr-3" href="{{ route('post.create') }}" role="button">New Post</a>
-                    </div>
+            <div class="card border-sharp shadow-sm">
+                <div class="card-header bg-teal">
+                    <h2 class="mb-0 pl-2 text-white">Posts</h2>
                 </div>
-                <div class="card-body">
-                    <div class="row row-cols-1 row-cols-lg-2 row-cols-xl-3 g-4 p-5">
+                <div class="card-body py-2 d-flex flex-row">
+                    <form>
+                        <div class="p-2 bg-light rounded rounded-pill shadow-sm">
+                            <div class="input-group">
+                                <input type="search" placeholder="Search for a post" name="query" id="query" class="search-bar form-control border-0 bg-light">
+                                <div class="input-group-append">
+                                    <button id="search-btn" type="submit" class="btn btn-link"><i class="fa fa-search text-teal"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <a class="btn btn-teal mr-3 my-auto ml-auto py-1" href="{{ route('post.create') }}" role="button">New Post</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row p-3">
+        <div class="col-12">
+            <div class="card card-body border-sharp shadow-sm sub-card">
+                @if( $posts->first() != null )
+                    <div class="row row-cols-1 row-cols-lg-2 py-2">
                         @foreach( $posts as $post )
-                            <div class="col mb-3">
-                                <div class="card request-card">
-                                    <div class="card-header m-0 pb-0 pt-3 border-0">
-                                        <div class="row pt-2 pb-0">
-                                            <img class="my-auto ml-3" src="/images/avatars/{{ Auth::user()->avatar }}" style="width:40px; height:40px; position:relative; border-radius:50%">
-                                            <div class="pl-3">
-                                                <!-- <a class="stretched-link clickable-card" href="{{route('post.show', $post)}}"> -->
-                                                    <h5 class="m-0 text-left text-dark">{{ $post->title }}</h5>
-                                                <!-- </a> -->
-                                                <p class="m-0" style="font-size:14px;">Author: {{ $post->user->name }}</p>
-                                            </div>
+                            <div class="col">
+                                <div class="card border-sharp shadow-sm my-3">
+                                    <a class="stretched-link clickable-card" href="{{ route('post.show', $post) }}"></a>
+                                    <div class="card-header d-inline-flex px-0 post-card-header">
+                                        <div class="col-auto">
+                                            <img src="/images/avatars/{{ $post->user->avatar }}" style="width:50px; height:50px; border-radius:50%;">
+                                        </div>
+                                        <div class="col-auto my-auto post-card-title">
+                                            <h5 class="mb-0 post-title pl-0 text-dark">{{ $post->title }}</h5>
+                                            <p class="text-muted mb-0">{{ "Posted by: ".$post->user->name }}</p>
                                         </div>
                                     </div>
-                                    <div class="card-body">
+                                    <div class="card-body post-card-body pb-1">
+                                    <p class="badge text-white text-left mb-2" style="background:#3aafa9; font-size:12px;">{{ $post->module->code }}</p>
+                                        <p class="card-text">{{ $post->detail }}</p>
+                                    </div>
+                                    <div class="card-footer border-0">
                                         @if ($post->created_at == $post->updated_at)
                                             <p class="text-muted card-subtitle text-left">Posted on {{ $post->created_at }}</p>
                                         @else
                                             <p class="text-muted card-subtitle text-left">Edited on {{ $post->updated_at }}</p>
                                         @endif
-                                        <p class="badge text-white text-left mb-2" style="background:#3aafa9; font-size:12px;">{{ $post->module->code }}</p>
-                                        <p class="card-text">{{ $post->detail }}</p>
-                                    </div>
-                                    <div class="card-footer pt-0" style="background:none; border:none;">
-                                        <a class="btn btn-sm btn-primary mt-1 ml-auto float-right" href="{{route('post.show', $post)}}" role="button">Open</a>
                                     </div>
                                 </div>
                             </div>
                         @endforeach
-                        
+                    </div>
+                @else
+                @endif
+                <div class="card-footer">
+                    <div class="float-right">
+                        {{ $posts->links('pagination.default') }}
                     </div>
                 </div>
             </div>

@@ -14,7 +14,7 @@
                         @if( Auth::user()->modules->first() != null )
                             @foreach(Auth::user()->modules as $m)
                             <li class="nav-item">
-                                <a class="{{ $loop->first ? 'active' : '' }} nav-link under px-0 mx-4" id="{{ $m->code }}-tab" data-toggle="tab" href="#{{ $m->code }}" role="tab">{{ $m->code }}</a>
+                                <a class="{{ $loop->first ? 'active' : '' }} nav-link under px-0 mx-4" id="{{ $m->code }}-tab" data-toggle="tab" href="{{ '#'.$m->code }}" role="tab">{{ $m->code }}</a>
                             </li>
                             @endforeach
                         @else
@@ -27,7 +27,7 @@
     </div>
     <div class="row p-3">
         <div class="col-12">
-            <div class="card card-body border-sharp shadow-sm mentee-card">
+            <div class="card card-body border-sharp shadow-sm sub-card">
                 <div class="tab-content" id="menteesTabContent">
                     @if( Auth::user()->modules->first() != null )
                         @foreach(Auth::user()->modules as $m)

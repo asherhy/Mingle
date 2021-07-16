@@ -6,13 +6,13 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="Li Ming Gao Rickie and Asher" />
 
-        <link href="{{ asset('css/new-app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app2.css') }}" rel="stylesheet">
 
         <title>mingle</title>
         
     </head>
-    <body>
-        <nav class="navbar navbar-light navbar-expand-lg fixed-top mx-auto px-0;">
+    <body style="background:#DEF2F1;">
+        <nav class="navbar navbar-custom navbar-expand-lg fixed-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}" >
                     <p class="logo">mingle</p>
@@ -22,56 +22,60 @@
                 </button>
                 <div class="collapse navbar-collapse ml-auto" id="navbarSupportedContent">
                     @guest
-                    <ul class="navbar-nav mx-auto">
-                            <li class="nav-item mx-4">
-                                <a class="nav-link under px-0 active" href="#">Home</a>
+                        <ul class="navbar-nav navbar-left">
+                            <li class="nav-item active mx-2">
+                                <a class="nav-link" href="#">Home</a>
                             </li>
-                            <li class="nav-item mx-4">
-                                <a class="nav-link under px-0" href="#">About</a>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link" href="#">About</a>
                             </li>
-                            <li class="nav-item mx-4">
-                                <a class="nav-link under px-0" href="#">Contact</a>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link" href="#">Contact</a>
                             </li>
                         </ul>
                      
-                        <ul class="navbar-nav" style="margin-left:30px;">
-                            <li class="nav-item mx-4" href="{{ route('login') }}">
-                                <a class="nav-link under" href="{{ route('login') }}">Sign In</a>
+                        <ul class="navbar-nav navbar-right ml-auto">
+                            <li class="nav-item mx-2" href="{{ route('login') }}">
+                                <a class="nav-link" href="{{ route('login') }}">Sign In</a>
                             </li>
-                            <li class="nav-item mx-4" href="{{ route('register') }}">
-                            <a class="nav-link under" href="{{ route('register') }}">Sign Up</a>
+                            <li class="nav-item mx-2" href="{{ route('register') }}">
+                            <a class="nav-link" href="{{ route('register') }}">Sign Up</a>
                             </li>
                         </ul>
                     @else
-                        <ul class="navbar-nav mx-auto">
-                            <li class="nav-item dropdown mx-4">
-                                <a class="nav-link under" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quick Match <i class="fas fa-caret-down pl-1"></i></a>
+                        <ul class="navbar-nav navbar-left">
+                            <li class="nav-item active mx-2">
+                                <a class="nav-link" href="#">About</a>
+                            </li>
+                            <li class="nav-item dropdown mx-2">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quick Match</a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="min-width:200px;">
                                     <a class="dropdown-item" href="{{route('quickmatch.module.create')}}">Module Group</a>
                                     <a class="dropdown-item" href="">Study Buddy</a>
                                 </div>
                             </li>
-                            <li class="nav-item dropdown mx-4">
-                                <a class="nav-link under" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Board <i class="fas fa-caret-down pl-1"></i></a>
+                            <li class="nav-item dropdown mx-2">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Board </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="min-width:200px;">
                                     <a class="dropdown-item" href="{{route('post.index')}}">All Posts</a>
                                     <a class="dropdown-item" href="{{route('post.myposts')}}">My Posts</a>
                                 </div>
                             </li>
-                            <li class="nav-item mx-4">
-                                <a class="nav-link under" href="{{ route('request.post.index') }}">Request</a>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link" href="{{ route('request.post.index') }}">Request</a>
                             </li>
-                            <li class="nav-item mx-4">
-                                <a class="nav-link under" href="{{ route('group.index') }}">Groups</a>
+                            <li class="nav-item mx-2">
+                                <a class="nav-link" href="{{ route('group.index') }}">Groups</a>
                             </li>
                         </ul>
 
-                        <ul class="navbar-nav" style="margin-left:30px;">
+                        <ul class="navbar-nav navbar-right ml-auto">
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position:relative; padding-left:50px;" v-pre >
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position:relative; padding-left:50px;" v-pre >
                                     <img src="/images/avatars/{{ Auth::user()->avatar }}" style="width:40px; height:40px; position:absolute; top:0px; left:0px; border-radius:50%">
-                                    {{ Auth::user()->name }}<i class="fas fa-caret-down pl-2"></i>
+                                    {{ Auth::user()->name }}
                                 </a>
+
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('profile') }}">
                                         Profile

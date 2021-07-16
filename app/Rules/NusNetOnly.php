@@ -25,7 +25,7 @@ class NusNetOnly implements Rule
      */
     public function passes($attribute, $value)
     {
-        if (strpos($value, '@nus.edu.sg') !== false) {
+        if (strpos($value, '@u.nus.edu') !== false) {
             return true;
         }
         return false;
