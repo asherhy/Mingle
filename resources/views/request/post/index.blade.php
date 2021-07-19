@@ -3,6 +3,12 @@
 @section('content')
 
 <div class="container min-vh-100">
+    <?php
+        $posts = $postRequests->pluck('post');
+    ?>
+    <myrequest-component :requests="{{ json_encode($postRequests) }}" :posts="{{ json_encode($posts) }}"
+        :modules="{{ json_encode($posts->pluck('module')) }}" :postowners="{{ json_encode($posts->pluck('user')) }}">
+    </myrequest-component>
     <div class="row d-flex justify-content-center" style="padding-top:150px;">
         <div class="col-12">
             <div class="card">

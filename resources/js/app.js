@@ -48,6 +48,16 @@ Vue.component(
     "allpost-component",
     require("./components/allpostComponent.vue").default
 );
+
+Vue.component(
+    "mypost-component",
+    require("./components/mypostComponent.vue").default
+);
+
+Vue.component(
+    "myrequest-component",
+    require("./components/myrequestComponent.vue").default
+);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
