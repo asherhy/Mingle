@@ -6,16 +6,24 @@
                     <div class="card-header bg-teal">
                         <h2 class="mb-0 pl-2 text-white">Posts</h2>
                     </div>
-                    <div class="card-body py-2 d-flex flex-row">
-                        <div class="p-2 bg-light rounded rounded-pill shadow-sm">
-                            <div class="input-group">
-                                <input type="search" v-model="search" @keyup.enter="setQuery()" placeholder="Search for a post" name="query" id="query" class="search-bar form-control border-0 bg-light">
-                                <div class="input-group-append">
-                                    <button id="search-btn" type="submit" @click="setQuery()" class="btn btn-link"><i class="fa fa-search text-teal"></i></button>
+                    <div class="card-body py-2">
+                        <div class="row py-1">
+                            <div class="col-9 col-lg-10">
+                                <div class="p-2 bg-light rounded rounded-pill shadow-sm">
+                                    <div class="input-group">
+                                        <input type="search" v-model="search" placeholder="Search for a post" name="query" id="query" class="search-bar form-control border-0 bg-light">
+                                        <div class="input-group-append">
+                                            <button id="search-btn" type="submit" class="btn btn-link"><i class="fa fa-search text-teal"></i></button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-3 col-lg-2 my-auto">
+                                <div class="float-right">
+                                    <slot name="post-btn"></slot>
                                 </div>
                             </div>
                         </div>
-                        <slot name="post-btn"></slot>
                     </div>
                 </div>
             </div>
@@ -23,11 +31,11 @@
         <div class="row p-3">
             <div class="col-12">
                 <div class="card card-body border-sharp shadow-sm sub-card">
-                    <div v-if="showQuery()">
+                    <!-- <div v-if="showQuery()">
                         <h3 class="text-dark text-left d-inline">Showing Results for </h3>
                         <h3 class="text-dark text-left d-inline font-italic">{{'"' + this.query.toLowerCase() + '"'}}</h3>
                         <h3 class="text-dark text-left d-inline">:</h3><hr>
-                    </div>
+                    </div> -->
                     <div class="row row-cols-1 row-cols-lg-2 py-2" v-if="filteredPosts.length">
                         <div class="col" v-for="(post, index) in filteredPosts" :key="post.id" v-show="items == 'all' || showItem(index)">
                             <div class="card border-sharp shadow-sm my-3">
@@ -54,11 +62,11 @@
                     </div>
                     <div v-else>
                         <h3 class="text-dark text-left d-inline">We've Got Nothing for </h3>
-                        <h3 class="text-dark text-left d-inline font-italic">{{'"' + this.query.toLowerCase() + '"'}}</h3>
+                        <h3 class="text-dark text-left d-inline font-italic">{{'"' + this.search + '"'}}</h3>
                         <h3 class="text-dark text-left d-inline"> ¯\_(ツ)_/¯</h3><hr>
                     </div>
                     <div class="card-footer" v-if="filteredPosts.length">
-                        <div class="float-left">
+                        <!-- <div class="float-left">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="items">Items Per Page</label>
@@ -70,7 +78,7 @@
                                     <option value="all">All</option>
                                 </select>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="float-right">
                             <div class="pagination">
                                 <span class="page-item" :class="{ disabled: currentPage == 1}">
@@ -101,11 +109,11 @@
     export default {
         data () {
             return {
-                query: '',
+                // query: '',
                 search: '',
                 items: 4,
                 currentPage: 1,
-                currentItem: this.posts[0].id
+                // currentItem: this.posts[0].id
             }
         },
         props: [
@@ -144,28 +152,29 @@
                     return false;
                 }
             },
-            setPage() {
-                this.currentPage = this.pageNumber;
-            },
-            setQuery() {
-                this.currentPage = 1;
-                this.query = this.search.toUpperCase();
-            },
-            showQuery() {
-                if (this.query != '' && this.filteredPosts.length > 0) {
-                    return true;
-                } else {
-                    return false;
-                }
-            }
+            // setPage() {
+            //     this.currentPage = this.pageNumber;
+            // },
+            // setQuery() {
+            //     this.currentPage = 1;
+            //     this.query = this.search.toUpperCase();
+            // },
+            // showQuery() {
+            //     if (this.query != '' && this.filteredPosts.length > 0) {
+            //         return true;
+            //     } else {
+            //         return false;
+            //     }
+            // }
         },
         computed: {
             filteredPosts() {
+                var query = this.search.toUpperCase();
                 return this.posts.filter(post => 
-                    post.detail.toUpperCase().includes(this.query) || 
-                    post.title.toUpperCase().includes(this.query) ||
+                    post.detail.toUpperCase().includes(query) || 
+                    post.title.toUpperCase().includes(query) ||
                     this.modules.filter(module => 
-                        module.code_title.toUpperCase().includes(this.query))
+                        module.code_title.toUpperCase().includes(query))
                         .map(module => module.id)
                         .indexOf(post.module_id) > -1)
             },
@@ -173,22 +182,20 @@
                 let fposts = this.filteredPosts;
                 return Math.ceil(fposts.length / this.items)
             },
-            pageNumber() {
-                let fposts = this.filteredPosts;
-                let idx = fposts.findIndex((post) => post.id == this.currentItem);
-                if (fposts.length >= 0 && idx != -1) {
-                    this.currentPage = Math.ceil((idx + 1) / this.items);
-                } else if (idx == -1) {
-                    this.currentPage = 1;
-                }
-                return this.currentPage;
-            }
+            // pageNumber() {
+            //     let fposts = this.filteredPosts;
+            //     let idx = fposts.findIndex((post) => post.id == this.currentItem);
+            //     if (fposts.length >= 0 && idx != -1) {
+            //         this.currentPage = Math.ceil((idx + 1) / this.items);
+            //     } else if (idx == -1) {
+            //         this.currentPage = 1;
+            //     }
+            //     return this.currentPage;
+            // }
         },
         watch: {
             search: function() {
-                if (this.search == '') {
-                    this.setQuery();
-                }
+                this.currentPage = 1;
             }
         }
     };

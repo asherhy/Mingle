@@ -2040,14 +2040,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      query: '',
+      // query: '',
       search: '',
       items: 4,
-      currentPage: 1,
-      currentItem: this.posts[0].id
+      currentPage: 1 // currentItem: this.posts[0].id
+
     };
   },
   props: ['posts', 'users', 'modules'],
@@ -2082,29 +2090,30 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         return false;
       }
-    },
-    setPage: function setPage() {
-      this.currentPage = this.pageNumber;
-    },
-    setQuery: function setQuery() {
-      this.currentPage = 1;
-      this.query = this.search.toUpperCase();
-    },
-    showQuery: function showQuery() {
-      if (this.query != '' && this.filteredPosts.length > 0) {
-        return true;
-      } else {
-        return false;
-      }
-    }
+    } // setPage() {
+    //     this.currentPage = this.pageNumber;
+    // },
+    // setQuery() {
+    //     this.currentPage = 1;
+    //     this.query = this.search.toUpperCase();
+    // },
+    // showQuery() {
+    //     if (this.query != '' && this.filteredPosts.length > 0) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+
   },
   computed: {
     filteredPosts: function filteredPosts() {
       var _this = this;
 
+      var query = this.search.toUpperCase();
       return this.posts.filter(function (post) {
-        return post.detail.toUpperCase().includes(_this.query) || post.title.toUpperCase().includes(_this.query) || _this.modules.filter(function (module) {
-          return module.code_title.toUpperCase().includes(_this.query);
+        return post.detail.toUpperCase().includes(query) || post.title.toUpperCase().includes(query) || _this.modules.filter(function (module) {
+          return module.code_title.toUpperCase().includes(query);
         }).map(function (module) {
           return module.id;
         }).indexOf(post.module_id) > -1;
@@ -2113,29 +2122,21 @@ __webpack_require__.r(__webpack_exports__);
     numberPages: function numberPages() {
       var fposts = this.filteredPosts;
       return Math.ceil(fposts.length / this.items);
-    },
-    pageNumber: function pageNumber() {
-      var _this2 = this;
+    } // pageNumber() {
+    //     let fposts = this.filteredPosts;
+    //     let idx = fposts.findIndex((post) => post.id == this.currentItem);
+    //     if (fposts.length >= 0 && idx != -1) {
+    //         this.currentPage = Math.ceil((idx + 1) / this.items);
+    //     } else if (idx == -1) {
+    //         this.currentPage = 1;
+    //     }
+    //     return this.currentPage;
+    // }
 
-      var fposts = this.filteredPosts;
-      var idx = fposts.findIndex(function (post) {
-        return post.id == _this2.currentItem;
-      });
-
-      if (fposts.length >= 0 && idx != -1) {
-        this.currentPage = Math.ceil((idx + 1) / this.items);
-      } else if (idx == -1) {
-        this.currentPage = 1;
-      }
-
-      return this.currentPage;
-    }
   },
   watch: {
     search: function search() {
-      if (this.search == '') {
-        this.setQuery();
-      }
+      this.currentPage = 1;
     }
   }
 });
@@ -38873,80 +38874,60 @@ var render = function() {
         _c("div", { staticClass: "card border-sharp shadow-sm" }, [
           _vm._m(0),
           _vm._v(" "),
-          _c(
-            "div",
-            { staticClass: "card-body py-2 d-flex flex-row" },
-            [
-              _c(
-                "div",
-                { staticClass: "p-2 bg-light rounded rounded-pill shadow-sm" },
-                [
-                  _c("div", { staticClass: "input-group" }, [
-                    _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.search,
-                          expression: "search"
-                        }
-                      ],
-                      staticClass: "search-bar form-control border-0 bg-light",
-                      attrs: {
-                        type: "search",
-                        placeholder: "Search for a post",
-                        name: "query",
-                        id: "query"
-                      },
-                      domProps: { value: _vm.search },
-                      on: {
-                        keyup: function($event) {
-                          if (
-                            !$event.type.indexOf("key") &&
-                            _vm._k(
-                              $event.keyCode,
-                              "enter",
-                              13,
-                              $event.key,
-                              "Enter"
-                            )
-                          ) {
-                            return null
+          _c("div", { staticClass: "card-body py-2" }, [
+            _c("div", { staticClass: "row py-1" }, [
+              _c("div", { staticClass: "col-9 col-lg-10" }, [
+                _c(
+                  "div",
+                  {
+                    staticClass: "p-2 bg-light rounded rounded-pill shadow-sm"
+                  },
+                  [
+                    _c("div", { staticClass: "input-group" }, [
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value: _vm.search,
+                            expression: "search"
                           }
-                          return _vm.setQuery()
+                        ],
+                        staticClass:
+                          "search-bar form-control border-0 bg-light",
+                        attrs: {
+                          type: "search",
+                          placeholder: "Search for a post",
+                          name: "query",
+                          id: "query"
                         },
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.search = $event.target.value
-                        }
-                      }
-                    }),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "input-group-append" }, [
-                      _c(
-                        "button",
-                        {
-                          staticClass: "btn btn-link",
-                          attrs: { id: "search-btn", type: "submit" },
-                          on: {
-                            click: function($event) {
-                              return _vm.setQuery()
+                        domProps: { value: _vm.search },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
                             }
+                            _vm.search = $event.target.value
                           }
-                        },
-                        [_c("i", { staticClass: "fa fa-search text-teal" })]
-                      )
+                        }
+                      }),
+                      _vm._v(" "),
+                      _vm._m(1)
                     ])
-                  ])
-                ]
-              ),
+                  ]
+                )
+              ]),
               _vm._v(" "),
-              _vm._t("post-btn")
-            ],
-            2
-          )
+              _c("div", { staticClass: "col-3 col-lg-2 my-auto" }, [
+                _c(
+                  "div",
+                  { staticClass: "float-right" },
+                  [_vm._t("post-btn")],
+                  2
+                )
+              ])
+            ])
+          ])
         ])
       ])
     ]),
@@ -38957,25 +38938,6 @@ var render = function() {
           "div",
           { staticClass: "card card-body border-sharp shadow-sm sub-card" },
           [
-            _vm.showQuery()
-              ? _c("div", [
-                  _c("h3", { staticClass: "text-dark text-left d-inline" }, [
-                    _vm._v("Showing Results for ")
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "h3",
-                    { staticClass: "text-dark text-left d-inline font-italic" },
-                    [_vm._v(_vm._s('"' + this.query.toLowerCase() + '"'))]
-                  ),
-                  _vm._v(" "),
-                  _c("h3", { staticClass: "text-dark text-left d-inline" }, [
-                    _vm._v(":")
-                  ]),
-                  _c("hr")
-                ])
-              : _vm._e(),
-            _vm._v(" "),
             _vm.filteredPosts.length
               ? _c(
                   "div",
@@ -39133,7 +39095,7 @@ var render = function() {
                   _c(
                     "h3",
                     { staticClass: "text-dark text-left d-inline font-italic" },
-                    [_vm._v(_vm._s('"' + this.query.toLowerCase() + '"'))]
+                    [_vm._v(_vm._s('"' + this.search + '"'))]
                   ),
                   _vm._v(" "),
                   _c("h3", { staticClass: "text-dark text-left d-inline" }, [
@@ -39144,67 +39106,6 @@ var render = function() {
             _vm._v(" "),
             _vm.filteredPosts.length
               ? _c("div", { staticClass: "card-footer" }, [
-                  _c("div", { staticClass: "float-left" }, [
-                    _c("div", { staticClass: "input-group mb-3" }, [
-                      _vm._m(1),
-                      _vm._v(" "),
-                      _c(
-                        "select",
-                        {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.items,
-                              expression: "items"
-                            }
-                          ],
-                          staticClass: "custom-select",
-                          attrs: { id: "items" },
-                          on: {
-                            change: [
-                              function($event) {
-                                var $$selectedVal = Array.prototype.filter
-                                  .call($event.target.options, function(o) {
-                                    return o.selected
-                                  })
-                                  .map(function(o) {
-                                    var val = "_value" in o ? o._value : o.value
-                                    return val
-                                  })
-                                _vm.items = $event.target.multiple
-                                  ? $$selectedVal
-                                  : $$selectedVal[0]
-                              },
-                              function($event) {
-                                return _vm.setPage()
-                              }
-                            ]
-                          }
-                        },
-                        [
-                          _c(
-                            "option",
-                            { attrs: { selected: "", value: "4" } },
-                            [_vm._v("4")]
-                          ),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "8" } }, [
-                            _vm._v("8")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "12" } }, [
-                            _vm._v("12")
-                          ]),
-                          _vm._v(" "),
-                          _c("option", { attrs: { value: "all" } }, [
-                            _vm._v("All")
-                          ])
-                        ]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
                   _c("div", { staticClass: "float-right" }, [
                     _c(
                       "div",
@@ -39327,11 +39228,14 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "input-group-prepend" }, [
+    return _c("div", { staticClass: "input-group-append" }, [
       _c(
-        "label",
-        { staticClass: "input-group-text", attrs: { for: "items" } },
-        [_vm._v("Items Per Page")]
+        "button",
+        {
+          staticClass: "btn btn-link",
+          attrs: { id: "search-btn", type: "submit" }
+        },
+        [_c("i", { staticClass: "fa fa-search text-teal" })]
       )
     ])
   }

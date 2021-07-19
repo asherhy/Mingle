@@ -259,10 +259,6 @@ a.nav-link.active.under:after {
     color: #3D5A6C;
 }
 
-input.search-bar.form-control {
-    width: 50vw;
-}
-
 input.search-bar.form-control:focus {
     box-shadow: none;
 }
