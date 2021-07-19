@@ -83,17 +83,26 @@ class UserController extends Controller
     public function profileUpdate(Request $request)
     {
         $user = Auth::user();
+        
         $request->validate([
           'majors' => ['required', 'array', 'max:3'],
           'modules' => ['required', 'array', 'max:5'],
           'matric' => ['required'],
           'gender' => ['required'],
           'name' => ['required'],
-          'telegram' => ['required']
+          'telegram' => ['required'],
+          'avatar' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048']
         ]);
+        $file = $request->file('avatar');
+        $filename = $file->getClientOriginalName();
+        $filename = md5($filename);
+        $filename = microtime(true).$filename.'.'.$file->getClientOriginalExtension();
+        $request->avatar->storeAs('public/avatars', $filename);
+
         $user->update([
           'name' => $request->name,
           'telegram' => $request->telegram,
+          'avatar' => $filename,
           'gender' => $request->gender,
           'matric_year' => $request->matric
         ]);
