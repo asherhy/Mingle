@@ -43,6 +43,9 @@ class PostController extends Controller
     public function myposts()
     {
         $posts = Auth::user()->posts;
+        foreach ($posts as $post) {
+            $post->route = route('post.show', $post);
+        }
         return view('post.myposts', compact('posts'));
     }
 
