@@ -29,6 +29,9 @@ class PostController extends Controller
     public function index()
     {
         $posts = Post::where('status', 'Active')->get();
+        foreach ($posts as $post) {
+            $post->route = route('post.show', $post);
+        }
         return view('post.index', compact('posts'));
     }
 
