@@ -30,7 +30,7 @@
                                 <a class="nav-link under px-0" href="#">About</a>
                             </li>
                             <li class="nav-item mx-4">
-                                <a class="nav-link under px-0" href="#">Contact</a>
+                                <a class="nav-link under px-0" href="#">Help</a>
                             </li>
                         </ul>
                      
@@ -44,12 +44,8 @@
                         </ul>
                     @else
                         <ul class="navbar-nav mx-auto">
-                            <li class="nav-item dropdown mx-4">
-                                <a class="nav-link under" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Quick Match <i class="fas fa-caret-down pl-1"></i></a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="min-width:200px;">
-                                    <a class="dropdown-item" href="{{route('quickmatch.module.create')}}">Module Group</a>
-                                    <a class="dropdown-item" href="">Study Buddy</a>
-                                </div>
+                            <li class="nav-item mx-4">
+                                <a class="nav-link under" href="{{ route('quickmatch.module.create') }}">QuickMatch</a>
                             </li>
                             <li class="nav-item dropdown mx-4">
                                 <a class="nav-link under" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Board <i class="fas fa-caret-down pl-1"></i></a>
@@ -108,5 +104,6 @@
             </div>
         </footer>
         <script src="{{ asset('js/app.js') }}"></script>
+        @yield('js')
     </body>
 </html>

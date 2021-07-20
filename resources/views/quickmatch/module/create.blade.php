@@ -3,11 +3,11 @@
 @section('content')
 
 <div class="container min-vh-100">
-    <div class="row d-flex justify-content-center">
+    <div class="row d-flex justify-content-center qm-row">
         <div class="col-12 col-sm-10 col-lg-8">
-            <div class="card">
-                <div class="card-header p-3" style="background:#3aafa9; width:100%; border-top-left-radius:10px; border-top-right-radius:10px;">
-                    <h3 class="text-center text-white">Quick Match Your Module Group</h3>
+            <div class="card border-sharp px-0">
+                <div class="card-header p-3 bg-teal">
+                    <h3 class="text-center text-white font-weight-bold">Quick Match Your Module Group</h3>
                 </div>
                 <div class="card-body">
                     <div class="container">
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="form-group form-row">
-                                <button class="btn btn-success ml-auto" type="submit">Match</button>
+                                <button class="btn btn-teal ml-auto" type="submit">Match</button>
                             </div>
                         </form>
                     </div>

@@ -1,4 +1,4 @@
-@extends('layouts/new-layout')
+@extends('layouts/mentor-layout')
 
 @section('content')
 

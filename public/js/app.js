@@ -2194,9 +2194,8 @@ __webpack_require__.r(__webpack_exports__);
         var index = i + 1; // Append a node with a random text
         // Create an <input> element, set its type and name attributes
 
-        $("#container").append('<div class="form-group form-row mb-4"><label for="title" class="col-form-label col-md-2">Telegram' + " " + index + '</label><div class="input-group col-md-8"><div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">@</span></div><input type="telegram" class="form-control" name="telegram[]" id="telegram" required></div></div>'); // Append a line break
-
-        container.appendChild(document.createElement("br"));
+        $("#container").append('<div class="form-group form-row mt-4"><label for="title" class="col-form-label col-md-2">Telegram' + " " + index + '</label><div class="input-group col-md-8"><div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">@</span></div><input type="telegram" class="form-control" name="telegram[]" id="telegram" required></div></div>'); // // Append a line break
+        // container.appendChild(document.createElement("br"));
       }
     }
   },
@@ -39636,7 +39635,7 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c("div", { staticClass: "pt-5", attrs: { id: "container" } })
+      _c("div", { attrs: { id: "container" } })
     ])
   ])
 }
@@ -40553,7 +40552,7 @@ var render = function() {
     _c("div", { staticClass: "col-12 col-md-6 col-lg-7" }, [
       _vm.currentRequest
         ? _c("div", [
-            _c("div", { staticClass: "card" }, [
+            _c("div", { staticClass: "card mail-card" }, [
               _c("div", { staticClass: "card-header m-2 pt-2 p-2" }, [
                 _c(
                   "button",
@@ -53139,7 +53138,7 @@ __webpack_require__.r(__webpack_exports__);
 /*!*************************************************************************************!*\
   !*** ./resources/js/components/allpostComponent.vue?vue&type=template&id=0f042c87& ***!
   \*************************************************************************************/
-/*! no static exports found */
+/*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

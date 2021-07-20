@@ -20,7 +20,7 @@
         </div>
         <div class="col-12 col-md-6 col-lg-7">
             <div v-if="currentRequest">
-                <div class="card">
+                <div class="card mail-card">
                     <div class="card-header m-2 pt-2 p-2">
                         <button type="button" class="close" v-on:click="setRequest(nullObject)">
                             &times;

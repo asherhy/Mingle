@@ -15,7 +15,7 @@
                 <option value="2">2</option>
                 <option value="3">3</option>
             </select>
-            <div id="container" class="pt-5"></div>
+            <div id="container"></div>
         </div>
     </div>
 </template>
@@ -41,13 +41,13 @@ export default {
                 // Append a node with a random text
                 // Create an <input> element, set its type and name attributes
                 $("#container").append(
-                    '<div class="form-group form-row mb-4"><label for="title" class="col-form-label col-md-2">Telegram' +
+                    '<div class="form-group form-row mt-4"><label for="title" class="col-form-label col-md-2">Telegram' +
                         " " +
                         index +
                         '</label><div class="input-group col-md-8"><div class="input-group-prepend"><span class="input-group-text" id="basic-addon1">@</span></div><input type="telegram" class="form-control" name="telegram[]" id="telegram" required></div></div>'
                 );
-                // Append a line break
-                container.appendChild(document.createElement("br"));
+                // // Append a line break
+                // container.appendChild(document.createElement("br"));
             }
         }
     },
