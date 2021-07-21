@@ -24,13 +24,6 @@
                             </div>
                         </div>
                         <div class="form-group form-row">
-                            <label for="profile-img" class="col-form-label col-md-4">Update Profile Image</label>
-                            <div class="col-md-8">
-                                <input type="file" name="avatar">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            </div>
-                        </div>
-                        <div class="form-group form-row">
                             <label for="email" class="col-form-label col-md-4">Email</label>
                             <div class="col-md-8"><input type="email" class="form-control" id="email" value="{{ Auth::user()->email }}" disabled></div>
                         </div>
@@ -89,12 +82,44 @@
     </div>
 </div>
 
+
+<div class="modal fade border-sharp" id="editProfilePhoto" role="dialog">
+    <div class="modal-dialog modal-lg" role="content">
+        <div class="modal-content">
+            <div class="modal-header bg-teal py-2">
+                <h3 class="modal-title text-white">Update Photo</h3>
+                <button type="button" class="close btn-white" data-dismiss="modal">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body pt-4 profile-edit-modal">
+                <form enctype="multipart/form-data" action="{{ route('user.changePhoto') }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="container">
+                        <div class="form-group form-row">
+                            <label for="profile-img" class="col-form-label col-md-4">Update Profile Image</label>
+                            <div class="col-md-8">
+                                <input type="file" name="avatar">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            </div>
+                        </div>
+                        <div class="form-group form-row">
+                            <button class="btn btn-success ml-auto" type="submit">Change</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container min-vh-100">
     <div class="row row-top align-items-center">
         <div class="profile-header border-sharp card col-12 shadow-sm">
             <div class="card-body col-12 d-inline-flex">
                 <div class="col-auto pr-4">
-                    <img class="profile-page-img" src="{{ asset('storage/avatars/'.Auth::user()->avatar)}}">
+                    <img class="profile-page-img"  data-toggle="modal" data-target="#editProfilePhoto" src="{{ asset('storage/avatars/'.Auth::user()->avatar)}}">
                 </div>
                 <div class="col my-auto pl-0">
                     <div>
@@ -104,7 +129,14 @@
                         Edit Profile
                     </button>
                     <!-- Major -->
-                    <p class="text-muted d-block mb-0">{{ __('Computer Science Undergraduate') }}</p>
+                    @if( Auth::user()->majors->first() != null )
+                        @foreach(Auth::user()->majors as $m)
+                            <p class="text-muted d-block mb-0">{{ $m->name }}</p>
+                        @endforeach
+                    @else
+                        <p class="text-muted d-block mb-0">-</p>
+                    @endif
+                    <p class="text-muted d-block mb-0">{{ __('Undergraduate') }}</p>
                 </div>
             </div>
         </div>

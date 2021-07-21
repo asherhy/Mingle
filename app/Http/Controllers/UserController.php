@@ -91,18 +91,11 @@ class UserController extends Controller
           'gender' => ['required'],
           'name' => ['required'],
           'telegram' => ['required'],
-          'avatar' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048']
         ]);
-        $file = $request->file('avatar');
-        $filename = $file->getClientOriginalName();
-        $filename = md5($filename);
-        $filename = microtime(true).$filename.'.'.$file->getClientOriginalExtension();
-        $request->avatar->storeAs('public/avatars', $filename);
-
+        
         $user->update([
           'name' => $request->name,
           'telegram' => $request->telegram,
-          'avatar' => $filename,
           'gender' => $request->gender,
           'matric_year' => $request->matric
         ]);
@@ -115,5 +108,50 @@ class UserController extends Controller
           $user->assignModule($module);
         }
         return redirect()->back();
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\User  $user
+     * @return \Illuminate\Http\Response
+     */
+    public function photoUpdate(Request $request)
+    {
+        $user = Auth::user();
+        
+        $request->validate([
+          'avatar' => ['required', 'image', 'mimes:jpeg,png,jpg,gif,svg', 'max:2048']
+        ]);
+        $file = $request->file('avatar');
+        $filename = $file->getClientOriginalName();
+        $filename = md5($filename);
+        $filename = microtime(true).$filename.'.'.$file->getClientOriginalExtension();
+        $request->avatar->storeAs('public/avatars', $filename);
+
+        $user->update([
+          'avatar' => $filename,
+        ]);
+        return redirect()->back();
+    }
+
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showMentor(User $user)
+    {
+        $modules = Module::all();
+        if(!isset($modules)) {
+          $modules = [];
+        }
+        $majors = Major::all();
+        if(!isset($majors)) {
+          $majors = [];
+        }
+        //dd($majors);
+        return view('user.mentor', compact('majors', 'modules', 'user'));
     }
 }

@@ -24,6 +24,7 @@ Route::get('/home/change', 'UserController@edit')->name('changePw');
 Route::put('/home', 'UserController@update')->name('updatePw');
 Route::get('/profile', 'UserController@show')->name('profile');
 Route::put('/profile', 'UserController@profileUpdate')->name('updateProfile');
+Route::put('/profile/photo', 'UserController@photoUpdate')->name('user.changePhoto');
 
 Route::get('/home', 'HomeController@index')->name('home');                                          
 
@@ -44,6 +45,7 @@ Route::get('/groups', 'GroupController@index')->name('group.index');
 Route::get('/QuickMatch/module-group', 'ModuleMatchController@create')->name('quickmatch.module.create');    
 Route::post('/QuickMatch/module-group', 'ModuleMatchController@store')->name('quickmatch.module.store');    
 
+Route::get('/mentor/{user}', 'UserController@showMentor')->name('user.mentor.show');
 
 Route::get('/test', function() {
     return view('mentor/home');
