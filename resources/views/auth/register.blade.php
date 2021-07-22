@@ -7,7 +7,7 @@
         <div class="col-10 col-md-7 col-lg-5">
             <div class="card signup border-sharp px-0 shadow-sm" id="signup-form">
                 <div class="card-header signup-card-header">
-                <h3 class="text-left card-title mb-1 font-weight-bold">Create your mingle account</h3>
+                    <h3 class="text-left card-title mb-1 font-weight-bold">Create your mingle account</h3>
                 </div>
                 <div class="card-body">
                     <form method="POST" class="signup" action="{{ route('register') }}">

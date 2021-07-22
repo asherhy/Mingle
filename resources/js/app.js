@@ -35,6 +35,11 @@ Vue.component(
 );
 
 Vue.component(
+    "selectmodule-Component",
+    require("./components/selectmoduleComponent.vue").default
+);
+
+Vue.component(
     "modulematch-component",
     require("./components/modulematchComponent.vue").default
 );
@@ -57,6 +62,11 @@ Vue.component(
 Vue.component(
     "myrequest-component",
     require("./components/myrequestComponent.vue").default
+);
+
+Vue.component(
+    "findmentor-component",
+    require("./components/findmentorComponent.vue").default
 );
 /**
  * Next, we will create a fresh Vue application instance and attach it to

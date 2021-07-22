@@ -49,7 +49,7 @@
     </div>
     <div class="row p-3">
         <div class="col-12">
-            <div class="card card-body border-sharp shadow-sm sub-card">
+            <div class="card card-body border-sharp shadow-sm sub-card bg-light">
                 <div class="tab-content" id="groupsTabContent">
                     <div class="tab-pane fade show active" id="default" role="tabpanel">
                         <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ __('Select a tab to get started. ')}} &#128515;</h3>

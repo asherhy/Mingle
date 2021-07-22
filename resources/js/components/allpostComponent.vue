@@ -47,15 +47,18 @@
         </div>
         <div class="row p-3">
             <div class="col-12">
-                <div class="card card-body border-sharp shadow-sm sub-card">
+                <div class="card card-body border-sharp shadow-sm sub-card bg-light">
                     <!-- <div v-if="showQuery()">
                         <h3 class="text-dark text-left d-inline">Showing Results for </h3>
                         <h3 class="text-dark text-left d-inline font-italic">{{'"' + this.query.toLowerCase() + '"'}}</h3>
                         <h3 class="text-dark text-left d-inline">:</h3><hr>
                     </div> -->
+                    <div v-if="!posts.length">
+                        <h3 class="text-dark text-left d-inline">There aren't any posts yet. Be the first to create one by clicking on the teal "New Post" button! &#128515;</h3>
+                    </div>
                     <div
                         class="row row-cols-1 row-cols-lg-2 py-2"
-                        v-if="filteredPosts.length"
+                        v-else-if="filteredPosts.length"
                     >
                         <div
                             class="col"
@@ -96,7 +99,7 @@
                                 <div class="card-body post-card-body pb-1">
                                     <p
                                         class="badge text-white text-left mb-2"
-                                        style="background:#3aafa9; font-size:12px;"
+                                        style="background:#00b3b3; font-size:12px;"
                                     >
                                         {{
                                             modules.find(
@@ -139,7 +142,7 @@
                         <h3 class="text-dark text-left d-inline">¯\_(ツ)_/¯</h3>
                         <hr />
                     </div>
-                    <div class="card-footer" v-if="filteredPosts.length">
+                    <div class="card-footer mt-auto" v-if="filteredPosts.length">
                         <!-- <div class="float-left">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">

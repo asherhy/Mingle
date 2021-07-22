@@ -4,22 +4,22 @@
             <div class="col-12">
                 <div class="card border-sharp shadow-sm">
                     <div class="card-header bg-teal">
-                        <h2 class="mb-0 pl-2 text-white">My Posts</h2>
+                        <h2 class="mb-0 pl-2 text-white">Mentors</h2>
                     </div>
-                    <div class="card-body py-2">
-                        <div class="row py-1">
-                            <div class="col-9 col-lg-10">
+                    <div class="card-body py-0">
+                        <div class="row py-0">
+                            <div class="col-12 col-lg-4 col-xl-5 my-auto">
                                 <div
-                                    class="p-2 bg-light rounded rounded-pill shadow-sm"
+                                    class="p-2 bg-light rounded rounded-pill shadow-sm my-1"
                                 >
                                     <div class="input-group">
                                         <input
                                             type="search"
                                             v-model="search"
-                                            placeholder="Search for a post"
+                                            placeholder="Search for a mentor"
                                             name="query"
                                             id="query"
-                                            class="search-bar form-control border-0 bg-light"
+                                            class="mentor-search-bar search-bar form-control border-0 bg-light"
                                         />
                                         <div class="input-group-append">
                                             <button
@@ -35,10 +35,22 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-3 col-lg-2 my-auto">
-                                <div class="float-right">
-                                    <slot name="post-btn"></slot>
+                            <div class="col-8 col-lg-5 my-auto">
+                                <selectmoduleComponent class="my-3" :modules="modules" pholder="Select A Module" @update-module="updateModule($event)">
+
+                                </selectmoduleComponent>
+                            </div>
+                            <div class="col-4 col-lg-3 col-xl-2 my-auto">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text bg-light" for="status">Status</label>
+                                    </div>
+                                    <select class="custom-select" id="status" v-model="active">
+                                        <option value="all" selected>All</option>
+                                        <option value="active">Active</option>
+                                    </select>
                                 </div>
+
                             </div>
                         </div>
                     </div>
@@ -48,24 +60,21 @@
         <div class="row p-3">
             <div class="col-12">
                 <div class="card card-body border-sharp shadow-sm sub-card bg-light">
-                    <div v-if="!posts.length">
-                        <h3 class="text-dark text-left d-inline">You haven't got any posts yet. Create one by clicking on the teal "New Post" button! &#128515;</h3>
-                    </div>
                     <div
                         class="row row-cols-1 row-cols-lg-2 py-2"
-                        v-else-if="filteredPosts.length"
+                        v-if="filteredMentors.length"
                     >
                         <div
                             class="col"
-                            v-for="(post, index) in filteredPosts"
-                            :key="post.id"
+                            v-for="(mentor, index) in filteredMentors"
+                            :key="mentor.id"
                             v-show="items == 'all' || showItem(index)"
                         >
                             <div class="card border-sharp shadow-sm my-3">
-                                <a
+                                <!-- <a
                                     class="stretched-link clickable-card"
                                     :href="post.route"
-                                ></a>
+                                ></a> -->
                                 <div
                                     class="card-header d-inline-flex px-0 post-card-header"
                                 >
@@ -73,7 +82,7 @@
                                         <img
                                             :src="
                                                 '../../../images/avatars/' +
-                                                    user.avatar
+                                                    mentor.avatar
                                             "
                                             style="width:50px; height:50px; border-radius:50%;"
                                         />
@@ -84,44 +93,24 @@
                                         <h5
                                             class="mb-0 post-title pl-0 text-dark"
                                         >
-                                            {{ post.title }}
+                                            {{ mentor.name }}
                                         </h5>
                                         <p class="text-muted mb-0">
-                                            Posted by: {{ user.name }}
+                                            {{ mentor.title }}
                                         </p>
                                     </div>
                                 </div>
                                 <div class="card-body post-card-body pb-1">
+                                    <h5 class="card-title">Modules Taught:</h5>
                                     <p
-                                        class="badge text-white text-left mb-2"
+                                        v-for="module in mentormodules[mentor.id-1]"
+                                        v-bind:key="module.id"
+                                        class="badge text-white text-left mb-2 mx-2"
                                         style="background:#00b3b3; font-size:12px;"
                                     >
                                         {{
-                                            modules.find(
-                                                module =>
-                                                    module.id == post.module_id
-                                            ).code
+                                            module.code
                                         }}
-                                    </p>
-                                    <p class="card-text">{{ post.detail }}</p>
-                                </div>
-                                <div class="card-footer border-0">
-                                    <p
-                                        class="text-muted card-subtitle text-left"
-                                        v-if="
-                                            checkDate(
-                                                post.created_at,
-                                                post.updated_at
-                                            )
-                                        "
-                                    >
-                                        Posted on {{ getDate(post.created_at) }}
-                                    </p>
-                                    <p
-                                        class="text-muted card-subtitle text-left"
-                                        v-else
-                                    >
-                                        Edited on {{ getDate(post.updated_at) }}
                                     </p>
                                 </div>
                             </div>
@@ -129,15 +118,11 @@
                     </div>
                     <div v-else>
                         <h3 class="text-dark text-left d-inline">
-                            We've got nothing for
+                            We've got nothing ¯\_(ツ)_/¯
                         </h3>
-                        <h3 class="text-dark text-left d-inline font-italic">
-                            {{ '"' + this.search + '"' }}
-                        </h3>
-                        <h3 class="text-dark text-left d-inline">¯\_(ツ)_/¯</h3>
                         <hr />
                     </div>
-                    <div class="card-footer mt-auto" v-if="filteredPosts.length">
+                    <div class="card-footer mt-auto" v-if="filteredMentors.length">
                         <div class="float-right">
                             <div class="pagination">
                                 <span
@@ -193,15 +178,22 @@
 </template>
 
 <script>
+
+import selectmoduleComponent from "./selectmoduleComponent.vue";
+
 export default {
+    components: { selectmoduleComponent },
+
     data() {
         return {
             search: "",
-            items: 4,
-            currentPage: 1
+            items: 8,
+            currentPage: 1,
+            active: "all",
+            module: "none"
         };
     },
-    props: ["posts", "user", "modules"],
+    props: ["mentors", "mentormodules", "modules"],
     methods: {
         checkDate(created, updated) {
             if (created == updated) {
@@ -229,32 +221,67 @@ export default {
                 index >= this.currentPage * this.items - this.items
             ) {
                 if (index == this.currentPage * this.items - this.items) {
-                    this.currentItem = this.posts[index].id;
+                    this.currentItem = this.mentors[index].id;
                 }
                 return true;
             } else {
                 return false;
             }
+        },
+        updateModule(module) {
+            this.module = module;
+        },
+        getMentorIndexes() {
+            var mentorIndexes = [];
+            var i = 0;
+            for (i; i < this.mentormodules.length; i++) {
+                if (this.mentormodules[i].findIndex(mentormodule => 
+                    mentormodule.id == this.module) != -1) {
+                    mentorIndexes.push(i);
+                    continue;
+                }
+            }
+            return mentorIndexes;
         }
     },
     computed: {
-        filteredPosts() {
+        filteredMentors() {
             var query = this.search.toUpperCase();
-            return this.posts.filter(
-                post =>
-                    post.detail.toUpperCase().includes(query) ||
-                    post.title.toUpperCase().includes(query) ||
-                    this.modules
-                        .filter(module =>
-                            module.code_title.toUpperCase().includes(query)
-                        )
-                        .map(module => module.id)
-                        .indexOf(post.module_id) > -1
-            );
+            if (this.module != 'none') {
+                var indexes = this.getMentorIndexes();
+                if (this.active == 'all') {
+                    return this.mentors.filter(
+                        (mentor, index) =>
+                            mentor.name.toUpperCase().includes(query) &&
+                            indexes.indexOf(index) != -1
+                    );
+                } else {
+                    return this.mentors.filter(
+                        (mentor, index) => 
+                            mentor.status == 'active' && (
+                                mentor.name.toUpperCase().includes(query) &&
+                                indexes.indexOf(index) != -1
+                            )
+                    );
+                }
+            } else {
+                if (this.active == 'all') {
+                    return this.mentors.filter(
+                        mentor => 
+                            mentor.name.toUpperCase().includes(query)
+                    );
+                } else {
+                    return this.mentors.filter(
+                        mentor =>
+                            mentor.status == 'active' &&
+                            mentor.name.toUpperCase().includes(query)
+                    );
+                }
+            }
         },
         numberPages() {
-            let fposts = this.filteredPosts;
-            return Math.ceil(fposts.length / this.items);
+            let fmentors = this.filteredMentors;
+            return Math.ceil(fmentors.length / this.items);
         }
     },
     watch: {

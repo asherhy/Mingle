@@ -15,7 +15,6 @@
             required
         />
     </div>
-    </div>
 </template>
 
 <script>

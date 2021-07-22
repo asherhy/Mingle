@@ -44,21 +44,24 @@
                         </ul>
                     @else
                         <ul class="navbar-nav mx-auto">
-                            <li class="nav-item mx-4">
+                            <li class="nav-item mx-3">
                                 <a class="nav-link under" href="{{ route('quickmatch.module.create') }}">QuickMatch</a>
                             </li>
-                            <li class="nav-item dropdown mx-4">
+                            <li class="nav-item dropdown mx-3">
                                 <a class="nav-link under" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Board <i class="fas fa-caret-down pl-1"></i></a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="min-width:200px;">
                                     <a class="dropdown-item" href="{{route('post.index')}}">All Posts</a>
                                     <a class="dropdown-item" href="{{route('post.myposts')}}">My Posts</a>
                                 </div>
                             </li>
-                            <li class="nav-item mx-4">
-                                <a class="nav-link under" href="{{ route('request.post.index') }}">Request</a>
+                            <li class="nav-item mx-3">
+                                <a class="nav-link under" href="{{ route('request.post.index') }}">Requests</a>
                             </li>
-                            <li class="nav-item mx-4">
+                            <li class="nav-item mx-3">
                                 <a class="nav-link under" href="{{ route('group.index') }}">Groups</a>
+                            </li>
+                            <li class="nav-item mx-3">
+                                <a class="nav-link under" href="#">Mentors</a>
                             </li>
                         </ul>
 

@@ -2,6 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 
+// for testing mentor search
+use App\Module;
+use App\User;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -61,4 +65,11 @@ Route::get('/mentor-profile', function() {
 
 Route::get('/mentees', function() {
     return view('mentor/mentees');
+});
+
+Route::get('/mentors', function() {
+    $modules = Module::all();
+    $users = User::all();
+    // dd($users->pluck('modules'));
+    return view('student-mentor/index', compact('modules', 'users'));
 });
