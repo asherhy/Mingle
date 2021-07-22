@@ -80,9 +80,31 @@
                             <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ __('You currently have no groups formed from posts. Use the board function to find one!') }} &#128515;
                         </div>
                     @endif
-                    <div class="tab-pane fade" id="mentor" role="tabpanel">
-                        <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ __('Work in Progress') }}</h3>
-                    </div>
+                    @if( $mentorGroups->first() != null )
+                        <div class="tab-pane fade" id="mentor" role="tabpanel">
+                            <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ __('Mentors') }}</h3>
+                            <div class="row col-12 p-3 justify-content-around align-items-center">
+                                @foreach($mentorGroups as $m)
+                                    <div class="card border-sharp shadow-sm col-5 my-3">
+                                        <div class="card-body d-inline-flex">
+                                            <div class="col-auto">
+                                            <img src="/images/avatars/{{ $m->mentor->avatar }}" style="width:60px; height:60px; border-radius:50%">
+                                            </div>
+                                            <div class="col my-auto">
+                                                <h5>{{ $m->mentor->name }}</h5>
+                                                <p class="text-muted mb-0">{{ "@".$m->mentor->telegram }}</p>
+                                                <p class="text-muted mb-0">{{ $m->module->code }}</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    @else
+                        <div class="tab-pane fade" id="mentor" role="tabpanel">
+                        <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ __('You currently have no groups formed with mentors, request some to start!') }} &#128515;
+                        </div>
+                    @endif
                     @if( $moduleGroups->first() != null )
                         @foreach( $moduleGroups as $moduleGroup )
                             <div class="tab-pane fade" id="{{ 'module'.$moduleGroup->id }}" role="tabpanel">

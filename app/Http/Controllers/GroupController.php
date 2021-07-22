@@ -17,6 +17,7 @@ class GroupController extends Controller
     public function __construct()
     {
         $this->middleware(['auth', 'verified']);
+
     }
     /**
      * Display a listing of the resource.
@@ -25,15 +26,17 @@ class GroupController extends Controller
      */
     public function index()
     {
+        $this->authorize('student-priv');
         $user = Auth::user();
         $postGroups = $user->groups->where('group_type', 'post');
         $moduleGroups = $user->groups->where('group_type', 'module group');
+        $mentorGroups = $user->mentorRequests->where('status', 'Accepted');
 
         foreach ($postGroups as $postGroup){
             $post = Post::find($postGroup->respective_id);
             $postGroup->post = $post;
         }
-        return view('group.index', compact('postGroups', 'moduleGroups'));
+        return view('group.index', compact('postGroups', 'moduleGroups', 'mentorGroups'));
     }
 
     /**

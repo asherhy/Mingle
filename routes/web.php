@@ -40,7 +40,7 @@ Route::get('/boards/{post}', 'PostController@show')->name('post.show');
 Route::put('/boards/{post}', 'PostController@update')->name('post.update');
 Route::delete('/boards/{post}', 'PostController@destroy')->name('post.delete');
 
-Route::get('/requests', 'PostRequestController@index')->name('request.post.index');    
+Route::get('/requests/post', 'PostRequestController@index')->name('request.post.index');    
 Route::post('/posts/{post}/request', 'PostRequestController@store')->name('request.post.store');    
 Route::put('/posts/request/{postRequest}', 'PostRequestController@update')->name('request.post.update');    
 
@@ -49,32 +49,18 @@ Route::get('/groups', 'GroupController@index')->name('group.index');
 Route::get('/QuickMatch/module-group', 'ModuleMatchController@create')->name('quickmatch.module.create');    
 Route::post('/QuickMatch/module-group', 'ModuleMatchController@store')->name('quickmatch.module.store');    
 
-Route::get('/mentor/{user}', 'UserController@showMentor')->name('user.mentor.show');
+Route::get('/mentors', 'MentorRequestController@index')->name('mentor.index');
+Route::get('/requests/mentors', 'MentorRequestController@showRequests')->name('request.mentor.index');
+Route::get('/mentees', 'MentorRequestController@showMentees')->name('mentor.show.mentees');
+Route::get('/mentors/mail', 'MentorRequestController@mail')->name('mentor.mail');
+Route::get('/mentors/{user}', 'UserController@showMentor')->name('user.mentor.show');
+Route::post('/mentors/{user}', 'MentorRequestController@store')->name('mentor.request.store');
+Route::put('/mentors/accept/{mentorRequest}', 'MentorRequestController@accept')->name('mentor.request.accept');
+Route::put('/mentors/reject/{mentorRequest}', 'MentorRequestController@reject')->name('mentor.request.reject');
 
-Route::get('/test', function() {
-    return view('mentor/home');
-});
 
-Route::get('/mail', function() {
-    return view('mentor/mail');
-});
 
-Route::get('/mentor-profile', function() {
-    return view('mentor/profile');
-});
 
-Route::get('/mentees', function() {
-    return view('mentor/mentees');
-});
 
-Route::get('/mentors', function() {
-    $modules = Module::all();
-    $users = User::all();
-    // dd($users->pluck('modules'));
-    return view('student-mentor/index', compact('modules', 'users'));
-});
 
-Route::get('/requests/mentor', function() {
-    $modules = Module::all();
-    return view('request/mentor/index', compact('modules'));
-});
+

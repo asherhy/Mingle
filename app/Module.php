@@ -16,4 +16,9 @@ class Module extends Model
         return $this->hasMany(Post::class);
     }
 
+    public function mentorRequests()
+    {
+        return $this->hasMany(MentorRequest::class);
+    }
+
 }

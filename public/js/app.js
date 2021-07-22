@@ -2437,6 +2437,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2509,26 +2525,26 @@ __webpack_require__.r(__webpack_exports__);
     filteredMentors: function filteredMentors() {
       var query = this.search.toUpperCase();
 
-      if (this.module != 'none') {
+      if (this.module != "none") {
         var indexes = this.getMentorIndexes();
 
-        if (this.active == 'all') {
+        if (this.active == "all") {
           return this.mentors.filter(function (mentor, index) {
             return mentor.name.toUpperCase().includes(query) && indexes.indexOf(index) != -1;
           });
         } else {
           return this.mentors.filter(function (mentor, index) {
-            return mentor.status == 'active' && mentor.name.toUpperCase().includes(query) && indexes.indexOf(index) != -1;
+            return mentor.status == "active" && mentor.name.toUpperCase().includes(query) && indexes.indexOf(index) != -1;
           });
         }
       } else {
-        if (this.active == 'all') {
+        if (this.active == "all") {
           return this.mentors.filter(function (mentor) {
             return mentor.name.toUpperCase().includes(query);
           });
         } else {
           return this.mentors.filter(function (mentor) {
-            return mentor.status == 'active' && mentor.name.toUpperCase().includes(query);
+            return mentor.status == "active" && mentor.name.toUpperCase().includes(query);
           });
         }
       }
@@ -2656,16 +2672,139 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      search: '',
+      search: "",
       items: 4,
       currentPage: 1,
-      status: 'all'
+      status: "all"
     };
   },
-  props: ['requests', 'modules', 'mentors'],
+  props: ["requests", "modules", "mentors"],
   methods: {
     checkDate: function checkDate(created, updated) {
       if (created == updated) {
@@ -2677,15 +2816,15 @@ __webpack_require__.r(__webpack_exports__);
     getDate: function getDate(date) {
       var unalteredDate = new Date(date);
       var day = unalteredDate.getDay();
-      day = day.toString().length == 1 ? '0' + day : day;
+      day = day.toString().length == 1 ? "0" + day : day;
       var month = unalteredDate.getMonth();
-      month = month.toString().length == 1 ? '0' + month : month;
+      month = month.toString().length == 1 ? "0" + month : month;
       var year = unalteredDate.getFullYear();
       var hours = unalteredDate.getHours();
-      hours = hours.toString().length == 1 ? '0' + hours : hours;
+      hours = hours.toString().length == 1 ? "0" + hours : hours;
       var minutes = unalteredDate.getMinutes();
-      minutes = minutes.toString().length == 1 ? '0' + minutes : minutes;
-      return hours + ':' + minutes + ' ' + day + '/' + month + '/' + year;
+      minutes = minutes.toString().length == 1 ? "0" + minutes : minutes;
+      return hours + ":" + minutes + " " + day + "/" + month + "/" + year;
     },
     showItem: function showItem(index) {
       if (index < this.currentPage * this.items && index >= this.currentPage * this.items - this.items) {
@@ -2715,7 +2854,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var query = this.search.toUpperCase();
 
-      if (this.status == 'all') {
+      if (this.status == "all") {
         return this.requests.filter(function (request) {
           return request.title.toUpperCase().includes(query) || _this.getModule(request).code_title.toUpperCase().includes(query);
         });
@@ -3403,6 +3542,85 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3410,7 +3628,7 @@ __webpack_require__.r(__webpack_exports__);
       nullObject: null
     };
   },
-  props: ['requests'],
+  props: ["requests", "csrf"],
   methods: {
     setRequest: function setRequest(request) {
       if (this.currentRequest == request) {
@@ -40561,6 +40779,11 @@ var render = function() {
                           "div",
                           { staticClass: "card border-sharp shadow-sm my-3" },
                           [
+                            _c("a", {
+                              staticClass: "stretched-link clickable-card",
+                              attrs: { href: mentor.route }
+                            }),
+                            _vm._v(" "),
                             _c(
                               "div",
                               {
@@ -40629,30 +40852,27 @@ var render = function() {
                                   _vm._v("Modules Taught:")
                                 ]),
                                 _vm._v(" "),
-                                _vm._l(
-                                  _vm.mentormodules[mentor.id - 1],
-                                  function(module) {
-                                    return _c(
-                                      "p",
-                                      {
-                                        key: module.id,
-                                        staticClass:
-                                          "badge text-white text-left mb-2 mx-2",
-                                        staticStyle: {
-                                          background: "#00b3b3",
-                                          "font-size": "12px"
-                                        }
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                    " +
-                                            _vm._s(module.code) +
-                                            "\n                                "
-                                        )
-                                      ]
-                                    )
-                                  }
-                                )
+                                _vm._l(mentor.modules, function(module) {
+                                  return _c(
+                                    "p",
+                                    {
+                                      key: module.id,
+                                      staticClass:
+                                        "badge text-white text-left mb-2 mx-2",
+                                      staticStyle: {
+                                        background: "#00b3b3",
+                                        "font-size": "12px"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                    " +
+                                          _vm._s(module.code) +
+                                          "\n                                "
+                                      )
+                                    ]
+                                  )
+                                })
                               ],
                               2
                             )
@@ -40972,7 +41192,7 @@ var render = function() {
               ? _c("div", [
                   _c("h3", { staticClass: "text-dark text-left d-inline" }, [
                     _vm._v(
-                      "You haven't requested for mentorship yet. Browse the mentors page if you need someone to help you! 😃"
+                      "\n                        You haven't requested for mentorship yet. Browse the\n                        mentors page if you need someone to help you!\n                        😃\n                    "
                     )
                   ])
                 ])
@@ -41017,7 +41237,7 @@ var render = function() {
                                     attrs: {
                                       src:
                                         "../../../images/avatars/" +
-                                        _vm.getMentor(request).avatar
+                                        request.m.avatar
                                     }
                                   })
                                 ]),
@@ -41035,7 +41255,13 @@ var render = function() {
                                         staticClass:
                                           "mb-0 post-title pl-0 text-dark"
                                       },
-                                      [_vm._v(_vm._s(request.title))]
+                                      [
+                                        _vm._v(
+                                          "\n                                        " +
+                                            _vm._s(request.title) +
+                                            "\n                                    "
+                                        )
+                                      ]
                                     ),
                                     _vm._v(" "),
                                     _c(
@@ -41043,8 +41269,9 @@ var render = function() {
                                       { staticClass: "text-muted mb-0" },
                                       [
                                         _vm._v(
-                                          "Mentor: " +
-                                            _vm._s(_vm.getMentor(request).name)
+                                          "\n                                        Mentor:\n                                        " +
+                                            _vm._s(request.m.name) +
+                                            "\n                                    "
                                         )
                                       ]
                                     )
@@ -41063,7 +41290,13 @@ var render = function() {
                                     staticClass:
                                       "badge badge-teal text-white text-left mb-3"
                                   },
-                                  [_vm._v(_vm._s(_vm.getModule(request).code))]
+                                  [
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(request.moduleCode) +
+                                        "\n                                "
+                                    )
+                                  ]
                                 ),
                                 _vm._v(" "),
                                 _c(
@@ -41080,17 +41313,31 @@ var render = function() {
                                         request.status == "Pending"
                                     }
                                   },
-                                  [_vm._v(_vm._s(request.status))]
+                                  [
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(request.status) +
+                                        "\n                                "
+                                    )
+                                  ]
                                 ),
                                 _vm._v(" "),
                                 _c(
                                   "h5",
                                   { staticClass: "card-subtitle mb-2" },
-                                  [_vm._v("Request Details: ")]
+                                  [
+                                    _vm._v(
+                                      "\n                                    Request Details:\n                                "
+                                    )
+                                  ]
                                 ),
                                 _vm._v(" "),
                                 _c("p", { staticClass: "card-text pl-3" }, [
-                                  _vm._v(_vm._s(request.detail))
+                                  _vm._v(
+                                    "\n                                    " +
+                                      _vm._s(request.detail) +
+                                      "\n                                "
+                                  )
                                 ])
                               ]
                             ),
@@ -41104,8 +41351,9 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "Requested on " +
-                                      _vm._s(_vm.getDate(request.created_at))
+                                    "\n                                    Requested on\n                                    " +
+                                      _vm._s(_vm.getDate(request.created_at)) +
+                                      "\n                                "
                                   )
                                 ]
                               )
@@ -41119,18 +41367,27 @@ var render = function() {
                 )
               : _c("div", [
                   _c("h3", { staticClass: "text-dark text-left d-inline" }, [
-                    _vm._v("We've got nothing for ")
+                    _vm._v(
+                      "\n                        We've got nothing for\n                    "
+                    )
                   ]),
                   _vm._v(" "),
                   _c(
                     "h3",
                     { staticClass: "text-dark text-left d-inline font-italic" },
-                    [_vm._v(_vm._s('"' + this.search + '"'))]
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s('"' + this.search + '"') +
+                          "\n                    "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c("h3", { staticClass: "text-dark text-left d-inline" }, [
-                    _vm._v(" ¯\\_(ツ)_/¯")
+                    _vm._v("¯\\_(ツ)_/¯")
                   ]),
+                  _vm._v(" "),
                   _c("hr")
                 ]),
             _vm._v(" "),
@@ -41180,7 +41437,9 @@ var render = function() {
                             {
                               key: index,
                               staticClass: "page-item",
-                              class: { active: _vm.currentPage == index + 1 }
+                              class: {
+                                active: _vm.currentPage == index + 1
+                              }
                             },
                             [
                               _c(
@@ -41193,7 +41452,13 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._v(_vm._s(index + 1))]
+                                [
+                                  _vm._v(
+                                    "\n                                    " +
+                                      _vm._s(index + 1) +
+                                      "\n                                "
+                                  )
+                                ]
                               )
                             ]
                           )
@@ -42259,7 +42524,7 @@ var render = function() {
             [
               _c("div", { staticClass: "card" }, [
                 _c("div", { staticClass: "card-header text-left m-2 p-1" }, [
-                  _c("h5", [_vm._v(_vm._s(request.author))])
+                  _c("h5", [_vm._v(_vm._s(request.author.name))])
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-body p-1 ml-2 mb-2" }, [
@@ -42282,7 +42547,7 @@ var render = function() {
                     },
                     [
                       _vm._v(
-                        "\n                                " +
+                        "\n                            " +
                           _vm._s(request.title) +
                           "\n                        "
                       )
@@ -42317,13 +42582,59 @@ var render = function() {
                 ),
                 _vm._v(" "),
                 _c("h2", { staticClass: "card-title text-dark text-left" }, [
-                  _vm._v(_vm._s(_vm.currentRequest.title))
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.currentRequest.title) +
+                      "\n                    "
+                  )
                 ]),
                 _vm._v(" "),
                 _c(
                   "h4",
                   { staticClass: "card-subtitle text-muted text-left" },
-                  [_vm._v(_vm._s(_vm.currentRequest.author))]
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.currentRequest.author.name) +
+                        "\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "h4",
+                  { staticClass: "card-subtitle text-muted text-left" },
+                  [
+                    _vm._v(
+                      "\n                        Gender : " +
+                        _vm._s(_vm.currentRequest.author.gender) +
+                        "\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "h4",
+                  { staticClass: "card-subtitle text-muted text-left" },
+                  [
+                    _vm._v(
+                      "\n                        Matric Year :\n                        " +
+                        _vm._s(_vm.currentRequest.author.matric_year) +
+                        "\n                    "
+                    )
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "h4",
+                  { staticClass: "card-subtitle text-muted text-left" },
+                  [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.currentRequest.author.major) +
+                        "\n                    "
+                    )
+                  ]
                 )
               ]),
               _vm._v(" "),
@@ -42332,52 +42643,109 @@ var render = function() {
                   _c(
                     "span",
                     { staticClass: "module-tag text-white px-2 py-1" },
-                    [_vm._v(_vm._s(_vm.currentRequest.module))]
+                    [_vm._v(_vm._s(_vm.currentRequest.modules.code))]
                   )
                 ]),
                 _vm._v(" "),
                 _c("div", { staticClass: "card-text" }, [
-                  _vm._v(_vm._s(_vm.currentRequest.description))
+                  _vm._v(
+                    "\n                        " +
+                      _vm._s(_vm.currentRequest.detail) +
+                      "\n                    "
+                  )
                 ])
               ]),
               _vm._v(" "),
-              _vm._m(0)
+              _c("div", { staticClass: "card-footer" }, [
+                _c("div", [_vm._v(_vm._s(_vm.currentRequest.created_at))]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row p-0" }, [
+                  _vm.currentRequest.status == "Pending"
+                    ? _c("div", { staticClass: "ml-auto mr-4 d-inline-flex" }, [
+                        _c(
+                          "form",
+                          {
+                            attrs: {
+                              method: "POST",
+                              action: _vm.currentRequest.acceptRoute
+                            }
+                          },
+                          [
+                            _c("input", {
+                              attrs: { type: "hidden", name: "_token" },
+                              domProps: { value: _vm.csrf }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              attrs: {
+                                type: "hidden",
+                                name: "_method",
+                                value: "PUT"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-success mr-1",
+                                attrs: { type: "submit" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Accept\n                                "
+                                )
+                              ]
+                            )
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "form",
+                          {
+                            attrs: {
+                              method: "POST",
+                              action: _vm.currentRequest.rejectRoute
+                            }
+                          },
+                          [
+                            _c("input", {
+                              attrs: { type: "hidden", name: "_token" },
+                              domProps: { value: _vm.csrf }
+                            }),
+                            _vm._v(" "),
+                            _c("input", {
+                              attrs: {
+                                type: "hidden",
+                                name: "_method",
+                                value: "PUT"
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "button",
+                              {
+                                staticClass: "btn btn-sm btn-danger mr-1",
+                                attrs: { type: "submit" }
+                              },
+                              [
+                                _vm._v(
+                                  "\n                                    Reject\n                                "
+                                )
+                              ]
+                            )
+                          ]
+                        )
+                      ])
+                    : _vm._e()
+                ])
+              ])
             ])
           ])
         : _vm._e()
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "card-footer" }, [
-      _c("div", { staticClass: "row p-0" }, [
-        _c("div", { staticClass: "ml-auto mr-4" }, [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-sm btn-success mr-1",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("Accept")]
-          ),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-sm btn-danger mr-1",
-              attrs: { type: "submit" }
-            },
-            [_vm._v("Reject")]
-          )
-        ])
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -55642,8 +56010,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Rickie\Laravel\code\Mingle\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Rickie\Laravel\code\Mingle\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/vagrant/code/Mingle/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/Mingle/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

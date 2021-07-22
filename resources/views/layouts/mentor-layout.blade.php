@@ -45,10 +45,10 @@
                     @else
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item mx-4">
-                                <a class="nav-link under" href="#">Mail</a>
+                                <a class="nav-link under" href="{{route('mentor.mail')}}">Mail</a>
                             </li>
                             <li class="nav-item mx-4">
-                                <a class="nav-link under" href="{{ route('group.index') }}">Mentees</a>
+                                <a class="nav-link under" href="{{ route('mentor.show.mentees') }}">Mentees</a>
                             </li>
                         </ul>
 

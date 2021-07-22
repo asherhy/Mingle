@@ -68,6 +68,16 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(PostRequest::class);
     }
 
+    public function mentorRequests()
+    {
+        return $this->hasMany(MentorRequest::class);
+    }
+
+    public function mentorRequestsM()
+    {
+        return $this->hasMany(MentorRequest::class, 'mentor_id');
+    }
+
     public function assignRole($role)
     {
         if(is_string($role)) {

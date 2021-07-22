@@ -36,21 +36,34 @@
                                 </div>
                             </div>
                             <div class="col-8 col-lg-5 my-auto">
-                                <selectmoduleComponent class="my-3" :modules="modules" pholder="Select A Module" @update-module="updateModule($event)">
-
+                                <selectmoduleComponent
+                                    class="my-3"
+                                    :modules="modules"
+                                    pholder="Select A Module"
+                                    @update-module="updateModule($event)"
+                                >
                                 </selectmoduleComponent>
                             </div>
                             <div class="col-4 col-lg-3 col-xl-2 my-auto">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text bg-light" for="status">Status</label>
+                                        <label
+                                            class="input-group-text bg-light"
+                                            for="status"
+                                            >Status</label
+                                        >
                                     </div>
-                                    <select class="custom-select" id="status" v-model="active">
-                                        <option value="all" selected>All</option>
+                                    <select
+                                        class="custom-select"
+                                        id="status"
+                                        v-model="active"
+                                    >
+                                        <option value="all" selected
+                                            >All</option
+                                        >
                                         <option value="active">Active</option>
                                     </select>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -59,7 +72,9 @@
         </div>
         <div class="row p-3">
             <div class="col-12">
-                <div class="card card-body border-sharp shadow-sm sub-card bg-light">
+                <div
+                    class="card card-body border-sharp shadow-sm sub-card bg-light"
+                >
                     <div
                         class="row row-cols-1 row-cols-lg-2 py-2"
                         v-if="filteredMentors.length"
@@ -71,10 +86,10 @@
                             v-show="items == 'all' || showItem(index)"
                         >
                             <div class="card border-sharp shadow-sm my-3">
-                                <!-- <a
+                                <a
                                     class="stretched-link clickable-card"
-                                    :href="post.route"
-                                ></a> -->
+                                    :href="mentor.route"
+                                ></a>
                                 <div
                                     class="card-header d-inline-flex px-0 post-card-header"
                                 >
@@ -103,14 +118,12 @@
                                 <div class="card-body post-card-body pb-1">
                                     <h5 class="card-title">Modules Taught:</h5>
                                     <p
-                                        v-for="module in mentormodules[mentor.id-1]"
+                                        v-for="module in mentor.modules"
                                         v-bind:key="module.id"
                                         class="badge text-white text-left mb-2 mx-2"
                                         style="background:#00b3b3; font-size:12px;"
                                     >
-                                        {{
-                                            module.code
-                                        }}
+                                        {{ module.code }}
                                     </p>
                                 </div>
                             </div>
@@ -122,7 +135,10 @@
                         </h3>
                         <hr />
                     </div>
-                    <div class="card-footer mt-auto" v-if="filteredMentors.length">
+                    <div
+                        class="card-footer mt-auto"
+                        v-if="filteredMentors.length"
+                    >
                         <div class="float-right">
                             <div class="pagination">
                                 <span
@@ -178,7 +194,6 @@
 </template>
 
 <script>
-
 import selectmoduleComponent from "./selectmoduleComponent.vue";
 
 export default {
@@ -235,8 +250,11 @@ export default {
             var mentorIndexes = [];
             var i = 0;
             for (i; i < this.mentormodules.length; i++) {
-                if (this.mentormodules[i].findIndex(mentormodule => 
-                    mentormodule.id == this.module) != -1) {
+                if (
+                    this.mentormodules[i].findIndex(
+                        mentormodule => mentormodule.id == this.module
+                    ) != -1
+                ) {
                     mentorIndexes.push(i);
                     continue;
                 }
@@ -247,9 +265,9 @@ export default {
     computed: {
         filteredMentors() {
             var query = this.search.toUpperCase();
-            if (this.module != 'none') {
+            if (this.module != "none") {
                 var indexes = this.getMentorIndexes();
-                if (this.active == 'all') {
+                if (this.active == "all") {
                     return this.mentors.filter(
                         (mentor, index) =>
                             mentor.name.toUpperCase().includes(query) &&
@@ -257,23 +275,21 @@ export default {
                     );
                 } else {
                     return this.mentors.filter(
-                        (mentor, index) => 
-                            mentor.status == 'active' && (
-                                mentor.name.toUpperCase().includes(query) &&
-                                indexes.indexOf(index) != -1
-                            )
+                        (mentor, index) =>
+                            mentor.status == "active" &&
+                            mentor.name.toUpperCase().includes(query) &&
+                            indexes.indexOf(index) != -1
                     );
                 }
             } else {
-                if (this.active == 'all') {
-                    return this.mentors.filter(
-                        mentor => 
-                            mentor.name.toUpperCase().includes(query)
+                if (this.active == "all") {
+                    return this.mentors.filter(mentor =>
+                        mentor.name.toUpperCase().includes(query)
                     );
                 } else {
                     return this.mentors.filter(
                         mentor =>
-                            mentor.status == 'active' &&
+                            mentor.status == "active" &&
                             mentor.name.toUpperCase().includes(query)
                     );
                 }

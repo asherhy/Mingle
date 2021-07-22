@@ -143,8 +143,12 @@ class UserController extends Controller
      */
     public function showMentor(User $user)
     {
-        $modules = Module::all();
-        if(!isset($modules)) {
+      $this->authorize('student-priv');
+      if (!$user->allRoles()->contains('mentor')){
+        abort(403);
+      }
+      $modules = Module::all()->pluck('code_title');
+      if(!isset($modules)) {
           $modules = [];
         }
         $majors = Major::all();
