@@ -48,14 +48,18 @@
                                 <a class="nav-link under" href="{{ route('quickmatch.module.create') }}">QuickMatch</a>
                             </li>
                             <li class="nav-item dropdown mx-3">
-                                <a class="nav-link under" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Board <i class="fas fa-caret-down pl-1"></i></a>
-                                <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="min-width:200px;">
+                                <a class="nav-link under" href="#" id="boardDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Board <i class="fas fa-caret-down pl-1"></i></a>
+                                <div class="dropdown-menu" aria-labelledby="boardDropdown" style="min-width:200px;">
                                     <a class="dropdown-item" href="{{route('post.index')}}">All Posts</a>
                                     <a class="dropdown-item" href="{{route('post.myposts')}}">My Posts</a>
                                 </div>
                             </li>
-                            <li class="nav-item mx-3">
-                                <a class="nav-link under" href="{{ route('request.post.index') }}">Requests</a>
+                            <li class="nav-item dropdown mx-3">
+                                <a class="nav-link under" href="#" id="requestDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Requests <i class="fas fa-caret-down pl-1"></i></a>
+                                    <div class="dropdown-menu" aria-labelledby="boardDropdown" style="min-width:200px;">
+                                        <a class="dropdown-item" href="{{ route('request.post.index') }}">Post Requests</a>
+                                        <a class="dropdown-item" href="{{ route('request.post.index') }}">Mentor Requests</a>
+                                    </div>
                             </li>
                             <li class="nav-item mx-3">
                                 <a class="nav-link under" href="{{ route('group.index') }}">Groups</a>

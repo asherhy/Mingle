@@ -73,3 +73,8 @@ Route::get('/mentors', function() {
     // dd($users->pluck('modules'));
     return view('student-mentor/index', compact('modules', 'users'));
 });
+
+Route::get('/requests/mentor', function() {
+    $modules = Module::all();
+    return view('request/mentor/index', compact('modules'));
+});

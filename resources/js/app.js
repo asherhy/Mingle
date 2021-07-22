@@ -65,6 +65,11 @@ Vue.component(
 );
 
 Vue.component(
+    "mentorrequest-component",
+    require("./components/mentorrequestComponent.vue").default
+);
+
+Vue.component(
     "findmentor-component",
     require("./components/findmentorComponent.vue").default
 );

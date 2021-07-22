@@ -4,11 +4,11 @@
             <div class="col-12">
                 <div class="card border-sharp shadow-sm">
                     <div class="card-header bg-teal">
-                        <h2 class="mb-0 pl-2 text-white">My Post Requests</h2>
+                        <h2 class="mb-0 pl-2 text-white">My Mentor Requests</h2>
                     </div>
-                    <div class="card-body py-2">
+                    <div class="card-body py-0">
                         <div class="row py-1">
-                            <div class="col-9 col-lg-10">
+                            <div class="col-12 col-md-8 col-lg-9 my-auto">
                                 <div class="p-2 bg-light rounded rounded-pill shadow-sm">
                                     <div class="input-group">
                                         <input type="search" v-model="search" placeholder="Search for a request" name="query" id="query" class="search-bar form-control border-0 bg-light">
@@ -16,6 +16,19 @@
                                             <button id="search-btn" type="submit" class="btn btn-link"><i class="fa fa-search text-teal"></i></button>
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+                            <div class="col-auto py-3 ml-auto my-auto">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text bg-light" for="status">Status</label>
+                                    </div>
+                                    <select class="custom-select" id="status" v-model="status">
+                                        <option value="all" selected>All</option>
+                                        <option value="accepted">Accepted</option>
+                                        <option value="pending">Pending</option>
+                                        <option value="rejected">Rejected</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -27,22 +40,22 @@
             <div class="col-12">
                 <div class="card card-body border-sharp shadow-sm sub-card bg-light">
                     <div v-if="!requests.length">
-                        <h3 class="text-dark text-left d-inline">You haven't got any requests yet. Browse the board to see if anything piques your interest! &#128515;</h3>
+                        <h3 class="text-dark text-left d-inline">You haven't requested for mentorship yet. Browse the mentors page if you need someone to help you! &#128515;</h3>
                     </div>
                     <div class="row row-cols-1 row-cols-lg-2 py-2" v-else-if="filteredRequests.length">
                         <div class="col" v-for="(request, index) in filteredRequests" :key="request.id" v-show="items == 'all' || showItem(index)">
                             <div class="card border-sharp shadow-sm my-3">
                                 <div class="card-header d-inline-flex px-0 post-card-header">
                                     <div class="col-auto">
-                                        <img :src="'../../../images/avatars/' + getPostOwner(request).avatar" style="width:50px; height:50px; border-radius:50%;">
+                                        <img :src="'../../../images/avatars/' + getMentor(request).avatar" style="width:50px; height:50px; border-radius:50%;">
                                     </div>
                                     <div class="col-auto my-auto post-card-title">
-                                        <h5 class="mb-0 post-title pl-0 text-dark">{{ getRequestPost(request).title }}</h5>
-                                        <p class="text-muted mb-0">Posted by: {{ getPostOwner(request).name }}</p>
+                                        <h5 class="mb-0 post-title pl-0 text-dark">{{ request.title }}</h5>
+                                        <p class="text-muted mb-0">Mentor: {{ getMentor(request).name }}</p>
                                     </div>
                                 </div>
                                 <div class="card-body post-card-body pb-1">
-                                    <p class="badge text-white text-left mb-3" style="background:#3aafa9; font-size:12px;">{{ getModule(request).code }}</p>
+                                    <p class="badge badge-teal text-white text-left mb-3">{{ getModule(request).code }}</p>
                                     <p class="badge text-white text-left mb-3" :class="{ 'badge-danger': request.status == 'Rejected', 'badge-success': request.status == 'Accepted', 'badge-secondary': request.status == 'Pending' }">{{ request.status }}</p>
                                     <h5 class="card-subtitle mb-2">Request Details: </h5>
                                     <p class="card-text pl-3">{{ request.detail }}</p>
@@ -92,13 +105,13 @@
                 search: '',
                 items: 4,
                 currentPage: 1,
+                status: 'all',
             }
         },
         props: [
             'requests',
             'modules',
-            'posts',
-            'postowners'
+            'mentors'
         ],
         methods: {
             checkDate(created, updated) {
@@ -131,23 +144,45 @@
                     return false;
                 }
             },
-            getRequestPost(request) {
-                return this.posts.find((post) => post.id == request.post_id);
-            },
-            getPostOwner(request) {
-                return this.postowners.find((postowner) => postowner.id == this.getRequestPost(request).user_id);
+            getMentor(request) {
+                return this.mentors.find((mentor) => mentor.id == request.mentor_id);
             },
             getModule(request) {
-                return this.modules.find((module) => module.id == this.getRequestPost(request).module_id);
+                return this.modules.find((module) => module.id == request.module_id);
             }
         },
         computed: {
             filteredRequests() {
                 var query = this.search.toUpperCase();
-                return this.requests.filter(request => 
-                    request.detail.toUpperCase().includes(query) || 
-                    this.getRequestPost(request).title.toUpperCase().includes(query) ||
-                    this.getModule(request).code_title.toUpperCase().includes(query));
+                if (this.status == 'all') {
+                    return this.requests.filter(request => 
+                        request.title.toUpperCase().includes(query) ||
+                        this.getModule(request).code_title.toUpperCase().includes(query)
+                    );
+                } else if (this.status == "accepted") {
+                    return this.requests.filter(request => 
+                        request.status == "Accepted" && (
+                            request.title.toUpperCase().includes(query) ||
+                            this.getModule(request).code_title.toUpperCase().includes(query)
+                        )
+                    );
+                } else if (this.status == "pending") {
+                    return this.requests.filter(request => 
+                        request.status == "Pending" && (
+                            request.title.toUpperCase().includes(query) ||
+                            this.getModule(request).code_title.toUpperCase().includes(query)
+                        )
+                    );
+                } else if (this.status == "rejected") {
+                    return this.requests.filter(request => 
+                        request.status == "Rejected" && (
+                            request.title.toUpperCase().includes(query) ||
+                            this.getModule(request).code_title.toUpperCase().includes(query)
+                        )
+                    );
+                } else {
+                    return [];
+                }
             },
             numberPages() {
                 let fposts = this.filteredRequests;
