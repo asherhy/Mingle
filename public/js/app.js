@@ -2466,6 +2466,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2476,7 +2477,7 @@ __webpack_require__.r(__webpack_exports__);
       search: "",
       items: 8,
       currentPage: 1,
-      active: "all",
+      availability: "all",
       module: "none"
     };
   },
@@ -2538,23 +2539,31 @@ __webpack_require__.r(__webpack_exports__);
       var query = this.search.toUpperCase();
 
       if (this.module != "none") {
-        if (this.active == "all") {
+        if (this.availability == "all") {
           return this.mentors.filter(function (mentor) {
             return mentor.name.toUpperCase().includes(query) && _this.hasModule(mentor);
           });
+        } else if (this.availability == 'available') {
+          return this.mentors.filter(function (mentor) {
+            return mentor.status == "Available" && mentor.name.toUpperCase().includes(query) && _this.hasModule(mentor);
+          });
         } else {
           return this.mentors.filter(function (mentor) {
-            return mentor.status == "active" && mentor.name.toUpperCase().includes(query) && _this.hasModule(mentor);
+            return mentor.status == "Unavailable" && mentor.name.toUpperCase().includes(query) && _this.hasModule(mentor);
           });
         }
       } else {
-        if (this.active == "all") {
+        if (this.availability == "all") {
           return this.mentors.filter(function (mentor) {
             return mentor.name.toUpperCase().includes(query);
           });
+        } else if (this.availability == 'available') {
+          return this.mentors.filter(function (mentor) {
+            return mentor.status == "Available" && mentor.name.toUpperCase().includes(query);
+          });
         } else {
           return this.mentors.filter(function (mentor) {
-            return mentor.status == "active" && mentor.name.toUpperCase().includes(query);
+            return mentor.status == "Unavailable" && mentor.name.toUpperCase().includes(query);
           });
         }
       }
@@ -2566,6 +2575,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     search: function search() {
+      this.currentPage = 1;
+    },
+    availability: function availability() {
       this.currentPage = 1;
     }
   }
@@ -40800,7 +40812,7 @@ var render = function() {
           _vm._v(" "),
           _c("div", { staticClass: "card-body py-0" }, [
             _c("div", { staticClass: "row py-0" }, [
-              _c("div", { staticClass: "col-12 col-lg-4 col-xl-5 my-auto" }, [
+              _c("div", { staticClass: "col-12 col-lg-4 my-auto" }, [
                 _c(
                   "div",
                   {
@@ -40863,7 +40875,7 @@ var render = function() {
                 1
               ),
               _vm._v(" "),
-              _c("div", { staticClass: "col-4 col-lg-3 col-xl-2 my-auto" }, [
+              _c("div", { staticClass: "col-4 col-lg-3 my-auto" }, [
                 _c("div", { staticClass: "input-group" }, [
                   _vm._m(2),
                   _vm._v(" "),
@@ -40874,8 +40886,8 @@ var render = function() {
                         {
                           name: "model",
                           rawName: "v-model",
-                          value: _vm.active,
-                          expression: "active"
+                          value: _vm.availability,
+                          expression: "availability"
                         }
                       ],
                       staticClass: "custom-select",
@@ -40890,7 +40902,7 @@ var render = function() {
                               var val = "_value" in o ? o._value : o.value
                               return val
                             })
-                          _vm.active = $event.target.multiple
+                          _vm.availability = $event.target.multiple
                             ? $$selectedVal
                             : $$selectedVal[0]
                         }
@@ -40901,8 +40913,12 @@ var render = function() {
                         _vm._v("All")
                       ]),
                       _vm._v(" "),
-                      _c("option", { attrs: { value: "active" } }, [
-                        _vm._v("Active")
+                      _c("option", { attrs: { value: "available" } }, [
+                        _vm._v("Available")
+                      ]),
+                      _vm._v(" "),
+                      _c("option", { attrs: { value: "unavailable" } }, [
+                        _vm._v("Unavailable")
                       ])
                     ]
                   )

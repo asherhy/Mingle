@@ -8,7 +8,7 @@
                     </div>
                     <div class="card-body py-0">
                         <div class="row py-0">
-                            <div class="col-12 col-lg-4 col-xl-5 my-auto">
+                            <div class="col-12 col-lg-4 my-auto">
                                 <div
                                     class="p-2 bg-light rounded rounded-pill shadow-sm my-1"
                                 >
@@ -44,7 +44,7 @@
                                 >
                                 </selectmoduleComponent>
                             </div>
-                            <div class="col-4 col-lg-3 col-xl-2 my-auto">
+                            <div class="col-4 col-lg-3 my-auto">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <label
@@ -56,12 +56,13 @@
                                     <select
                                         class="custom-select"
                                         id="status"
-                                        v-model="active"
+                                        v-model="availability"
                                     >
                                         <option value="all" selected
                                             >All</option
                                         >
-                                        <option value="active">Active</option>
+                                        <option value="available">Available</option>
+                                        <option value="unavailable">Unavailable</option>
                                     </select>
                                 </div>
                             </div>
@@ -217,7 +218,7 @@ export default {
             search: "",
             items: 8,
             currentPage: 1,
-            active: "all",
+            availability: "all",
             module: "none"
         };
     },
@@ -278,29 +279,42 @@ export default {
         filteredMentors() {
             var query = this.search.toUpperCase();
             if (this.module != "none") {
-                if (this.active == "all") {
+                if (this.availability == "all") {
                     return this.mentors.filter(
                         mentor =>
+                            mentor.name.toUpperCase().includes(query) &&
+                            this.hasModule(mentor)
+                    );
+                } else if (this.availability == 'available') {
+                    return this.mentors.filter(
+                        mentor =>
+                            mentor.status == "Available" &&
                             mentor.name.toUpperCase().includes(query) &&
                             this.hasModule(mentor)
                     );
                 } else {
                     return this.mentors.filter(
                         mentor =>
-                            mentor.status == "active" &&
+                            mentor.status == "Unavailable" &&
                             mentor.name.toUpperCase().includes(query) &&
                             this.hasModule(mentor)
                     );
                 }
             } else {
-                if (this.active == "all") {
+                if (this.availability == "all") {
                     return this.mentors.filter(mentor =>
                         mentor.name.toUpperCase().includes(query)
+                    );
+                } else if (this.availability == 'available') {
+                    return this.mentors.filter(
+                        mentor =>
+                            mentor.status == "Available" &&
+                            mentor.name.toUpperCase().includes(query)
                     );
                 } else {
                     return this.mentors.filter(
                         mentor =>
-                            mentor.status == "active" &&
+                            mentor.status == "Unavailable" &&
                             mentor.name.toUpperCase().includes(query)
                     );
                 }
@@ -313,6 +327,9 @@ export default {
     },
     watch: {
         search: function() {
+            this.currentPage = 1;
+        },
+        availability: function() {
             this.currentPage = 1;
         }
     }
