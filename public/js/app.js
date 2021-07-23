@@ -2453,6 +2453,19 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -2467,7 +2480,7 @@ __webpack_require__.r(__webpack_exports__);
       module: "none"
     };
   },
-  props: ["mentors", "mentormodules", "modules"],
+  props: ["mentors", "modules"],
   methods: {
     checkDate: function checkDate(created, updated) {
       if (created == updated) {
@@ -2503,38 +2516,35 @@ __webpack_require__.r(__webpack_exports__);
     updateModule: function updateModule(module) {
       this.module = module;
     },
-    getMentorIndexes: function getMentorIndexes() {
-      var _this = this;
-
-      var mentorIndexes = [];
+    clearModule: function clearModule() {
+      this.module = 'none';
+    },
+    hasModule: function hasModule(mentor) {
       var i = 0;
 
-      for (i; i < this.mentormodules.length; i++) {
-        if (this.mentormodules[i].findIndex(function (mentormodule) {
-          return mentormodule.id == _this.module;
-        }) != -1) {
-          mentorIndexes.push(i);
-          continue;
+      for (i; i < mentor.modules.length; i++) {
+        if (mentor.modules[i].id == this.module) {
+          return true;
         }
       }
 
-      return mentorIndexes;
+      return false;
     }
   },
   computed: {
     filteredMentors: function filteredMentors() {
+      var _this = this;
+
       var query = this.search.toUpperCase();
 
       if (this.module != "none") {
-        var indexes = this.getMentorIndexes();
-
         if (this.active == "all") {
-          return this.mentors.filter(function (mentor, index) {
-            return mentor.name.toUpperCase().includes(query) && indexes.indexOf(index) != -1;
+          return this.mentors.filter(function (mentor) {
+            return mentor.name.toUpperCase().includes(query) && _this.hasModule(mentor);
           });
         } else {
-          return this.mentors.filter(function (mentor, index) {
-            return mentor.status == "active" && mentor.name.toUpperCase().includes(query) && indexes.indexOf(index) != -1;
+          return this.mentors.filter(function (mentor) {
+            return mentor.status == "active" && mentor.name.toUpperCase().includes(query) && _this.hasModule(mentor);
           });
         }
       } else {
@@ -2836,39 +2846,27 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         return false;
       }
-    },
-    getMentor: function getMentor(request) {
-      return this.mentors.find(function (mentor) {
-        return mentor.id == request.mentor_id;
-      });
-    },
-    getModule: function getModule(request) {
-      return this.modules.find(function (module) {
-        return module.id == request.module_id;
-      });
     }
   },
   computed: {
     filteredRequests: function filteredRequests() {
-      var _this = this;
-
       var query = this.search.toUpperCase();
 
       if (this.status == "all") {
         return this.requests.filter(function (request) {
-          return request.title.toUpperCase().includes(query) || _this.getModule(request).code_title.toUpperCase().includes(query);
+          return request.title.toUpperCase().includes(query) || request.module.code_title.toUpperCase().includes(query);
         });
       } else if (this.status == "accepted") {
         return this.requests.filter(function (request) {
-          return request.status == "Accepted" && (request.title.toUpperCase().includes(query) || _this.getModule(request).code_title.toUpperCase().includes(query));
+          return request.status == "Accepted" && (request.title.toUpperCase().includes(query) || request.module.code_title.toUpperCase().includes(query));
         });
       } else if (this.status == "pending") {
         return this.requests.filter(function (request) {
-          return request.status == "Pending" && (request.title.toUpperCase().includes(query) || _this.getModule(request).code_title.toUpperCase().includes(query));
+          return request.status == "Pending" && (request.title.toUpperCase().includes(query) || request.module.code_title.toUpperCase().includes(query));
         });
       } else if (this.status == "rejected") {
         return this.requests.filter(function (request) {
-          return request.status == "Rejected" && (request.title.toUpperCase().includes(query) || _this.getModule(request).code_title.toUpperCase().includes(query));
+          return request.status == "Rejected" && (request.title.toUpperCase().includes(query) || request.module.code_title.toUpperCase().includes(query));
         });
       } else {
         return [];
@@ -2881,6 +2879,9 @@ __webpack_require__.r(__webpack_exports__);
   },
   watch: {
     search: function search() {
+      this.currentPage = 1;
+    },
+    status: function status() {
       this.currentPage = 1;
     }
   }
@@ -3621,6 +3622,130 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -3636,10 +3761,46 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.currentRequest = request;
       }
+    },
+    getDate: function getDate(date) {
+      var unalteredDate = new Date(date);
+      var day = unalteredDate.getDay();
+      day = day.toString().length == 1 ? "0" + day : day;
+      var month = unalteredDate.getMonth();
+      month = month.toString().length == 1 ? "0" + month : month;
+      var year = unalteredDate.getFullYear();
+      var hours = unalteredDate.getHours();
+      hours = hours.toString().length == 1 ? "0" + hours : hours;
+      var minutes = unalteredDate.getMinutes();
+      minutes = minutes.toString().length == 1 ? "0" + minutes : minutes;
+      return day + "/" + month + "/" + year + " " + hours + ":" + minutes;
+    },
+    getDateWithoutTime: function getDateWithoutTime(date) {
+      var unalteredDate = new Date(date);
+      var day = unalteredDate.getDay();
+      day = day.toString().length == 1 ? "0" + day : day;
+      var month = unalteredDate.getMonth();
+      month = month.toString().length == 1 ? "0" + month : month;
+      var year = unalteredDate.getFullYear();
+      return day + "/" + month + "/" + year;
     }
   },
   mounted: function mounted() {
     console.log("Component mounted.");
+  },
+  computed: {
+    pendingRequests: function pendingRequests() {
+      var pReqs = [];
+      var i;
+
+      for (i = 0; i < this.requests.length; i++) {
+        if (this.requests[i].status == 'Pending') {
+          pReqs.push(this.requests[i]);
+        }
+      }
+
+      return pReqs;
+    }
   }
 });
 
@@ -3678,12 +3839,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
     Multiselect: vue_multiselect__WEBPACK_IMPORTED_MODULE_0___default.a
   },
-  props: ['modules', 'pholder'],
+  props: ['modules'],
   data: function data() {
     return {
       value: ''
@@ -3692,6 +3854,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     updateModule: function updateModule() {
       this.$emit('update-module', this.value.id);
+    },
+    clearModule: function clearModule() {
+      this.$emit('clear-module');
     }
   }
 });
@@ -8219,7 +8384,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ndiv.row {\n    padding-top: 150px;\n}\ndiv.card {\n    border-radius: 10px;\n}\ndiv.card-header {\n    border-bottom-color: #f3f2f1;\n    border-top-right-radius: 10px;\n    border-top-left-radius: 10px;\n}\ndiv.card-body {\n    font-size: 15px;\n}\ndiv.card-footer {\n    background: none;\n    border-top: none;\n}\nspan.module-tag {\n    background: #00b3b3;\n    border-radius: 10px;\n}\n", ""]);
+exports.push([module.i, "\ndiv.row {\r\n    padding-top: 150px;\n}\ndiv.card {\r\n    border-radius: 10px;\n}\ndiv.card-header {\r\n    border-bottom-color: #f3f2f1;\r\n    border-top-right-radius: 10px;\r\n    border-top-left-radius: 10px;\n}\ndiv.card-body {\r\n    font-size: 15px;\n}\ndiv.card-footer {\r\n    background: none;\r\n    border-top: none;\n}\nspan.module-tag {\r\n    background: #00b3b3;\r\n    border-radius: 10px;\n}\r\n", ""]);
 
 // exports
 
@@ -40684,10 +40849,13 @@ var render = function() {
                 [
                   _c("selectmoduleComponent", {
                     staticClass: "my-3",
-                    attrs: { modules: _vm.modules, pholder: "Select A Module" },
+                    attrs: { modules: _vm.modules },
                     on: {
                       "update-module": function($event) {
                         return _vm.updateModule($event)
+                      },
+                      "clear-module": function($event) {
+                        return _vm.clearModule()
                       }
                     }
                   })
@@ -40813,20 +40981,49 @@ var render = function() {
                                       "col-auto my-auto post-card-title"
                                   },
                                   [
-                                    _c(
-                                      "h5",
-                                      {
-                                        staticClass:
-                                          "mb-0 post-title pl-0 text-dark"
-                                      },
-                                      [
-                                        _vm._v(
-                                          "\n                                        " +
-                                            _vm._s(mentor.name) +
-                                            "\n                                    "
-                                        )
-                                      ]
-                                    ),
+                                    _c("div", { staticClass: "row py-0" }, [
+                                      _c(
+                                        "h5",
+                                        {
+                                          staticClass:
+                                            "mb-0 post-title pl-0 text-dark"
+                                        },
+                                        [
+                                          _vm._v(
+                                            "\n                                            " +
+                                              _vm._s(mentor.name) +
+                                              "\n                                        "
+                                          )
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "p",
+                                        { staticClass: "ml-auto mb-auto mr-2" },
+                                        [
+                                          _c(
+                                            "span",
+                                            {
+                                              staticClass:
+                                                "badge text-white text-right",
+                                              class: {
+                                                "badge-success":
+                                                  mentor.status == "Available",
+                                                "badge-danger":
+                                                  mentor.status == "Unavailable"
+                                              }
+                                            },
+                                            [
+                                              _vm._v(
+                                                "\n                                                " +
+                                                  _vm._s(mentor.status) +
+                                                  "\n                                            "
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ]),
                                     _vm._v(" "),
                                     _c(
                                       "p",
@@ -42513,239 +42710,559 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-12 col-md-6 col-lg-5" }, [
-      _c(
-        "ul",
-        { staticClass: "list-group" },
-        _vm._l(_vm.requests, function(request) {
-          return _c(
-            "li",
-            { key: request.id, staticClass: "list-group-item border-0 pt-0" },
-            [
-              _c("div", { staticClass: "card" }, [
-                _c("div", { staticClass: "card-header text-left m-2 p-1" }, [
-                  _c("h5", [_vm._v(_vm._s(request.author.name))])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-body p-1 ml-2 mb-2" }, [
-                  _c(
-                    "a",
-                    {
-                      staticClass:
-                        "card-text text-decoration-none text-dark stretched-link",
-                      attrs: {
-                        "data-toggle": "collapse",
-                        href: "#" + request.id,
-                        role: "button",
-                        "aria-expanded": "false"
+    _c("div", { staticClass: "col-12 col-md-6 col-lg-4" }, [
+      _c("div", { staticClass: "card border-sharp mail-card" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "tab-content mail-card-body",
+            attrs: { id: "tabcontent" }
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass: "tab-pane fade show active",
+                attrs: { id: "all", role: "tabpanel" }
+              },
+              [
+                _c(
+                  "ul",
+                  { staticClass: "list-group" },
+                  _vm._l(_vm.requests, function(request) {
+                    return _c(
+                      "li",
+                      {
+                        key: request.id,
+                        staticClass:
+                          "list-group-item border-sharp mail-item pr-0",
+                        class: { "bg-light": request == _vm.currentRequest }
                       },
-                      on: {
-                        click: function($event) {
-                          return _vm.setRequest(request)
-                        }
-                      }
-                    },
-                    [
-                      _vm._v(
-                        "\n                            " +
-                          _vm._s(request.title) +
-                          "\n                        "
-                      )
-                    ]
-                  )
-                ])
-              ])
-            ]
-          )
-        }),
-        0
-      )
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "col-12 col-md-6 col-lg-7" }, [
-      _vm.currentRequest
-        ? _c("div", [
-            _c("div", { staticClass: "card mail-card" }, [
-              _c("div", { staticClass: "card-header m-2 pt-2 p-2" }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "close",
-                    attrs: { type: "button" },
-                    on: {
-                      click: function($event) {
-                        return _vm.setRequest(_vm.nullObject)
-                      }
-                    }
-                  },
-                  [_vm._v("\n                        ×\n                    ")]
-                ),
-                _vm._v(" "),
-                _c("h2", { staticClass: "card-title text-dark text-left" }, [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.currentRequest.title) +
-                      "\n                    "
-                  )
-                ]),
-                _vm._v(" "),
-                _c(
-                  "h4",
-                  { staticClass: "card-subtitle text-muted text-left" },
-                  [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm.currentRequest.author.name) +
-                        "\n                    "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "h4",
-                  { staticClass: "card-subtitle text-muted text-left" },
-                  [
-                    _vm._v(
-                      "\n                        Gender : " +
-                        _vm._s(_vm.currentRequest.author.gender) +
-                        "\n                    "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "h4",
-                  { staticClass: "card-subtitle text-muted text-left" },
-                  [
-                    _vm._v(
-                      "\n                        Matric Year :\n                        " +
-                        _vm._s(_vm.currentRequest.author.matric_year) +
-                        "\n                    "
-                    )
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "h4",
-                  { staticClass: "card-subtitle text-muted text-left" },
-                  [
-                    _vm._v(
-                      "\n                        " +
-                        _vm._s(_vm.currentRequest.author.major) +
-                        "\n                    "
-                    )
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-body pt-2" }, [
-                _c("div", { staticClass: "mb-2" }, [
-                  _c(
-                    "span",
-                    { staticClass: "module-tag text-white px-2 py-1" },
-                    [_vm._v(_vm._s(_vm.currentRequest.modules.code))]
-                  )
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "card-text" }, [
-                  _vm._v(
-                    "\n                        " +
-                      _vm._s(_vm.currentRequest.detail) +
-                      "\n                    "
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "card-footer" }, [
-                _c("div", [_vm._v(_vm._s(_vm.currentRequest.created_at))]),
-                _vm._v(" "),
-                _c("div", { staticClass: "row p-0" }, [
-                  _vm.currentRequest.status == "Pending"
-                    ? _c("div", { staticClass: "ml-auto mr-4 d-inline-flex" }, [
+                      [
                         _c(
-                          "form",
+                          "a",
                           {
+                            staticClass:
+                              "card-text text-decoration-none text-dark stretched-link showRequest",
                             attrs: {
-                              method: "POST",
-                              action: _vm.currentRequest.acceptRoute
+                              "data-toggle": "collapse",
+                              href: "#" + request.id,
+                              role: "button",
+                              "aria-expanded": "false"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.setRequest(request)
+                              }
                             }
                           },
                           [
-                            _c("input", {
-                              attrs: { type: "hidden", name: "_token" },
-                              domProps: { value: _vm.csrf }
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              attrs: {
-                                type: "hidden",
-                                name: "_method",
-                                value: "PUT"
+                            _c("div", { staticClass: "row py-1 ml-1" }, [
+                              _c("div", { staticClass: "col col-auto pl-0" }, [
+                                _c("img", {
+                                  staticStyle: {
+                                    width: "50px",
+                                    height: "50px",
+                                    "border-radius": "50%"
+                                  },
+                                  attrs: {
+                                    src:
+                                      "../../../images/avatars/" +
+                                      request.author.avatar
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "col col-6 col-md-5 col-lg-4 col-xl-5 my-auto pr-0 pl-0"
+                                },
+                                [
+                                  _c(
+                                    "h5",
+                                    {
+                                      staticClass:
+                                        "card-subtitle text-dark text-left pt-2 mb-1 overflow"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                            " +
+                                          _vm._s(request.author.name) +
+                                          "\n                                        "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    { staticClass: "text-dark mb-0 overflow" },
+                                    [_vm._v(_vm._s(request.title))]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "badge",
+                                      class: {
+                                        "badge-secondary":
+                                          request.status == "Pending",
+                                        "badge-success":
+                                          request.status == "Accepted",
+                                        "badge-danger":
+                                          request.status == "Rejected"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                            " +
+                                          _vm._s(request.status) +
+                                          "\n                                        "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col col-auto pr-0" }, [
+                                _c("p", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.getDateWithoutTime(request.created_at)
+                                    )
+                                  )
+                                ])
+                              ])
+                            ])
+                          ]
+                        )
+                      ]
+                    )
+                  }),
+                  0
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "tab-pane fade",
+                attrs: { id: "pending", role: "tabpanel" }
+              },
+              [
+                _c(
+                  "ul",
+                  { staticClass: "list-group" },
+                  _vm._l(_vm.pendingRequests, function(request) {
+                    return _c(
+                      "li",
+                      {
+                        key: request.id,
+                        staticClass:
+                          "list-group-item border-sharp mail-item pr-0",
+                        class: { "bg-light": request == _vm.currentRequest }
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticClass:
+                              "card-text text-decoration-none text-dark stretched-link showRequest",
+                            attrs: {
+                              "data-toggle": "collapse",
+                              href: "#" + request.id,
+                              role: "button",
+                              "aria-expanded": "false"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.setRequest(request)
                               }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "button",
-                              {
-                                staticClass: "btn btn-sm btn-success mr-1",
-                                attrs: { type: "submit" }
-                              },
-                              [
-                                _vm._v(
-                                  "\n                                    Accept\n                                "
-                                )
-                              ]
+                            }
+                          },
+                          [
+                            _c("div", { staticClass: "row py-1 ml-1" }, [
+                              _c("div", { staticClass: "col col-auto pl-0" }, [
+                                _c("img", {
+                                  staticStyle: {
+                                    width: "50px",
+                                    height: "50px",
+                                    "border-radius": "50%"
+                                  },
+                                  attrs: {
+                                    src:
+                                      "../../../images/avatars/" +
+                                      request.author.avatar
+                                  }
+                                })
+                              ]),
+                              _vm._v(" "),
+                              _c(
+                                "div",
+                                {
+                                  staticClass:
+                                    "col col-6 col-md-5 col-lg-4 col-xl-5 my-auto pr-0 pl-0"
+                                },
+                                [
+                                  _c(
+                                    "h5",
+                                    {
+                                      staticClass:
+                                        "card-subtitle text-dark text-left pt-2 mb-1 overflow"
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                            " +
+                                          _vm._s(request.author.name) +
+                                          "\n                                        "
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "p",
+                                    { staticClass: "text-dark mb-0 overflow" },
+                                    [_vm._v(_vm._s(request.title))]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "span",
+                                    {
+                                      staticClass: "badge",
+                                      class: {
+                                        "badge-secondary":
+                                          request.status == "Pending",
+                                        "badge-success":
+                                          request.status == "Accepted",
+                                        "badge-danger":
+                                          request.status == "Rejected"
+                                      }
+                                    },
+                                    [
+                                      _vm._v(
+                                        "\n                                            " +
+                                          _vm._s(request.status) +
+                                          "\n                                        "
+                                      )
+                                    ]
+                                  )
+                                ]
+                              ),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "col col-auto pr-0" }, [
+                                _c("p", [
+                                  _vm._v(
+                                    _vm._s(
+                                      _vm.getDateWithoutTime(request.created_at)
+                                    )
+                                  )
+                                ])
+                              ])
+                            ])
+                          ]
+                        )
+                      ]
+                    )
+                  }),
+                  0
+                )
+              ]
+            )
+          ]
+        )
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "col-12 col-md-6 col-lg" }, [
+      _vm.currentRequest
+        ? _c("div", [
+            _c(
+              "div",
+              { staticClass: "card mail-card border-sharp p-2 bg-lighter" },
+              [
+                _c(
+                  "div",
+                  { staticClass: "card-header m-2 pt-2 p-2 border-0" },
+                  [
+                    _c(
+                      "button",
+                      {
+                        staticClass: "close",
+                        attrs: { type: "button" },
+                        on: {
+                          click: function($event) {
+                            return _vm.setRequest(_vm.nullObject)
+                          }
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        ×\n                    "
+                        )
+                      ]
+                    ),
+                    _vm._v(" "),
+                    _c(
+                      "h2",
+                      { staticClass: "card-title text-dark text-left" },
+                      [
+                        _vm._v(
+                          "\n                        " +
+                            _vm._s(_vm.currentRequest.title) +
+                            "\n                    "
+                        )
+                      ]
+                    ),
+                    _c("hr"),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "row py-1" }, [
+                      _c("div", { staticClass: "col-auto my-auto" }, [
+                        _c("img", {
+                          staticStyle: {
+                            width: "60px",
+                            height: "60px",
+                            "border-radius": "50%"
+                          },
+                          attrs: {
+                            src:
+                              "../../../images/avatars/" +
+                              _vm.currentRequest.author.avatar
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col my-auto" }, [
+                        _c(
+                          "h4",
+                          { staticClass: "text-dark text-left pt-2 mb-1" },
+                          [
+                            _vm._v(
+                              "\n                                Student: " +
+                                _vm._s(_vm.currentRequest.author.name) +
+                                "\n                            "
                             )
                           ]
                         ),
                         _vm._v(" "),
-                        _c(
-                          "form",
-                          {
-                            attrs: {
-                              method: "POST",
-                              action: _vm.currentRequest.rejectRoute
-                            }
-                          },
+                        _c("p", { staticClass: "text-muted mb-0" }, [
+                          _vm._v(
+                            _vm._s(_vm.getDate(_vm.currentRequest.created_at))
+                          )
+                        ])
+                      ])
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-body pt-2 mail-card-body" }, [
+                  _c("div", { staticClass: "mb-3" }, [
+                    _c("h5", { staticClass: "d-inline" }, [
+                      _vm._v("Module Code: ")
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "span",
+                      { staticClass: "module-tag text-white px-2 py-1" },
+                      [_vm._v(_vm._s(_vm.currentRequest.modules.code))]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "card-text" }, [
+                    _vm._v(
+                      "\n                        " +
+                        _vm._s(_vm.currentRequest.detail) +
+                        "\n                    "
+                    )
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "card-footer" }, [
+                  _c("div", { staticClass: "row p-0" }, [
+                    _vm.currentRequest.status == "Pending"
+                      ? _c(
+                          "div",
+                          { staticClass: "ml-auto mr-4 d-inline-flex" },
                           [
-                            _c("input", {
-                              attrs: { type: "hidden", name: "_token" },
-                              domProps: { value: _vm.csrf }
-                            }),
-                            _vm._v(" "),
-                            _c("input", {
-                              attrs: {
-                                type: "hidden",
-                                name: "_method",
-                                value: "PUT"
-                              }
-                            }),
-                            _vm._v(" "),
                             _c(
-                              "button",
+                              "form",
                               {
-                                staticClass: "btn btn-sm btn-danger mr-1",
-                                attrs: { type: "submit" }
+                                attrs: {
+                                  method: "POST",
+                                  action: _vm.currentRequest.acceptRoute
+                                }
                               },
                               [
-                                _vm._v(
-                                  "\n                                    Reject\n                                "
+                                _c("input", {
+                                  attrs: { type: "hidden", name: "_token" },
+                                  domProps: { value: _vm.csrf }
+                                }),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: {
+                                    type: "hidden",
+                                    name: "_method",
+                                    value: "PUT"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-sm btn-success mr-1",
+                                    attrs: { type: "submit" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                    Accept\n                                "
+                                    )
+                                  ]
+                                )
+                              ]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "form",
+                              {
+                                attrs: {
+                                  method: "POST",
+                                  action: _vm.currentRequest.rejectRoute
+                                }
+                              },
+                              [
+                                _c("input", {
+                                  attrs: { type: "hidden", name: "_token" },
+                                  domProps: { value: _vm.csrf }
+                                }),
+                                _vm._v(" "),
+                                _c("input", {
+                                  attrs: {
+                                    type: "hidden",
+                                    name: "_method",
+                                    value: "PUT"
+                                  }
+                                }),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "btn btn-sm btn-danger mr-1",
+                                    attrs: { type: "submit" }
+                                  },
+                                  [
+                                    _vm._v(
+                                      "\n                                    Reject\n                                "
+                                    )
+                                  ]
                                 )
                               ]
                             )
                           ]
                         )
-                      ])
-                    : _vm._e()
+                      : _vm._e()
+                  ])
                 ])
-              ])
-            ])
+              ]
+            )
           ])
-        : _vm._e()
+        : _c("div", [
+            _vm.requests.length
+              ? _c("div", [_vm._m(1)])
+              : _c("div", [
+                  _c("div", {
+                    staticClass: "card bg-lighter border-sharp mail-card"
+                  })
+                ])
+          ])
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "card border-sharp mb-0 px-0" }, [
+      _c("div", { staticClass: "card-header  bg-teal p-2 pl-3" }, [
+        _c("h3", { staticClass: "text-white text-left font-weight-bold" }, [
+          _vm._v("Inbox")
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "card-body py-2" }, [
+        _c(
+          "ul",
+          {
+            staticClass: "nav tabs",
+            attrs: { id: "groupsTab", role: "tablist" }
+          },
+          [
+            _c(
+              "li",
+              { staticClass: "nav-item", attrs: { role: "presentation" } },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link under px-0 mx-4 active",
+                    attrs: {
+                      id: "all-tab",
+                      "data-toggle": "tab",
+                      href: "#all",
+                      role: "tab",
+                      "aria-controls": "all",
+                      "aria-selected": "true"
+                    }
+                  },
+                  [_vm._v("All")]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "li",
+              { staticClass: "nav-item", attrs: { role: "presentation" } },
+              [
+                _c(
+                  "a",
+                  {
+                    staticClass: "nav-link under px-0 mx-4",
+                    attrs: {
+                      id: "pending-tab",
+                      "data-toggle": "tab",
+                      href: "#pending",
+                      role: "tab",
+                      "aria-controls": "pending",
+                      "aria-selected": "true"
+                    }
+                  },
+                  [_vm._v("Pending")]
+                )
+              ]
+            )
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "card bg-lighter border-sharp mail-card" },
+      [
+        _c("div", { staticClass: "card-body pt-5" }, [
+          _c("h3", [_vm._v("Select a request from the left to begin")])
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -42775,13 +43292,16 @@ var render = function() {
           options: _vm.modules,
           searchable: true,
           "close-on-select": true,
-          placeholder: _vm.pholder,
+          placeholder: "Select a module to search",
           label: "code_title",
           "track-by": "code_title"
         },
         on: {
           input: function($event) {
             return _vm.updateModule()
+          },
+          remove: function($event) {
+            return _vm.clearModule()
           }
         },
         model: {
@@ -56010,8 +56530,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/Mingle/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/Mingle/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Rickie\Laravel\code\Mingle\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Rickie\Laravel\code\Mingle\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

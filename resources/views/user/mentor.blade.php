@@ -63,8 +63,8 @@
 
 <div class="container min-vh-100">
     <div class="row row-top align-items-center">
-        <div class="profile-header border-sharp card col-12 shadow-sm">
-            <div class="card-body col-12 d-inline-flex">
+        <div class="profile-header border-sharp card col-12 shadow-sm px-0">
+            <div class="card-body col-12 d-inline-flex px-5 bg-light">
                 <div class="col-auto pr-4">
                     <img class="profile-page-img" src="{{ asset('storage/avatars/'.$user->avatar)}}">
                 </div>
@@ -76,7 +76,13 @@
                         Request
                     </button>
                     <!-- Major -->
-                    <p class="text-muted d-block mb-0">{{ __('Computer Science Undergraduate') }}</p>
+                    @if( $user->majors->first() != null )
+                        @foreach($user->majors as $m)
+                            <p class="text-muted d-block mb-0">{{ $m->name }}</p>
+                        @endforeach
+                    @else
+                        <p class="text-muted d-block mb-0">-</p>
+                    @endif
                 </div>
             </div>
         </div>
@@ -86,27 +92,22 @@
             <div class="card border-sharp mr-3 p-0 shadow-sm">
                 <h5 class="card-header profile-card-header text-left">Personal Information</h5>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
+                    <li class="list-group-item bg-light">
                         <i class="fas fa-envelope fa-lg text-muted d-inline"></i>
                         <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Email') }}</p>
                         <p class="text-dark mb-0 pb-0 pl-4">{{ $user->email }}</p>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item bg-light">
                         <i class="fab fa-telegram-plane fa-lg text-muted d-inline"></i>
                         <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Telegram Handle') }}</p>
-                        <p class="text-dark mb-0 pb-0 pl-4">{{ "@".$user->telegram }}</p>
+                        <p class="text-dark mb-0 pb-0 pl-4">&#64;{{ $user->telegram }}</p>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item bg-light">
                         <i class="fas fa-venus-mars fa-lg text-muted d-inline"></i>
                         <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Gender') }}</p>
-                        <p class="text-dark mb-0 pb-0 pl-4">{{ $user->gender == 'Female' ? "Female" : ($user->gender == 'Male' ? "Male" : "Others") }}</p>
+                        <p class="text-dark mb-0 pb-0 pl-4">{{ $user->gender }}</p>
                     </li>
-                    <li class="list-group-item">
-                        <i class="fas fa-university fa-lg text-muted d-inline"></i>
-                        <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Matriculation Year') }}</p>
-                        <p class="text-dark mb-0 pb-0 pl-4">{{ $user->matric_year ?? "-" }}</p>
-                    </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item bg-light">
                         <i class="fas fa-graduation-cap fa-lg text-muted d-inline"></i>
                         <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Major') }}</p>
                         @if( $user->majors->first() != null )
@@ -123,14 +124,18 @@
         <div class="col">
             <div class="card border-sharp p-0 mb-4 shadow-sm">
                 <h5 class="card-header profile-card-header text-left">About</h5>
-                <div class="card-body">
+                <div class="card-body bg-light">
                     <!-- Mentor Self-Introduction -->
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus mauris risus, faucibus sed porta sed, laoreet ut ipsum. Suspendisse elementum dolor ut purus lobortis cursus. Nulla facilisi. Vivamus et laoreet velit. Etiam a nulla tincidunt, tincidunt sem sed, fringilla dui. Aliquam tellus nunc, ultrices at luctus in, ultrices non ligula. Fusce sed nisl dapibus justo semper hendrerit. Curabitur eros ipsum, eleifend id justo sit amet, tempus aliquam orci.</p>
+                    @if( $user->detail != null)
+                        <p>{{ $user->detail }}</p>
+                    @else
+                        <p>The user hasn't written anything here!</p>
+                    @endif
                 </div>
             </div>
             <div class="card border-sharp p-0 mb-3 shadow-sm">
-                <h5 class="card-header profile-card-header text-left">Modules Taken</h5>
-                <div class="card-body">
+                <h5 class="card-header profile-card-header text-left">Modules Taught</h5>
+                <div class="card-body bg-light">
                     @if( $user->modules->first() != null )
                         @foreach($user->modules as $m)
                             <p class="text-dark mb-0 pb-0 pl-4">{{ $m->code_title }}</p>

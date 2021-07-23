@@ -82,7 +82,7 @@
                         <div class="form-group form-row">
                             <label for="intro" class="col-form-label col-md-4">Introduce Yourself</label>
                             <div class="col-md-8 my-auto">
-                                <textarea class="form-control" rows="3" name="intro" id="intro"></textarea>
+                                <textarea class="form-control" rows="3" name="intro" id="intro">{{ Auth::user()->detail }}</textarea>
                             </div>
                         </div>
                         <div class="form-group form-row">
@@ -95,88 +95,89 @@
     </div>
 </div>
 
-<div class="min-vh-100">
-    <div class="container">
-        <div class="row row-top align-items-center">
-            <div class="profile-header border-sharp card col-12 shadow-sm">
-                <div class="card-body col-12 d-inline-flex">
-                    <div class="col-auto pr-4">
-                        <img class="profile-page-img" src="/images/avatars/{{ Auth::user()->avatar }}">
-                    </div>
-                    <div class="col my-auto pl-0">
-                        <div>
-                            <h2 class="mb-0 d-inline-block">{{ Auth::user()->name }}</h2>
-                        </div>
-                        <button type="button" class="btn btn-sm btn-teal float-right" data-toggle="modal" data-target="#editProfileModal">
-                            Edit Profile
-                        </button>
-                        <!-- Job Title/Qualification -->
-                        <p class="text-muted d-block mb-0">{{ __('Academic Advisor for Computer Science') }}</p>
-                        <span class="badge badge-success p-1" style="border-radius:2px;">Available</span>
-                        <!-- for unavailable -->
-                        <!-- <span class="badge badge-danger p-1" style="border-radius:2px;">Unavailable</span> -->
-                    </div>
+<div class="min-vh-100 container">
+    <div class="row row-top align-items-center">
+        <div class="profile-header border-sharp card col-12 shadow-sm bg-light">
+            <div class="card-body col-12 d-inline-flex">
+                <div class="col-auto pr-4">
+                    <img class="profile-page-img" src="/images/avatars/{{ Auth::user()->avatar }}">
                 </div>
-            </div>
-        </div>
-        <div class="row py-2 g-3">
-            <div class="col-4">
-                <div class="card border-sharp mr-3 p-0 shadow-sm">
-                    <h5 class="card-header profile-card-header text-left">Personal Information</h5>
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item">
-                            <i class="fas fa-envelope fa-lg text-muted d-inline"></i>
-                            <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Email') }}</p>
-                            <p class="text-dark mb-0 pb-0 pl-4">{{ Auth::user()->email }}</p>
-                        </li>
-                        <li class="list-group-item">
-                            <i class="fab fa-telegram-plane fa-lg text-muted d-inline"></i>
-                            <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Telegram Handle') }}</p>
-                            <p class="text-dark mb-0 pb-0 pl-4">&#64; {{ Auth::user()->telegram }}</p>
-                        </li>
-                        <li class="list-group-item">
-                            <i class="fas fa-venus-mars fa-lg text-muted d-inline"></i>
-                            <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Gender') }}</p>
-                            <p class="text-dark mb-0 pb-0 pl-4">{{ Auth::user()->gender }}</p>
-                        </li>
-                        <li class="list-group-item">
-                            <i class="fas fa-graduation-cap fa-lg text-muted d-inline"></i>
-                            <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Major') }}</p>
-                            @if( Auth::user()->majors->first() != null )
-                                @foreach(Auth::user()->majors as $m)
-                                    <p class="text-dark mb-0 pb-0 pl-4">{{ $m->name }}</p>
-                                @endforeach
-                            @else
-                                <p class="card-text text-muted">-</p>
-                            @endif
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col">
-                <div class="card border-sharp p-0 mb-4 shadow-sm">
-                    <h5 class="card-header profile-card-header text-left">About</h5>
-                    <div class="card-body">
-                        <!-- Mentor Self-Introduction -->
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus mauris risus, faucibus sed porta sed, laoreet ut ipsum. Suspendisse elementum dolor ut purus lobortis cursus. Nulla facilisi. Vivamus et laoreet velit. Etiam a nulla tincidunt, tincidunt sem sed, fringilla dui. Aliquam tellus nunc, ultrices at luctus in, ultrices non ligula. Fusce sed nisl dapibus justo semper hendrerit. Curabitur eros ipsum, eleifend id justo sit amet, tempus aliquam orci.</p>
+                <div class="col my-auto pl-0">
+                    <div>
+                        <h2 class="mb-0 d-inline-block">{{ Auth::user()->name }}</h2>
                     </div>
-                </div>
-                <div class="card border-sharp p-0 mb-3 shadow-sm">
-                    <h5 class="card-header profile-card-header text-left">Modules Taught</h5>
-                    <div class="card-body">
-                        @if( Auth::user()->modules->first() != null )
-                            @foreach(Auth::user()->modules as $m)
-                                <p class="text-dark mb-0 pb-0 pl-4">{{ $m->code_title }}</p>
-                            @endforeach
-                        @else
-                            <p class="card-text text-muted">-</p>
-                        @endif
-                    </div>
+                    <button type="button" class="btn btn-sm btn-teal float-right" data-toggle="modal" data-target="#editProfileModal">
+                        Edit Profile
+                    </button>
+                    <!-- Job Title/Qualification -->
+                    <p class="text-muted d-block mb-0">{{ __('Academic Advisor for Computer Science') }}</p>
+                    <span class="badge badge-success p-1" style="border-radius:2px;">Available</span>
+                    <!-- for unavailable -->
+                    <!-- <span class="badge badge-danger p-1" style="border-radius:2px;">Unavailable</span> -->
                 </div>
             </div>
         </div>
     </div>
-
+    <div class="row py-2 g-3">
+        <div class="col-4">
+            <div class="card border-sharp mr-3 p-0 shadow-sm">
+                <h5 class="card-header profile-card-header text-left">Personal Information</h5>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <i class="fas fa-envelope fa-lg text-muted d-inline"></i>
+                        <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Email') }}</p>
+                        <p class="text-dark mb-0 pb-0 pl-4">{{ Auth::user()->email }}</p>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fab fa-telegram-plane fa-lg text-muted d-inline"></i>
+                        <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Telegram Handle') }}</p>
+                        <p class="text-dark mb-0 pb-0 pl-4">&#64;{{ Auth::user()->telegram }}</p>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-venus-mars fa-lg text-muted d-inline"></i>
+                        <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Gender') }}</p>
+                        <p class="text-dark mb-0 pb-0 pl-4">{{ Auth::user()->gender }}</p>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-graduation-cap fa-lg text-muted d-inline"></i>
+                        <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Major') }}</p>
+                        @if( Auth::user()->majors->first() != null )
+                            @foreach(Auth::user()->majors as $m)
+                                <p class="text-dark mb-0 pb-0 pl-4">{{ $m->name }}</p>
+                            @endforeach
+                        @else
+                            <p class="card-text text-muted">-</p>
+                        @endif
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card border-sharp p-0 mb-4 shadow-sm">
+                <h5 class="card-header profile-card-header text-left">About</h5>
+                <div class="card-body">
+                    <!-- Mentor Self-Introduction -->
+                    @if( Auth::user()->detail != null)
+                        <p>{{ Auth::user()->detail }}</p>
+                    @else
+                        <p>The user hasn't written anything here!</p>
+                    @endif
+                </div>
+            </div>
+            <div class="card border-sharp p-0 mb-3 shadow-sm">
+                <h5 class="card-header profile-card-header text-left">Modules Taught</h5>
+                <div class="card-body">
+                    @if( Auth::user()->modules->first() != null )
+                        @foreach(Auth::user()->modules as $m)
+                            <p class="text-dark mb-0 pb-0 pl-4">{{ $m->code_title }}</p>
+                        @endforeach
+                    @else
+                        <p class="card-text text-muted">-</p>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection

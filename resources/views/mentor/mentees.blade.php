@@ -5,31 +5,29 @@
 <div class="container min-vh-100">
     <div class="row row-top">
         <div class="col-12">
-            <div class="card border-sharp shadow-sm">
+            <div class="card border-sharp shadow-sm {{ count($modules) == 0 ? 'mb-4' : '' }}">
                 <div class="card-header bg-teal">
                     <h2 class="mb-0 pl-2 text-white">My Mentees</h2>
                 </div>
-                <div class="card-body py-2">
-                    <ul class="nav" id="menteesTab" role="tablist">
-                        @if( $modules != null )
+                @if( count($modules) > 0 )
+                    <div class="card-body py-2">
+                        <ul class="nav" id="menteesTab" role="tablist">
                             @foreach($modules as $m)
                             <li class="nav-item">
                                 <a class="{{ $loop->first ? 'active' : '' }} nav-link under px-0 mx-4" id="{{ $m->code }}-tab" data-toggle="tab" href="{{ '#'.$m->code }}" role="tab">{{ $m->code }}</a>
                             </li>
                             @endforeach
-                        @else
-                            <div></div>
-                        @endif
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
     <div class="row p-3">
         <div class="col-12">
-            <div class="card card-body border-sharp shadow-sm sub-card">
+            <div class="card card-body border-sharp shadow-sm sub-card bg-light">
                 <div class="tab-content" id="menteesTabContent">
-                    @if( $modules != null )
+                    @if( count($modules) > 0 )
                         @foreach($modules as $m)
                         <div class="tab-pane fade card-text {{ $loop->first ? 'show active' : ''}}" id="{{ $m->code }}" role="tabpanel">
                             <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ $m->code }} Mentees</h3><hr class="m-2">
@@ -42,8 +40,8 @@
                                             </div>
                                             <div class="col my-auto">
                                                 <h5>{{$mentee->user->name}}</h5>
-                                                <p class="text-muted mb-0">{{$mentee->user->email}}</p>
-                                                <p class="text-muted mb-0">{{$mentee->user->telegram}}</p>
+                                                <p class="text-muted mb-0">{{ __('Email: ').$mentee->user->email}}</p>
+                                                <p class="text-muted mb-0">{{ __('Telegram: @').$mentee->user->telegram}}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -53,7 +51,9 @@
                         </div>
                         @endforeach
                     @else
-                        <div>You Have No Mentees &#128515;</div>
+                        <div>
+                            <h5>You Have No Mentees! &#128515;</h5>
+                        </div>
                     @endif
                 </div>
             </div>

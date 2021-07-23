@@ -86,18 +86,19 @@ class UserController extends Controller
         
         $request->validate([
           'majors' => ['required', 'array', 'max:3'],
-          'modules' => ['required', 'array', 'max:5'],
+          'modules' => ['required', 'array', 'max:8'],
           'matric' => ['required'],
           'gender' => ['required'],
           'name' => ['required'],
-          'telegram' => ['required'],
+          'telegram' => ['required']
         ]);
         
         $user->update([
           'name' => $request->name,
           'telegram' => $request->telegram,
           'gender' => $request->gender,
-          'matric_year' => $request->matric
+          'matric_year' => $request->matric,
+          'detail' => $request->intro
         ]);
         $user->majors()->detach();
         $user->modules()->detach();

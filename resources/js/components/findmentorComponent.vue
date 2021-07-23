@@ -39,8 +39,8 @@
                                 <selectmoduleComponent
                                     class="my-3"
                                     :modules="modules"
-                                    pholder="Select A Module"
                                     @update-module="updateModule($event)"
+                                    @clear-module="clearModule()"
                                 >
                                 </selectmoduleComponent>
                             </div>
@@ -105,11 +105,24 @@
                                     <div
                                         class="col-auto my-auto post-card-title"
                                     >
-                                        <h5
-                                            class="mb-0 post-title pl-0 text-dark"
-                                        >
-                                            {{ mentor.name }}
-                                        </h5>
+                                        <div class="row py-0">
+                                            <h5
+                                                class="mb-0 post-title pl-0 text-dark"
+                                            >
+                                                {{ mentor.name }}
+                                            </h5>
+                                            <p class="ml-auto mb-auto mr-2">
+                                                <span
+                                                    class="badge text-white text-right"
+                                                    :class="{
+                                                        'badge-success': mentor.status == 'Available',
+                                                        'badge-danger': mentor.status == 'Unavailable'
+                                                    }"
+                                                >
+                                                    {{ mentor.status }}
+                                                </span>
+                                            </p>
+                                        </div>
                                         <p class="text-muted mb-0">
                                             {{ mentor.title }}
                                         </p>
@@ -208,7 +221,7 @@ export default {
             module: "none"
         };
     },
-    props: ["mentors", "mentormodules", "modules"],
+    props: ["mentors", "modules"],
     methods: {
         checkDate(created, updated) {
             if (created == updated) {
@@ -246,39 +259,37 @@ export default {
         updateModule(module) {
             this.module = module;
         },
-        getMentorIndexes() {
-            var mentorIndexes = [];
+        clearModule() {
+            this.module = 'none';
+        },
+        hasModule(mentor) {
             var i = 0;
-            for (i; i < this.mentormodules.length; i++) {
+            for (i; i < mentor.modules.length; i++) {
                 if (
-                    this.mentormodules[i].findIndex(
-                        mentormodule => mentormodule.id == this.module
-                    ) != -1
+                    mentor.modules[i].id == this.module
                 ) {
-                    mentorIndexes.push(i);
-                    continue;
+                    return true;
                 }
             }
-            return mentorIndexes;
+            return false;
         }
     },
     computed: {
         filteredMentors() {
             var query = this.search.toUpperCase();
             if (this.module != "none") {
-                var indexes = this.getMentorIndexes();
                 if (this.active == "all") {
                     return this.mentors.filter(
-                        (mentor, index) =>
+                        mentor =>
                             mentor.name.toUpperCase().includes(query) &&
-                            indexes.indexOf(index) != -1
+                            this.hasModule(mentor)
                     );
                 } else {
                     return this.mentors.filter(
-                        (mentor, index) =>
+                        mentor =>
                             mentor.status == "active" &&
                             mentor.name.toUpperCase().includes(query) &&
-                            indexes.indexOf(index) != -1
+                            this.hasModule(mentor)
                     );
                 }
             } else {

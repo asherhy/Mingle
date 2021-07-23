@@ -102,7 +102,7 @@
                         </div>
                     @else
                         <div class="tab-pane fade" id="mentor" role="tabpanel">
-                        <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ __('You currently have no groups formed with mentors, request some to start!') }} &#128515;
+                        <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ __('You currently have no groups mentors, try requesting for one from the mentors page') }} &#128515;
                         </div>
                     @endif
                     @if( $moduleGroups->first() != null )

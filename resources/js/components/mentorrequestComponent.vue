@@ -265,12 +265,6 @@ export default {
             } else {
                 return false;
             }
-        },
-        getMentor(request) {
-            return this.mentors.find(mentor => mentor.id == request.mentor_id);
-        },
-        getModule(request) {
-            return this.modules.find(module => module.id == request.module_id);
         }
     },
     computed: {
@@ -280,36 +274,31 @@ export default {
                 return this.requests.filter(
                     request =>
                         request.title.toUpperCase().includes(query) ||
-                        this.getModule(request)
-                            .code_title.toUpperCase()
-                            .includes(query)
+                        request.module.code_title.toUpperCase().includes(query)
                 );
             } else if (this.status == "accepted") {
                 return this.requests.filter(
                     request =>
-                        request.status == "Accepted" &&
-                        (request.title.toUpperCase().includes(query) ||
-                            this.getModule(request)
-                                .code_title.toUpperCase()
-                                .includes(query))
+                        request.status == "Accepted" && (
+                            request.title.toUpperCase().includes(query) ||
+                            request.module.code_title.toUpperCase().includes(query)
+                        )
                 );
             } else if (this.status == "pending") {
                 return this.requests.filter(
                     request =>
-                        request.status == "Pending" &&
-                        (request.title.toUpperCase().includes(query) ||
-                            this.getModule(request)
-                                .code_title.toUpperCase()
-                                .includes(query))
+                        request.status == "Pending" && (
+                            request.title.toUpperCase().includes(query) ||
+                            request.module.code_title.toUpperCase().includes(query)
+                        )
                 );
             } else if (this.status == "rejected") {
                 return this.requests.filter(
                     request =>
-                        request.status == "Rejected" &&
-                        (request.title.toUpperCase().includes(query) ||
-                            this.getModule(request)
-                                .code_title.toUpperCase()
-                                .includes(query))
+                        request.status == "Rejected" && (
+                            request.title.toUpperCase().includes(query) ||
+                            request.module.code_title.toUpperCase().includes(query)
+                        )
                 );
             } else {
                 return [];
@@ -322,6 +311,9 @@ export default {
     },
     watch: {
         search: function() {
+            this.currentPage = 1;
+        },
+        status: function() {
             this.currentPage = 1;
         }
     }

@@ -69,7 +69,7 @@
                         <div class="form-group form-row">
                             <label for="intro" class="col-form-label col-md-4">Introduce Yourself</label>
                             <div class="col-md-8 my-auto">
-                                <textarea class="form-control" rows="3" name="intro" id="intro"></textarea>
+                                <textarea class="form-control" rows="3" name="intro" id="intro">{{ Auth::user()->detail }}</textarea>
                             </div>
                         </div>
                         <div class="form-group form-row">
@@ -184,7 +184,11 @@
                 <h5 class="card-header profile-card-header text-left">About</h5>
                 <div class="card-body bg-light">
                     <!-- Mentor Self-Introduction -->
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus mauris risus, faucibus sed porta sed, laoreet ut ipsum. Suspendisse elementum dolor ut purus lobortis cursus. Nulla facilisi. Vivamus et laoreet velit. Etiam a nulla tincidunt, tincidunt sem sed, fringilla dui. Aliquam tellus nunc, ultrices at luctus in, ultrices non ligula. Fusce sed nisl dapibus justo semper hendrerit. Curabitur eros ipsum, eleifend id justo sit amet, tempus aliquam orci.</p>
+                    @if( Auth::user()->detail != null)
+                        <p>{{ Auth::user()->detail }}</p>
+                    @else
+                        <p>The user hasn't written anything here!</p>
+                    @endif
                 </div>
             </div>
             <div class="card border-sharp p-0 mb-3 shadow-sm">

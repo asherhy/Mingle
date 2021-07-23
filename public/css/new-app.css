@@ -101,7 +101,7 @@ div.row.row-top {
 }
 
 div.card.border-sharp,
-ul.list-group.border-sharp,
+li.list-group-item.border-sharp,
 div.modal-content.border-sharp {
     border-radius: 2px;
 }
@@ -120,7 +120,24 @@ img.profile-page-img {
 }
 
 div.card.mail-card {
-    max-height: 50vh;
+    min-height: 70vh;
+    max-height: 70vh;
+}
+
+div.card.mail-card .mail-card-body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: thin;
+}
+
+li.list-group-item.mail-item {
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+}
+
+.list-group-item.border-sharp.mail-item:hover {
+    background: #f8f8f8;
 }
 
 h5.card-header.profile-card-header,
@@ -166,7 +183,20 @@ div.modal-body.profile-edit-modal {
 }
 
 .bg-teal {
-    background: #00b3b3;
+    background-color: #00b3b3;
+}
+
+.card.bg-lighter,
+.bg-lighter {
+    background-color: #fbfbfb;
+}
+
+p.overflow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: calc(90%);
+    display: inline-block;
 }
 
 .badge.badge-teal {

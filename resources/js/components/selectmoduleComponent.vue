@@ -5,10 +5,11 @@
             :options="modules"
             :searchable="true"
             :close-on-select="true"
-            :placeholder="pholder"
+            placeholder="Select a module to search"
             label="code_title"
             track-by="code_title"
             @input="updateModule()"
+            @remove="clearModule()"
         >
         </multiselect>
             <input
@@ -28,7 +29,7 @@
         components: {
             Multiselect
         },
-        props: ['modules', 'pholder'],
+        props: ['modules'],
         data() {
             return {
                 value: ''
@@ -37,6 +38,9 @@
         methods: {
             updateModule() {
                 this.$emit('update-module', this.value.id)
+            },
+            clearModule() {
+                this.$emit('clear-module')
             }
         }
     }

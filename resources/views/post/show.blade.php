@@ -122,7 +122,7 @@
                         @if ($post->status == 'Active')
                             <h3 class="ml-auto mb-auto mr-4"><span class="badge badge-lg badge-success p-2">Active</span></h3>
                         @else
-                            <p class="badge badge-danger ml-auto mb-auto mr-4">Closed</p>
+                            <h3 class="ml-auto mb-auto mr-4"><span class="badge badge-lg badge-danger p-2">Closed</span></h3>
                         @endif
                         <!-- <a class="ml-0 mr-4 close" type="button" role="button" href="" style="font-size:20px;">
                             &times;
