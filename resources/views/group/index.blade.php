@@ -82,7 +82,7 @@
                     @endif
                     @if( $mentorGroups->first() != null )
                         <div class="tab-pane fade" id="mentor" role="tabpanel">
-                            <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ __('Mentors') }}</h3>
+                            <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ __('Mentors') }}</h3><hr class="m-2">
                             <div class="row col-12 p-3 justify-content-around align-items-center">
                                 @foreach($mentorGroups as $m)
                                     <div class="card border-sharp shadow-sm col-5 my-3">
