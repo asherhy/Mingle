@@ -20,6 +20,9 @@
         <nav class="navbar navbar-light navbar-expand-lg fixed-top mx-auto px-0;">
             <div class="container">
                 <a class="navbar-brand" href="{{ route('home') }}" >
+                  <img src="{{ asset('images/logo.png') }}" alt="" width="30" height="24">
+                </a>
+                <a class="navbar-brand" href="{{ route('home') }}" >
                     <p class="logo">mingle</p>
                 </a>
                 <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
