@@ -39,9 +39,9 @@
                                                 <img src="/images/avatars/default-dp.png" style="width:60px; height:60px; border-radius:50%">
                                             </div>
                                             <div class="col my-auto">
-                                                <h5>{{$mentee->user->name}}</h5>
-                                                <p class="text-muted mb-0">{{ __('Email: ').$mentee->user->email}}</p>
-                                                <p class="text-muted mb-0">{{ __('Telegram: @').$mentee->user->telegram}}</p>
+                                                <h5>{{$mentee->name}}</h5>
+                                                <p class="text-muted mb-0">{{ __('Email: ').$mentee->email}}</p>
+                                                <p class="text-muted mb-0">{{ __('Telegram: @').$mentee->telegram}}</p>
                                             </div>
                                         </div>
                                     </div>

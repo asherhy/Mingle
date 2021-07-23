@@ -116,12 +116,15 @@ class MentorRequestController extends Controller
     public function showMentees()
     {
         $modules = Module::whereHas('mentorRequests', function($mentorRequest) {
-            $mentorRequest->where('status', '!=', 'Pending');
+            $mentorRequest->where('status', 'Accepted')->where('mentor_id', Auth::user()->id);
         })->get();
         foreach ($modules as $m) {
             $m->mentees = $m->mentorRequests->where('status', 'Accepted')->where('mentor_id', Auth::user()->id);
+            for($i = 0; $i < count($m->mentees); $i++) {
+                $m->mentees[$i] = $m->mentees[$i]->user;
+            }
+            $m->mentees = $m->mentees->unique();
         }
-        // dd($modules);
         return view('mentor.mentees', compact('modules'));
     }
 
