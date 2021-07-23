@@ -8396,7 +8396,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ndiv.row {\r\n    padding-top: 150px;\n}\ndiv.card {\r\n    border-radius: 10px;\n}\ndiv.card-header {\r\n    border-bottom-color: #f3f2f1;\r\n    border-top-right-radius: 10px;\r\n    border-top-left-radius: 10px;\n}\ndiv.card-body {\r\n    font-size: 15px;\n}\ndiv.card-footer {\r\n    background: none;\r\n    border-top: none;\n}\nspan.module-tag {\r\n    background: #00b3b3;\r\n    border-radius: 10px;\n}\r\n", ""]);
+exports.push([module.i, "\ndiv.row {\n    padding-top: 150px;\n}\ndiv.card {\n    border-radius: 10px;\n}\ndiv.card-header {\n    border-bottom-color: #f3f2f1;\n    border-top-right-radius: 10px;\n    border-top-left-radius: 10px;\n}\ndiv.card-body {\n    font-size: 15px;\n}\ndiv.card-footer {\n    background: none;\n    border-top: none;\n}\nspan.module-tag {\n    background: #00b3b3;\n    border-radius: 10px;\n}\n", ""]);
 
 // exports
 
@@ -56546,8 +56546,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Rickie\Laravel\code\Mingle\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Rickie\Laravel\code\Mingle\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/vagrant/code/Mingle/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/Mingle/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
