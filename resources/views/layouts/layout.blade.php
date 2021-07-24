@@ -19,10 +19,10 @@
     <body>
         <nav class="navbar navbar-light navbar-expand-lg fixed-top mx-auto px-0;">
             <div class="container">
-                <a class="navbar-brand" href="{{ route('home') }}" >
+                <a class="navbar-brand" href="{{ route('welcome') }}" >
                   <img src="{{ asset('images/logo.png') }}" alt="" width="30" height="24">
                 </a>
-                <a class="navbar-brand pl-2" href="{{ route('home') }}" >
+                <a class="navbar-brand pl-2" href="{{ route('welcome') }}" >
                     <p class="logo">mingle</p>
                 </a>
                 <button class="navbar-toggler float-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -32,13 +32,13 @@
                     @guest
                     <ul class="navbar-nav mx-auto">
                             <li class="nav-item mx-4">
-                                <a class="nav-link under px-0 active" style="color:#009999" href="#home">Home</a>
+                                <a class="nav-link under px-0" style="color:#009999" href="{{Request::path() == '/' ? '#home' : route('welcome').'/#home'}}">Home</a>
                             </li>
                             <li class="nav-item mx-4">
-                                <a class="nav-link under px-0" style="color:#009999" href="#about">About</a>
+                                <a class="nav-link under px-0" style="color:#009999" href="{{Request::path() == '/' ? '#about' : route('welcome').'/#about'}}">About</a>
                             </li>
                             <li class="nav-item mx-4">
-                                <a class="nav-link under px-0" style="color:#009999" href="#help">Help</a>
+                                <a class="nav-link under px-0" style="color:#009999" href="{{Request::path() == '/' ? '#help' : route('welcome').'/#help'}}">Help</a>
                             </li>
                         </ul>
                      
@@ -53,27 +53,27 @@
                     @else
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item mx-3">
-                                <a class="nav-link under" href="{{ route('quickmatch.module.create') }}">QuickMatch</a>
+                                <a class="nav-link under {{Request::url() ==  route('quickmatch.module.create') ? 'active' : ''}}" href="{{ route('quickmatch.module.create') }}">QuickMatch</a>
                             </li>
                             <li class="nav-item dropdown mx-3">
-                                <a class="nav-link under" href="#" id="boardDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Board <i class="fas fa-caret-down pl-1"></i></a>
+                                <a class="nav-link under {{(Request::url() ==  route('post.index')|| Request::url() ==  route('post.myposts')) ? 'active' : ''}}" href="#" id="boardDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Board <i class="fas fa-caret-down pl-1"></i></a>
                                 <div class="dropdown-menu" aria-labelledby="boardDropdown" style="min-width:200px;">
                                     <a class="dropdown-item" href="{{route('post.index')}}">All Posts</a>
                                     <a class="dropdown-item" href="{{route('post.myposts')}}">My Posts</a>
                                 </div>
                             </li>
                             <li class="nav-item dropdown mx-3">
-                                <a class="nav-link under" href="#" id="requestDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Requests <i class="fas fa-caret-down pl-1"></i></a>
+                                <a class="nav-link under {{(Request::url() ==  route('request.post.index')|| Request::url() ==  route('request.mentor.index')) ? 'active' : ''}}" href="#" id="requestDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Requests <i class="fas fa-caret-down pl-1"></i></a>
                                     <div class="dropdown-menu" aria-labelledby="boardDropdown" style="min-width:200px;">
                                         <a class="dropdown-item" href="{{ route('request.post.index') }}">Post Requests</a>
                                         <a class="dropdown-item" href="{{ route('request.mentor.index') }}">Mentor Requests</a>
                                     </div>
                             </li>
                             <li class="nav-item mx-3">
-                                <a class="nav-link under" href="{{ route('group.index') }}">Groups</a>
+                                <a class="nav-link under {{Request::url() ==  route('group.index') ? 'active' : ''}}" href="{{ route('group.index') }}">Groups</a>
                             </li>
                             <li class="nav-item mx-3">
-                                <a class="nav-link under" href="{{ route('mentor.index') }}">Mentors</a>
+                                <a class="nav-link under {{Request::url() ==  route('mentor.index') ? 'active' : ''}}" href="{{ route('mentor.index') }}">Mentors</a>
                             </li>
                         </ul>
 

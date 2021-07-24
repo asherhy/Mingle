@@ -48,10 +48,10 @@
                     @else
                         <ul class="navbar-nav mx-auto">
                             <li class="nav-item mx-4">
-                                <a class="nav-link under" href="{{route('mentor.mail')}}">Mail</a>
+                                <a class="nav-link under {{Request::url() ==  route('mentor.mail') ? 'active' : ''}}" href="{{route('mentor.mail')}}">Mail</a>
                             </li>
                             <li class="nav-item mx-4">
-                                <a class="nav-link under" href="{{ route('mentor.show.mentees') }}">Mentees</a>
+                                <a class="nav-link under {{Request::url() ==  route('mentor.show.mentees') ? 'active' : ''}}" href="{{ route('mentor.show.mentees') }}">Mentees</a>
                             </li>
                         </ul>
 
