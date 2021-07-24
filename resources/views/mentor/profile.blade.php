@@ -21,13 +21,6 @@
                             <div class="col-md-8"><input type="name" name="name" class="form-control" id="name" value="{{ Auth::user()->name }}" required></div>
                         </div>
                         <div class="form-group form-row">
-                            <label for="profile-img" class="col-form-label col-md-4">Update Profile Image</label>
-                            <div class="col-md-8">
-                                <input type="file" name="avatar">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                            </div>
-                        </div>
-                        <div class="form-group form-row">
                             <label for="email" class="col-form-label col-md-4">Email</label>
                             <div class="col-md-8"><input type="email" class="form-control" id="email" value="{{ Auth::user()->email }}" disabled></div>
                         </div>
@@ -49,12 +42,18 @@
                             </div>
                         </div>
                         <div class="form-group form-row">
+                            <label for="name" class="col-form-label col-md-4">Position</label>
+                            <div class="col-md-8"><input type="name" name="position" class="form-control" id="name" value="{{ Auth::user()->position }}" required></div>
+                        </div>
+                        <div class="form-group form-row">
                             <label for="major" class="col-form-label col-md-4">Major</label>
                             <div class="col-md-8 my-auto">
                                 <!-- removed the inner because data is not passed into this page yet -->
                                 <!-- can copy from the other profile page -->
-                                <multiselect-component> 
-                                </multiselect-component>
+                                <multiselect-component :fields="{{ json_encode($majors->pluck('name')->all()) }}" attri="{{ __('majors[]') }}" :preselects="{{ json_encode(Auth::user()->majors->pluck('name')->all()) }}"
+                                 pholder="{{ __('Select Your Major(s)') }}"></multiselect-component>
+                                 <!-- so that backend validation wont catch this when mentor is using instead of student -->
+                                 <input type="hidden" name="matric" value="0">
                             </div>
                         </div>
                         <div class="form-group form-row">
@@ -62,10 +61,10 @@
                             <div class="col-md-8 my-auto">
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label for="available" class="btn btn-outline-success active btn-square">
-                                      <input type="radio" name="options" id="available" autocomplete="off" checked> Available
+                                      <input type="radio" name="status" id="available" value="1" autocomplete="off" checked> Available
                                     </label>
                                     <label for="unavailable" class="btn btn-outline-danger btn-square">
-                                      <input type="radio" name="options" id="unavailable" autocomplete="off"> Unavailable
+                                      <input type="radio" name="status" id="unavailable" value="0" autocomplete="off"> Unavailable
                                     </label>
                                 </div>
                             </div>
@@ -73,10 +72,8 @@
                         <div class="form-group form-row">
                             <label for="modules" class="col-form-label col-md-4">Modules Taught</label>
                             <div class="col-md-8 my-auto">
-                                <multiselect-component>
-                                    <!-- removed the inner because data is not passed into this page yet -->
-                                    <!-- can copy from the other profile page -->
-                                </multiselect-component>
+                            <multiselect-component :fields="{{ json_encode($modules->pluck('code_title')->all()) }}" attri="{{ __('modules[]') }}" :preselects="{{json_encode(Auth::user()->modules->pluck('code_title')->all())}}"
+                                 pholder="{{ __('Select Your Modules') }}"></multiselect-component>
                             </div>
                         </div>
                         <div class="form-group form-row">
@@ -95,12 +92,43 @@
     </div>
 </div>
 
+<div class="modal fade border-sharp" id="editProfilePhoto" role="dialog">
+    <div class="modal-dialog modal-lg" role="content">
+        <div class="modal-content">
+            <div class="modal-header bg-teal py-2">
+                <h3 class="modal-title text-white">Update Photo</h3>
+                <button type="button" class="close btn-white" data-dismiss="modal">
+                    &times;
+                </button>
+            </div>
+            <div class="modal-body pt-4 profile-edit-modal">
+                <form enctype="multipart/form-data" action="{{ route('user.changePhoto') }}" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <div class="container">
+                        <div class="form-group form-row">
+                            <label for="profile-img" class="col-form-label col-md-4">Update Profile Image</label>
+                            <div class="col-md-8">
+                                <input type="file" name="avatar">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                            </div>
+                        </div>
+                        <div class="form-group form-row">
+                            <button class="btn btn-success ml-auto" type="submit">Change</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="min-vh-100 container">
     <div class="row row-top align-items-center">
         <div class="profile-header border-sharp card col-12 shadow-sm bg-light">
             <div class="card-body col-12 d-inline-flex">
                 <div class="col-auto pr-4">
-                    <img class="profile-page-img" src="/images/avatars/{{ Auth::user()->avatar }}">
+                    <img class="profile-page-img" data-toggle="modal" data-target="#editProfilePhoto" src="{{ asset('storage/avatars/'.Auth::user()->avatar)}}">
                 </div>
                 <div class="col my-auto pl-0">
                     <div>
@@ -110,10 +138,21 @@
                         Edit Profile
                     </button>
                     <!-- Job Title/Qualification -->
-                    <p class="text-muted d-block mb-0">{{ __('Academic Advisor for Computer Science') }}</p>
-                    <span class="badge badge-success p-1" style="border-radius:2px;">Available</span>
+                    <p class="text-muted d-block mb-0">{{ Auth::user()->position }}</p>
+                    <!-- Major -->
+                    @if( Auth::user()->majors->first() != null )
+                        @foreach(Auth::user()->majors as $m)
+                            <p class="text-muted d-block mb-0">{{ $m->name }}</p>
+                        @endforeach
+                    @else
+                        <p class="text-muted d-block mb-0">-</p>
+                    @endif
+                    @if(Auth::user()->status == 'Available')
+                        <span class="badge badge-success p-1" style="border-radius:2px;">Available</span>
+                    @else
                     <!-- for unavailable -->
-                    <!-- <span class="badge badge-danger p-1" style="border-radius:2px;">Unavailable</span> -->
+                        <span class="badge badge-danger p-1" style="border-radius:2px;">Unavailable</span>
+                    @endif
                 </div>
             </div>
         </div>
@@ -137,6 +176,11 @@
                         <i class="fas fa-venus-mars fa-lg text-muted d-inline"></i>
                         <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Gender') }}</p>
                         <p class="text-dark mb-0 pb-0 pl-4">{{ Auth::user()->gender }}</p>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-university fa-lg text-muted d-inline"></i>
+                        <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Position') }}</p>
+                        <p class="text-dark mb-0 pb-0 pl-4">{{ Auth::user()->position ?? "-" }}</p>
                     </li>
                     <li class="list-group-item">
                         <i class="fas fa-graduation-cap fa-lg text-muted d-inline"></i>
