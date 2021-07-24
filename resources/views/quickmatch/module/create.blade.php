@@ -5,6 +5,16 @@
 <div class="container min-vh-100">
     <div class="row d-flex justify-content-center qm-row">
         <div class="col-12 col-sm-10 col-lg-8">
+            @if($errors->any())
+                @foreach ($errors->all() as $error)
+                            <div class="col-md-12 alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>{{$error}}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                @endforeach
+            @endif
             <div class="card border-sharp px-0">
                 <div class="card-header p-3 bg-teal">
                     <h3 class="text-center text-white font-weight-bold">Quick Match Your Module Group</h3>

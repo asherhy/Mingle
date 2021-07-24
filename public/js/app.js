@@ -13113,7 +13113,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.multiselect__option--highlight:after,\r\n.multiselect__option--highlight,\r\n.multiselect__tag-icon,\r\n.multiselect__tag,\r\n.multiselect__tag:after {\r\n    background: #3aafa9;\n}\n.multiselect__tag-icon:hover {\r\n    background: #37a29d;\n}\r\n", ""]);
+exports.push([module.i, "\n.multiselect__option--highlight:after,\n.multiselect__option--highlight,\n.multiselect__tag-icon,\n.multiselect__tag,\n.multiselect__tag:after {\n    background: #3aafa9;\n}\n.multiselect__tag-icon:hover {\n    background: #37a29d;\n}\n", ""]);
 
 // exports
 
@@ -13132,7 +13132,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ndiv.row {\r\n    padding-top: 150px;\n}\ndiv.card {\r\n    border-radius: 10px;\n}\ndiv.card-header {\r\n    border-bottom-color: #f3f2f1;\r\n    border-top-right-radius: 10px;\r\n    border-top-left-radius: 10px;\n}\ndiv.card-body {\r\n    font-size: 15px;\n}\ndiv.card-footer {\r\n    background: none;\r\n    border-top: none;\n}\nspan.module-tag {\r\n    background: #00b3b3;\r\n    border-radius: 10px;\n}\r\n", ""]);
+exports.push([module.i, "\ndiv.row {\n    padding-top: 150px;\n}\ndiv.card {\n    border-radius: 10px;\n}\ndiv.card-header {\n    border-bottom-color: #f3f2f1;\n    border-top-right-radius: 10px;\n    border-top-left-radius: 10px;\n}\ndiv.card-body {\n    font-size: 15px;\n}\ndiv.card-footer {\n    background: none;\n    border-top: none;\n}\nspan.module-tag {\n    background: #00b3b3;\n    border-radius: 10px;\n}\n", ""]);
 
 // exports
 
@@ -46283,7 +46283,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\r\n                            Previous\r\n                        "
+                            "\n                            Previous\n                        "
                           )
                         ]
                       )
@@ -46304,7 +46304,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\r\n                            Next\r\n                        "
+                            "\n                            Next\n                        "
                           )
                         ]
                       )
@@ -46325,7 +46325,7 @@ var render = function() {
                         },
                         [
                           _vm._v(
-                            "\r\n                            Signup\r\n                        "
+                            "\n                            Signup\n                        "
                           )
                         ]
                       )
@@ -62240,8 +62240,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Rickie\Laravel\code\Mingle\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Rickie\Laravel\code\Mingle\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/vagrant/code/Mingle/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/Mingle/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

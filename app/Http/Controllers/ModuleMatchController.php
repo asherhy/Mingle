@@ -51,7 +51,7 @@ class ModuleMatchController extends Controller
     public function store(Request $request)
     {
         if (isset($request->telegram) && count($request->telegram) != $request->members) {
-            return redirect()->back();
+            return redirect()->back()->withErrors("Please key in your friend's telegram");
             //add error message;
         }
 
@@ -63,10 +63,10 @@ class ModuleMatchController extends Controller
         $m = ModuleMatch::find(1);
         $allDatas = ($m->match_data);
         $number = $request->members + 1;
-        $newData = [Auth::user()->email => Auth::user()->telegram];
+        $newData = [Auth::user()->name => Auth::user()->telegram];
         for ($i = 0; isset($request->telegram) && $i < count($request->telegram); $i++) {
             $j = $i + 1;
-            $newData[Auth::user()->email."'s friend"." ".$j] = ($request->telegram)[$i];
+            $newData[Auth::user()->name."'s friend"." ".$j] = ($request->telegram)[$i];
         } 
 
         $module = Module::where('code_title', $request->modules)->firstOrFail()->code;

@@ -110,15 +110,13 @@
                             <div class="tab-pane fade" id="{{ 'module'.$moduleGroup->id }}" role="tabpanel">
                                 <h3 class="card-title px-3 py-2 text-dark text-left mb-0">{{ "Module Group for ".$moduleGroup->modules }}</h3><hr class="m-2">
                                 <div class="row col-12 p-3 justify-content-around align-items-center">
-                                    @foreach($moduleGroup->users as $user)
+                                    @foreach($moduleGroup->user_info as $email => $tele)
                                         <div class="card border-sharp shadow-sm col-5 my-3">
                                             <div class="card-body d-inline-flex">
-                                                <div class="col-auto">
-                                                <img src="/images/avatars/{{ $user->avatar }}" style="width:60px; height:60px; border-radius:50%">
-                                                </div>
+                                                
                                                 <div class="col my-auto">
-                                                    <h5>{{ $user->name }}</h5>
-                                                    <p class="text-muted mb-0">{{ "@".$user->telegram }}</p>
+                                                    <h5>{{ $email }}</h5>
+                                                    <p class="text-muted mb-0">{{ "@".$tele }}</p>
                                                 </div>
                                             </div>
                                         </div>

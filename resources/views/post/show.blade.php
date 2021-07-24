@@ -100,11 +100,16 @@
 <div class="container min-vh-100">
     <div class="row d-flex justify-content-center post-row">
         <div class="col-12 col-md-10 col-lg-8">
-            @if ($errors->any())
+            @if($errors->any())
                 @foreach ($errors->all() as $error)
-                    <div class="alert alert-danger" role="alert">{{$error}}</div>
+                            <div class="col-md-12 alert alert-danger alert-dismissible fade show" role="alert">
+                        <strong>{{$error}}</strong>
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
                 @endforeach
-            @endif
+            @endifP
             <div class="card shadow-sm border-sharp">
                 <div class="card-header m-0 pt-2 pb-2" style="background:#fefff;">
                     <div class="row pt-2 pb-2">

@@ -116,6 +116,16 @@
 
 <div class="container min-vh-100">
     <div class="row row-top align-items-center">
+        @if($errors->any())
+            @foreach ($errors->all() as $error)
+                        <div class="col-md-12 alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>{{$error}}</strong>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endforeach
+        @endif
         <div class="profile-header border-sharp card col-12 shadow-sm px-0">
             <div class="card-body col-12 d-inline-flex bg-light px-5">
                 <div class="col-auto pr-4">
