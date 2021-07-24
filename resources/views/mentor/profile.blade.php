@@ -61,10 +61,10 @@
                             <div class="col-md-8 my-auto">
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label for="available" class="btn btn-outline-success active btn-square">
-                                      <input type="radio" name="status" id="available" value="1" autocomplete="off" checked> Available
+                                      <input type="radio" name="status" id="available" value="1" autocomplete="off" {{Auth::user()->status == 'Available' ? 'checked' : ''}}> Available
                                     </label>
                                     <label for="unavailable" class="btn btn-outline-danger btn-square">
-                                      <input type="radio" name="status" id="unavailable" value="0" autocomplete="off"> Unavailable
+                                      <input type="radio" name="status" id="unavailable" value="0" autocomplete="off" {{Auth::user()->status == 'Unavailable' ? 'checked' : ''}}> Unavailable
                                     </label>
                                 </div>
                             </div>
