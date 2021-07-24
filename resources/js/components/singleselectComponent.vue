@@ -6,7 +6,9 @@
         :searchable="true"
         :close-on-select="true"
         :show-labels="false"
-        :placeholder="pholder">
+        :placeholder="pholder"
+        @input="updateValue()"
+        @remove="clearValue()">
     </multiselect>
      <input
             type="hidden"
@@ -33,6 +35,14 @@
         },
         mounted() {
             this.value = this.preselects;
+        },
+        methods: {
+            updateValue() {
+                this.$emit('update-value', this.value)
+            },
+            clearValue() {
+                this.$emit('clear-value')
+            }
         }
     }
 

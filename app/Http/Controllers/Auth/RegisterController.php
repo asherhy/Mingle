@@ -53,7 +53,8 @@ class RegisterController extends Controller
         if(!isset($majors)) {
           $majors = [];
         }
-        return view('auth.register', compact('modules', 'majors'));
+        $emails = User::all()->pluck('email');
+        return view('auth.register', compact('modules', 'majors', 'emails'));
     }
 
     /**

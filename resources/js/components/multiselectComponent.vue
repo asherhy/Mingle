@@ -3,11 +3,13 @@
         <multiselect
             v-model="values"
             :placeholder="pholder"
+            tag-placeholder=""
             :options="fields"
             :close-on-select="false"
             :multiple="true"
             :taggable="true"
             @tag="addTag"
+            @input="updateValue"
         >
         </multiselect>
         <input
@@ -55,6 +57,9 @@ export default {
                     "input"
                 ).required = required;
             });
+        },
+        updateValue() {
+            this.$emit("update-values", this.values);
         }
     },
     mounted() {

@@ -8,7 +8,7 @@
         <div class="col-md-8">
             <div class="card shadow-sm border-sharp">
                 <div class="card-header bg-teal">
-                    <h5 class="mb-0 text-white">{{ __('Dashboard') }}</h5>
+                    <h5 class="mb-0 text-white font-weight-bold">{{ __('Dashboard') }}</h5>
                 </div>
 
                 <div class="card-body">
@@ -18,7 +18,7 @@
                         </div>
                     @endif
 
-                    {{ __("Welcome back ") . Auth::user()->name }}
+                    {{ __("Welcome back ") . Auth::user()->name . __('!')}}
                 </div>
             </div>
         </div>

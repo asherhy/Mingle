@@ -200,6 +200,10 @@ img.profile-page-img {
     border-radius: 50%;
 }
 
+img.darken-img-hover:hover {
+    filter: brightness(90%);
+}
+
 div.card.mail-card {
     min-height: 70vh;
     max-height: 70vh;
@@ -321,6 +325,15 @@ h5.post-title {
     background-color: #fafafa;
 }
 
+div.signup-card {
+    min-height: 21rem;
+    padding-bottom: 0px;
+}
+
+div.hide {
+    display: none;
+}
+
 div.row.login-row {
     padding-top: 23vh;
 }
@@ -331,7 +344,7 @@ div.row.post-row {
     padding-top: 18vh;
 }
 
-.card-body form.signup {
+form.signup {
     background-color: white;
     font-family: "Montserrat", sans-serif;
     font-weight: 700;
