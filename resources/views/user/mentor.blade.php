@@ -72,9 +72,11 @@
                     <div>
                         <h2 class="mb-0 d-inline-block">{{ $user->name }}</h2>
                     </div>
-                    <button type="button" class="btn btn-md btn-teal float-right" data-toggle="modal" data-target="#requestModal">
-                        Request
-                    </button>
+                    @if($user->status == 'Available')
+                        <button type="button" class="btn btn-md btn-teal float-right" data-toggle="modal" data-target="#requestModal">
+                            Request
+                        </button>
+                    @endif
                     <!-- Major -->
                     @if( $user->majors->first() != null )
                         @foreach($user->majors as $m)
@@ -82,6 +84,12 @@
                         @endforeach
                     @else
                         <p class="text-muted d-block mb-0">-</p>
+                    @endif
+                    @if($user->status == 'Available')
+                        <span class="badge badge-success p-1" style="border-radius:2px;">Available</span>
+                    @else
+                    <!-- for unavailable -->
+                        <span class="badge badge-danger p-1" style="border-radius:2px;">Unavailable</span>
                     @endif
                 </div>
             </div>
@@ -106,6 +114,11 @@
                         <i class="fas fa-venus-mars fa-lg text-muted d-inline"></i>
                         <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Gender') }}</p>
                         <p class="text-dark mb-0 pb-0 pl-4">{{ $user->gender }}</p>
+                    </li>
+                    <li class="list-group-item">
+                        <i class="fas fa-university fa-lg text-muted d-inline"></i>
+                        <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Position') }}</p>
+                        <p class="text-dark mb-0 pb-0 pl-4">{{ $user->position ?? "-" }}</p>
                     </li>
                     <li class="list-group-item bg-light">
                         <i class="fas fa-graduation-cap fa-lg text-muted d-inline"></i>
