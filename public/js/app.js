@@ -6749,6 +6749,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -13114,7 +13117,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.multiselect__option--highlight:after,\n.multiselect__option--highlight,\n.multiselect__tag-icon,\n.multiselect__tag,\n.multiselect__tag:after {\n    background: #3aafa9;\n}\n.multiselect__tag-icon:hover {\n    background: #37a29d;\n}\n", ""]);
+exports.push([module.i, "\n.multiselect__option--highlight:after,\r\n.multiselect__option--highlight,\r\n.multiselect__tag-icon,\r\n.multiselect__tag,\r\n.multiselect__tag:after {\r\n    background: #3aafa9;\n}\n.multiselect__tag-icon:hover {\r\n    background: #37a29d;\n}\r\n", ""]);
 
 // exports
 
@@ -13133,7 +13136,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ndiv.row {\n    padding-top: 150px;\n}\ndiv.card {\n    border-radius: 10px;\n}\ndiv.card-header {\n    border-bottom-color: #f3f2f1;\n    border-top-right-radius: 10px;\n    border-top-left-radius: 10px;\n}\ndiv.card-body {\n    font-size: 15px;\n}\ndiv.card-footer {\n    background: none;\n    border-top: none;\n}\nspan.module-tag {\n    background: #00b3b3;\n    border-radius: 10px;\n}\n", ""]);
+exports.push([module.i, "\ndiv.row {\r\n    padding-top: 150px;\n}\ndiv.card {\r\n    border-radius: 10px;\n}\ndiv.card-header {\r\n    border-bottom-color: #f3f2f1;\r\n    border-top-right-radius: 10px;\r\n    border-top-left-radius: 10px;\n}\ndiv.card-body {\r\n    font-size: 15px;\n}\ndiv.card-footer {\r\n    background: none;\r\n    border-top: none;\n}\nspan.module-tag {\r\n    background: #00b3b3;\r\n    border-radius: 10px;\n}\r\n", ""]);
 
 // exports
 
@@ -45690,7 +45693,7 @@ var render = function() {
               "form",
               {
                 ref: "form",
-                staticClass: "signup",
+                staticClass: "signup pb-3",
                 attrs: { method: "POST", action: _vm.form_action }
               },
               [
@@ -46268,69 +46271,73 @@ var render = function() {
                   ])
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "card-footer mt-3" }, [
-                  _vm.currentPage != 1
-                    ? _c(
-                        "a",
-                        {
-                          staticClass:
-                            "original-btn welcome-btn welcome-btn-1 float-left",
-                          staticStyle: { "text-decoration": "none" },
-                          on: {
-                            click: function($event) {
-                              return _vm.previousPage()
+                _c("div", { staticClass: "card-footer mt-3 pb-0" }, [
+                  _c("div", { staticClass: "row py-0" }, [
+                    _vm.currentPage != 1
+                      ? _c(
+                          "a",
+                          {
+                            staticClass:
+                              "original-btn welcome-btn welcome-btn-1 mr-auto",
+                            staticStyle: { "text-decoration": "none" },
+                            on: {
+                              click: function($event) {
+                                return _vm.previousPage()
+                              }
                             }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            Previous\n                        "
-                          )
-                        ]
-                      )
-                    : _vm._e(),
+                          },
+                          [
+                            _vm._v(
+                              "\r\n                                Previous\r\n                            "
+                            )
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.currentPage != 3
+                      ? _c(
+                          "a",
+                          {
+                            staticClass:
+                              "original-btn welcome-btn welcome-btn-1 ml-auto",
+                            staticStyle: { "text-decoration": "none" },
+                            on: {
+                              click: function($event) {
+                                return _vm.nextPage()
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\r\n                                Next\r\n                            "
+                            )
+                          ]
+                        )
+                      : _vm._e(),
+                    _vm._v(" "),
+                    _vm.currentPage == 3
+                      ? _c(
+                          "a",
+                          {
+                            staticClass:
+                              "original-btn welcome-btn welcome-btn-2 ml-auto",
+                            staticStyle: { "text-decoration": "none" },
+                            on: {
+                              click: function($event) {
+                                return _vm.validateAll()
+                              }
+                            }
+                          },
+                          [
+                            _vm._v(
+                              "\r\n                                Signup\r\n                            "
+                            )
+                          ]
+                        )
+                      : _vm._e()
+                  ]),
                   _vm._v(" "),
-                  _vm.currentPage != 3
-                    ? _c(
-                        "a",
-                        {
-                          staticClass:
-                            "original-btn welcome-btn welcome-btn-1 float-right",
-                          staticStyle: { "text-decoration": "none" },
-                          on: {
-                            click: function($event) {
-                              return _vm.nextPage()
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            Next\n                        "
-                          )
-                        ]
-                      )
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm.currentPage == 3
-                    ? _c(
-                        "a",
-                        {
-                          staticClass:
-                            "original-btn welcome-btn welcome-btn-2 float-right",
-                          staticStyle: { "text-decoration": "none" },
-                          on: {
-                            click: function($event) {
-                              return _vm.validateAll()
-                            }
-                          }
-                        },
-                        [
-                          _vm._v(
-                            "\n                            Signup\n                        "
-                          )
-                        ]
-                      )
-                    : _vm._e()
+                  _vm._m(3)
                 ])
               ]
             )
@@ -46371,6 +46378,26 @@ var staticRenderFns = [
         [_vm._v("@")]
       )
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        attrs: {
+          "data-toggle": "tooltip",
+          "data-placement": "right",
+          title: "Please email us at OrbitalMingle@gmail.com for an account!"
+        }
+      },
+      [
+        _c("small", { staticClass: "text-teal font-weight-bold" }, [
+          _vm._v("Register as mentor?")
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -62241,8 +62268,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /home/vagrant/code/Mingle/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /home/vagrant/code/Mingle/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Rickie\Laravel\code\Mingle\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Rickie\Laravel\code\Mingle\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -7,7 +7,7 @@
                 <div class="card-header signup-card-header">
                     <h3 class="text-left card-title mb-1 font-weight-bold">Create your mingle account</h3>
                 </div>
-                <form method="POST" class="signup" :action="form_action" ref="form">
+                <form method="POST" class="signup pb-3" :action="form_action" ref="form">
                     <input
                         type="hidden"
                         name="_token"
@@ -160,31 +160,34 @@
                         </div>
                     </div>
 
-                    <div class="card-footer mt-3">
-                        <a
-                            class="original-btn welcome-btn welcome-btn-1 float-left"
-                            v-if="currentPage != 1"
-                            @click="previousPage()"
-                            style="text-decoration:none;"
-                        >
-                            Previous
-                        </a>
-                        <a
-                            class="original-btn welcome-btn welcome-btn-1 float-right"
-                            v-if="currentPage != 3"
-                            @click="nextPage()"
-                            style="text-decoration:none;"
-                        >
-                            Next
-                        </a>
-                        <a
-                            class="original-btn welcome-btn welcome-btn-2 float-right"
-                            v-if="currentPage == 3"
-                            @click="validateAll()"
-                            style="text-decoration:none;"
-                        >
-                            Signup
-                        </a>
+                    <div class="card-footer mt-3 pb-0">
+                        <div class="row py-0">
+                            <a
+                                class="original-btn welcome-btn welcome-btn-1 mr-auto"
+                                v-if="currentPage != 1"
+                                @click="previousPage()"
+                                style="text-decoration:none;"
+                            >
+                                Previous
+                            </a>
+                            <a
+                                class="original-btn welcome-btn welcome-btn-1 ml-auto"
+                                v-if="currentPage != 3"
+                                @click="nextPage()"
+                                style="text-decoration:none;"
+                            >
+                                Next
+                            </a>
+                            <a
+                                class="original-btn welcome-btn welcome-btn-2 ml-auto"
+                                v-if="currentPage == 3"
+                                @click="validateAll()"
+                                style="text-decoration:none;"
+                            >
+                                Signup
+                            </a>
+                        </div>
+                        <a data-toggle="tooltip" data-placement="right" title="Please email us at OrbitalMingle@gmail.com for an account!"><small class="text-teal font-weight-bold">Register as mentor?</small></a>
                     </div>
                 </form>
             </div>

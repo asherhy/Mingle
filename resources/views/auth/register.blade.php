@@ -15,3 +15,13 @@
     :modules="{{ json_encode($modules->pluck('code_title')->all()) }}" 
 />
 @endsection
+
+@section('js')
+
+<script>
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
+
+@endsection

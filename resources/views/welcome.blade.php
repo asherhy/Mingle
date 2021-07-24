@@ -48,7 +48,13 @@
                 <h1 class="text-muted">Some Information<br> About Us...</h1>
             </div>
             <div class="d-flex justify-content-center">
-                <h3 class="text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</h3>
+                <h3 class="text-muted">
+                    As of March 2020, the world officially became pandemic-struck and it became difficult<br>
+                    for people to connect with each other. As students who began their university lives in 2020,<br>
+                    we believe our social and academic lives should not be compromised. Hence, we decided to<br>
+                    take Orbital 2021 as a chance to develop a reactive web application that would help students<br>
+                    connect with each other and create mutually beneficial relationships that last.
+                </h3>
             </div>
             <div class="d-flex picture justify-content-center">
                 <img class="img img-thumbnail"
@@ -66,7 +72,11 @@
                 <h1 class="text-light">Having trouble or have any<br> questions about the features? </h1>
             </div>
             <div class="d-flex justify-content-center">
-                <h3 class="text-light">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.h3>
+                <h3 class="text-light">
+                    Drop us an email at OrbitalMingle@gmail.com with your questions and we'll try to reach<br>
+                    out as soon as possible! &#128512;<br>
+                    Alternatively, you can check out our user guide on <a href="https://github.com/asherhy/Mingle">github</a>
+                </h3>
             </div>
             <div class="d-flex picture justify-content-center">
                 <img class="img img-thumbnail"

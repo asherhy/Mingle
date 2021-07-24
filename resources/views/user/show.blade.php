@@ -129,8 +129,7 @@
         <div class="profile-header border-sharp card col-12 shadow-sm px-0">
             <div class="card-body col-12 d-inline-flex bg-light px-5">
                 <div class="col-auto pr-4">
-                    <img class="profile-page-img darken-img-hover" data-toggle="modal" data-target="#editProfilePhoto" src="{{ asset('storage/avatars/'.Auth::user()->avatar)}}" 
-                        data-toggle="tooltip" data-placement="top" title="Click to change profile picture">
+                    <span data-toggle="tooltip" data-placement="right" title="Click to change profile picture"><img class="profile-page-img darken-img-hover" data-toggle="modal" data-target="#editProfilePhoto" src="{{ asset('storage/avatars/'.Auth::user()->avatar)}}"></span>
                 </div>
                 <div class="col my-auto pl-0">
                     <div>
@@ -217,5 +216,15 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('js')
+
+<script>
+    $(document).ready(function() {
+        $('[data-toggle="tooltip"]').tooltip();
+    });
+</script>
 
 @endsection
