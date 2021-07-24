@@ -61,10 +61,10 @@
                             <div class="col-md-8 my-auto">
                                 <div class="btn-group btn-group-toggle" data-toggle="buttons">
                                     <label for="available" class="btn btn-outline-success active btn-square">
-                                      <input type="radio" name="status" id="available" value="1" autocomplete="off" {{Auth::user()->status == 'Available' ? 'checked' : ''}}> Available
+                                      <input type="radio" name="status" id="available" value="1" autocomplete="off" {{ Auth::user()->status == "Available" ? "checked" : '' }}> Available
                                     </label>
                                     <label for="unavailable" class="btn btn-outline-danger btn-square">
-                                      <input type="radio" name="status" id="unavailable" value="0" autocomplete="off" {{Auth::user()->status == 'Unavailable' ? 'checked' : ''}}> Unavailable
+                                      <input type="radio" name="status" id="unavailable" value="0" autocomplete="off" {{ Auth::user()->status == "Unavailable" ? "checked" : '' }}> Unavailable
                                     </label>
                                 </div>
                             </div>
@@ -139,14 +139,6 @@
                     </button>
                     <!-- Job Title/Qualification -->
                     <p class="text-muted d-block mb-0">{{ Auth::user()->position }}</p>
-                    <!-- Major -->
-                    @if( Auth::user()->majors->first() != null )
-                        @foreach(Auth::user()->majors as $m)
-                            <p class="text-muted d-block mb-0">{{ $m->name }}</p>
-                        @endforeach
-                    @else
-                        <p class="text-muted d-block mb-0">-</p>
-                    @endif
                     @if(Auth::user()->status == 'Available')
                         <span class="badge badge-success p-1" style="border-radius:2px;">Available</span>
                     @else
@@ -190,7 +182,7 @@
                                 <p class="text-dark mb-0 pb-0 pl-4">{{ $m->name }}</p>
                             @endforeach
                         @else
-                            <p class="card-text text-muted">-</p>
+                        <p class="text-dark mb-0 pb-0 pl-4">-</p>
                         @endif
                     </li>
                 </ul>
