@@ -6789,7 +6789,8 @@ __webpack_require__.r(__webpack_exports__);
       this.currentPage -= 1;
     },
     isNusEmail: function isNusEmail(email) {
-      return email.includes('u.nus.edu');
+      var address = email.substring(email.length - 10);
+      return address == '@u.nus.edu';
     },
     isEmailUsed: function isEmailUsed(email) {
       var i;
