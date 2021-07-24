@@ -96,7 +96,7 @@
                                     <div class="col-auto">
                                         <img
                                             :src="
-                                                '../../../images/avatars/' +
+                                                '../storage/avatars/' +
                                                     request.m.avatar
                                             "
                                             style="width:50px; height:50px; border-radius:50%;"
@@ -279,26 +279,29 @@ export default {
             } else if (this.status == "accepted") {
                 return this.requests.filter(
                     request =>
-                        request.status == "Accepted" && (
-                            request.title.toUpperCase().includes(query) ||
-                            request.module.code_title.toUpperCase().includes(query)
-                        )
+                        request.status == "Accepted" &&
+                        (request.title.toUpperCase().includes(query) ||
+                            request.module.code_title
+                                .toUpperCase()
+                                .includes(query))
                 );
             } else if (this.status == "pending") {
                 return this.requests.filter(
                     request =>
-                        request.status == "Pending" && (
-                            request.title.toUpperCase().includes(query) ||
-                            request.module.code_title.toUpperCase().includes(query)
-                        )
+                        request.status == "Pending" &&
+                        (request.title.toUpperCase().includes(query) ||
+                            request.module.code_title
+                                .toUpperCase()
+                                .includes(query))
                 );
             } else if (this.status == "rejected") {
                 return this.requests.filter(
                     request =>
-                        request.status == "Rejected" && (
-                            request.title.toUpperCase().includes(query) ||
-                            request.module.code_title.toUpperCase().includes(query)
-                        )
+                        request.status == "Rejected" &&
+                        (request.title.toUpperCase().includes(query) ||
+                            request.module.code_title
+                                .toUpperCase()
+                                .includes(query))
                 );
             } else {
                 return [];

@@ -38,7 +38,12 @@ class UserController extends Controller
           $majors = [];
         }
         //dd($majors);
-        return view('user.show', compact('majors', 'modules'));
+        if(Auth::user()->isStudent()){
+          return view('user.show', compact('majors', 'modules'));
+        } else if (Auth::user()->isMentor()){
+          return view('mentor.profile', compact('majors', 'modules'));
+        }
+        
     }
 
     /**
@@ -90,16 +95,19 @@ class UserController extends Controller
           'matric' => ['required'],
           'gender' => ['required'],
           'name' => ['required'],
-          'telegram' => ['required']
+          'telegram' => ['required'],
         ]);
-        
+
         $user->update([
           'name' => $request->name,
           'telegram' => $request->telegram,
           'gender' => $request->gender,
           'matric_year' => $request->matric,
-          'detail' => $request->intro
+          'detail' => $request->intro,
+          'status' => ($request->status == 1 ? 'Available' : 'Unavailable'),
+          'position' => $request->position
         ]);
+        
         $user->majors()->detach();
         $user->modules()->detach();
         foreach($request->majors as $major) {

@@ -4,27 +4,53 @@
             <div class="card border-sharp mail-card">
                 <div class="card border-sharp mb-0 px-0">
                     <div class="card-header  bg-teal p-2 pl-3">
-                        <h3 class="text-white text-left font-weight-bold">Inbox</h3>
+                        <h3 class="text-white text-left font-weight-bold">
+                            Inbox
+                        </h3>
                     </div>
                     <div class="card-body py-2">
                         <ul class="nav tabs" id="groupsTab" role="tablist">
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link under px-0 mx-4 active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">All</a>
+                                <a
+                                    class="nav-link under px-0 mx-4 active"
+                                    id="all-tab"
+                                    data-toggle="tab"
+                                    href="#all"
+                                    role="tab"
+                                    aria-controls="all"
+                                    aria-selected="true"
+                                    >All</a
+                                >
                             </li>
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link under px-0 mx-4" id="pending-tab" data-toggle="tab" href="#pending" role="tab" aria-controls="pending" aria-selected="true">Pending</a>
+                                <a
+                                    class="nav-link under px-0 mx-4"
+                                    id="pending-tab"
+                                    data-toggle="tab"
+                                    href="#pending"
+                                    role="tab"
+                                    aria-controls="pending"
+                                    aria-selected="true"
+                                    >Pending</a
+                                >
                             </li>
                         </ul>
                     </div>
                 </div>
                 <div class="tab-content mail-card-body" id="tabcontent">
-                    <div class="tab-pane fade show active" id="all" role="tabpanel">
+                    <div
+                        class="tab-pane fade show active"
+                        id="all"
+                        role="tabpanel"
+                    >
                         <ul class="list-group">
                             <li
                                 class="list-group-item border-sharp mail-item pr-0"
                                 v-for="request in requests"
                                 :key="request.id"
-                                :class="{ 'bg-light': request == currentRequest }"
+                                :class="{
+                                    'bg-light': request == currentRequest
+                                }"
                             >
                                 <a
                                     class="card-text text-decoration-none text-dark stretched-link showRequest"
@@ -38,23 +64,35 @@
                                         <div class="col col-auto pl-0">
                                             <img
                                                 :src="
-                                                    '../../../images/avatars/' +
+                                                    '../storage/avatars/' +
                                                         request.author.avatar
                                                 "
                                                 style="width:50px; height:50px; border-radius:50%;"
                                             />
                                         </div>
-                                        <div class="col col-6 col-md-5 col-lg-4 col-xl-5 my-auto pr-0 pl-0">
-                                            <h5 class="card-subtitle text-dark text-left pt-2 mb-1 overflow">
+                                        <div
+                                            class="col col-6 col-md-5 col-lg-4 col-xl-5 my-auto pr-0 pl-0"
+                                        >
+                                            <h5
+                                                class="card-subtitle text-dark text-left pt-2 mb-1 overflow"
+                                            >
                                                 {{ request.author.name }}
                                             </h5>
-                                            <p class="text-dark mb-0 overflow">{{ request.title }}</p>
+                                            <p class="text-dark mb-0 overflow">
+                                                {{ request.title }}
+                                            </p>
                                             <span
-                                                class="badge" 
+                                                class="badge"
                                                 :class="{
-                                                    'badge-secondary': request.status == 'Pending',
-                                                    'badge-success': request.status == 'Accepted',
-                                                    'badge-danger': request.status == 'Rejected'
+                                                    'badge-secondary':
+                                                        request.status ==
+                                                        'Pending',
+                                                    'badge-success':
+                                                        request.status ==
+                                                        'Accepted',
+                                                    'badge-danger':
+                                                        request.status ==
+                                                        'Rejected'
                                                 }"
                                             >
                                                 {{ request.status }}
@@ -62,7 +100,13 @@
                                             <!-- <p class="text-muted mb-0">Module: {{ request.module.code }}</p> -->
                                         </div>
                                         <div class="col col-auto pr-0">
-                                            <p>{{ getDateWithoutTime(request.created_at) }}</p>
+                                            <p>
+                                                {{
+                                                    getDateWithoutTime(
+                                                        request.created_at
+                                                    )
+                                                }}
+                                            </p>
                                         </div>
                                     </div>
                                 </a>
@@ -75,7 +119,9 @@
                                 class="list-group-item border-sharp mail-item pr-0"
                                 v-for="request in pendingRequests"
                                 :key="request.id"
-                                :class="{ 'bg-light': request == currentRequest }"
+                                :class="{
+                                    'bg-light': request == currentRequest
+                                }"
                             >
                                 <a
                                     class="card-text text-decoration-none text-dark stretched-link showRequest"
@@ -89,23 +135,35 @@
                                         <div class="col col-auto pl-0">
                                             <img
                                                 :src="
-                                                    '../../../images/avatars/' +
+                                                    '../storage/avatars/' +
                                                         request.author.avatar
                                                 "
                                                 style="width:50px; height:50px; border-radius:50%;"
                                             />
                                         </div>
-                                        <div class="col col-6 col-md-5 col-lg-4 col-xl-5 my-auto pr-0 pl-0">
-                                            <h5 class="card-subtitle text-dark text-left pt-2 mb-1 overflow">
+                                        <div
+                                            class="col col-6 col-md-5 col-lg-4 col-xl-5 my-auto pr-0 pl-0"
+                                        >
+                                            <h5
+                                                class="card-subtitle text-dark text-left pt-2 mb-1 overflow"
+                                            >
                                                 {{ request.author.name }}
                                             </h5>
-                                            <p class="text-dark mb-0 overflow">{{ request.title }}</p>
+                                            <p class="text-dark mb-0 overflow">
+                                                {{ request.title }}
+                                            </p>
                                             <span
-                                                class="badge" 
+                                                class="badge"
                                                 :class="{
-                                                    'badge-secondary': request.status == 'Pending',
-                                                    'badge-success': request.status == 'Accepted',
-                                                    'badge-danger': request.status == 'Rejected'
+                                                    'badge-secondary':
+                                                        request.status ==
+                                                        'Pending',
+                                                    'badge-success':
+                                                        request.status ==
+                                                        'Accepted',
+                                                    'badge-danger':
+                                                        request.status ==
+                                                        'Rejected'
                                                 }"
                                             >
                                                 {{ request.status }}
@@ -113,7 +171,13 @@
                                             <!-- <p class="text-muted mb-0">Module: {{ request.module.code }}</p> -->
                                         </div>
                                         <div class="col col-auto pr-0">
-                                            <p>{{ getDateWithoutTime(request.created_at) }}</p>
+                                            <p>
+                                                {{
+                                                    getDateWithoutTime(
+                                                        request.created_at
+                                                    )
+                                                }}
+                                            </p>
                                         </div>
                                     </div>
                                 </a>
@@ -136,12 +200,13 @@
                         </button>
                         <h2 class="card-title text-dark text-left">
                             {{ currentRequest.title }}
-                        </h2><hr>
+                        </h2>
+                        <hr />
                         <div class="row py-1">
                             <div class="col-auto my-auto">
                                 <img
                                     :src="
-                                        '../../../images/avatars/' +
+                                        '../storage/avatars/' +
                                             currentRequest.author.avatar
                                     "
                                     style="width:60px; height:60px; border-radius:50%;"
@@ -151,7 +216,9 @@
                                 <h4 class="text-dark text-left pt-2 mb-1">
                                     Student: {{ currentRequest.author.name }}
                                 </h4>
-                                <p class="text-muted mb-0">{{ getDate(currentRequest.created_at) }}</p>
+                                <p class="text-muted mb-0">
+                                    {{ getDate(currentRequest.created_at) }}
+                                </p>
                             </div>
                         </div>
                         <!-- I don't think need to put gender, matric year or major -->
@@ -168,7 +235,7 @@
                     </div>
                     <div class="card-body pt-2 mail-card-body">
                         <div class="mb-3">
-                            <h5 class="d-inline">Module Code: </h5>
+                            <h5 class="d-inline">Module Code:</h5>
                             <span class="module-tag text-white px-2 py-1">{{
                                 currentRequest.modules.code
                             }}</span>
@@ -178,7 +245,6 @@
                         </div>
                     </div>
                     <div class="card-footer">
-                        
                         <div class="row p-0">
                             <div
                                 class="ml-auto mr-4 d-inline-flex"
@@ -297,8 +363,8 @@ export default {
             var pReqs = [];
             var i;
             for (i = 0; i < this.requests.length; i++) {
-                if (this.requests[i].status == 'Pending') {
-                    pReqs.push(this.requests[i])
+                if (this.requests[i].status == "Pending") {
+                    pReqs.push(this.requests[i]);
                 }
             }
             return pReqs;

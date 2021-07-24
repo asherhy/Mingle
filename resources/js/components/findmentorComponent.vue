@@ -61,8 +61,12 @@
                                         <option value="all" selected
                                             >All</option
                                         >
-                                        <option value="available">Available</option>
-                                        <option value="unavailable">Unavailable</option>
+                                        <option value="available"
+                                            >Available</option
+                                        >
+                                        <option value="unavailable"
+                                            >Unavailable</option
+                                        >
                                     </select>
                                 </div>
                             </div>
@@ -97,7 +101,7 @@
                                     <div class="col-auto">
                                         <img
                                             :src="
-                                                '../../../images/avatars/' +
+                                                '../storage/avatars/' +
                                                     mentor.avatar
                                             "
                                             style="width:50px; height:50px; border-radius:50%;"
@@ -116,8 +120,12 @@
                                                 <span
                                                     class="badge text-white text-right"
                                                     :class="{
-                                                        'badge-success': mentor.status == 'Available',
-                                                        'badge-danger': mentor.status == 'Unavailable'
+                                                        'badge-success':
+                                                            mentor.status ==
+                                                            'Available',
+                                                        'badge-danger':
+                                                            mentor.status ==
+                                                            'Unavailable'
                                                     }"
                                                 >
                                                     {{ mentor.status }}
@@ -261,14 +269,12 @@ export default {
             this.module = module;
         },
         clearModule() {
-            this.module = 'none';
+            this.module = "none";
         },
         hasModule(mentor) {
             var i = 0;
             for (i; i < mentor.modules.length; i++) {
-                if (
-                    mentor.modules[i].id == this.module
-                ) {
+                if (mentor.modules[i].id == this.module) {
                     return true;
                 }
             }
@@ -285,7 +291,7 @@ export default {
                             mentor.name.toUpperCase().includes(query) &&
                             this.hasModule(mentor)
                     );
-                } else if (this.availability == 'available') {
+                } else if (this.availability == "available") {
                     return this.mentors.filter(
                         mentor =>
                             mentor.status == "Available" &&
@@ -305,7 +311,7 @@ export default {
                     return this.mentors.filter(mentor =>
                         mentor.name.toUpperCase().includes(query)
                     );
-                } else if (this.availability == 'available') {
+                } else if (this.availability == "available") {
                     return this.mentors.filter(
                         mentor =>
                             mentor.status == "Available" &&

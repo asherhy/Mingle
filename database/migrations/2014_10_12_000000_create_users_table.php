@@ -22,7 +22,8 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('telegram')->nullable();
             $table->string('matric_year')->nullable();
-            $table->enum('status', ['Available', 'Busy'])->nullable();  
+            $table->enum('status', ['Available', 'Unavailable'])->default('Unavailable');  
+            $table->string('position')->nullable();
             $table->text('detail')->nullable();
             $table->string('gender')->nullable();
             $table->rememberToken();

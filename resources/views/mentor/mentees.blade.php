@@ -36,7 +36,7 @@
                                     <div class="card border-sharp shadow-sm col-5 my-3">
                                         <div class="card-body d-inline-flex">
                                             <div class="col-auto">
-                                                <img src="/images/avatars/default-dp.png" style="width:60px; height:60px; border-radius:50%">
+                                                <img src="{{ asset('storage/avatars/'.$mentee->avatar)}}" style="width:60px; height:60px; border-radius:50%">
                                             </div>
                                             <div class="col my-auto">
                                                 <h5>{{$mentee->name}}</h5>

@@ -7114,6 +7114,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -7165,7 +7173,7 @@ __webpack_require__.r(__webpack_exports__);
       this.module = module;
     },
     clearModule: function clearModule() {
-      this.module = 'none';
+      this.module = "none";
     },
     hasModule: function hasModule(mentor) {
       var i = 0;
@@ -7190,7 +7198,7 @@ __webpack_require__.r(__webpack_exports__);
           return this.mentors.filter(function (mentor) {
             return mentor.name.toUpperCase().includes(query) && _this.hasModule(mentor);
           });
-        } else if (this.availability == 'available') {
+        } else if (this.availability == "available") {
           return this.mentors.filter(function (mentor) {
             return mentor.status == "Available" && mentor.name.toUpperCase().includes(query) && _this.hasModule(mentor);
           });
@@ -7204,7 +7212,7 @@ __webpack_require__.r(__webpack_exports__);
           return this.mentors.filter(function (mentor) {
             return mentor.name.toUpperCase().includes(query);
           });
-        } else if (this.availability == 'available') {
+        } else if (this.availability == "available") {
           return this.mentors.filter(function (mentor) {
             return mentor.status == "Available" && mentor.name.toUpperCase().includes(query);
           });
@@ -8410,6 +8418,72 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -8458,7 +8532,7 @@ __webpack_require__.r(__webpack_exports__);
       var i;
 
       for (i = 0; i < this.requests.length; i++) {
-        if (this.requests[i].status == 'Pending') {
+        if (this.requests[i].status == "Pending") {
           pReqs.push(this.requests[i]);
         }
       }
@@ -46498,9 +46572,7 @@ var render = function() {
                                       "border-radius": "50%"
                                     },
                                     attrs: {
-                                      src:
-                                        "../../../images/avatars/" +
-                                        mentor.avatar
+                                      src: "../storage/avatars/" + mentor.avatar
                                     }
                                   })
                                 ]),
@@ -46964,8 +47036,7 @@ var render = function() {
                                     },
                                     attrs: {
                                       src:
-                                        "../../../images/avatars/" +
-                                        request.m.avatar
+                                        "../storage/avatars/" + request.m.avatar
                                     }
                                   })
                                 ]),
@@ -48270,7 +48341,9 @@ var render = function() {
                         key: request.id,
                         staticClass:
                           "list-group-item border-sharp mail-item pr-0",
-                        class: { "bg-light": request == _vm.currentRequest }
+                        class: {
+                          "bg-light": request == _vm.currentRequest
+                        }
                       },
                       [
                         _c(
@@ -48301,7 +48374,7 @@ var render = function() {
                                   },
                                   attrs: {
                                     src:
-                                      "../../../images/avatars/" +
+                                      "../storage/avatars/" +
                                       request.author.avatar
                                   }
                                 })
@@ -48332,7 +48405,13 @@ var render = function() {
                                   _c(
                                     "p",
                                     { staticClass: "text-dark mb-0 overflow" },
-                                    [_vm._v(_vm._s(request.title))]
+                                    [
+                                      _vm._v(
+                                        "\n                                            " +
+                                          _vm._s(request.title) +
+                                          "\n                                        "
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -48362,9 +48441,13 @@ var render = function() {
                               _c("div", { staticClass: "col col-auto pr-0" }, [
                                 _c("p", [
                                   _vm._v(
-                                    _vm._s(
-                                      _vm.getDateWithoutTime(request.created_at)
-                                    )
+                                    "\n                                            " +
+                                      _vm._s(
+                                        _vm.getDateWithoutTime(
+                                          request.created_at
+                                        )
+                                      ) +
+                                      "\n                                        "
                                   )
                                 ])
                               ])
@@ -48396,7 +48479,9 @@ var render = function() {
                         key: request.id,
                         staticClass:
                           "list-group-item border-sharp mail-item pr-0",
-                        class: { "bg-light": request == _vm.currentRequest }
+                        class: {
+                          "bg-light": request == _vm.currentRequest
+                        }
                       },
                       [
                         _c(
@@ -48427,7 +48512,7 @@ var render = function() {
                                   },
                                   attrs: {
                                     src:
-                                      "../../../images/avatars/" +
+                                      "../storage/avatars/" +
                                       request.author.avatar
                                   }
                                 })
@@ -48458,7 +48543,13 @@ var render = function() {
                                   _c(
                                     "p",
                                     { staticClass: "text-dark mb-0 overflow" },
-                                    [_vm._v(_vm._s(request.title))]
+                                    [
+                                      _vm._v(
+                                        "\n                                            " +
+                                          _vm._s(request.title) +
+                                          "\n                                        "
+                                      )
+                                    ]
                                   ),
                                   _vm._v(" "),
                                   _c(
@@ -48488,9 +48579,13 @@ var render = function() {
                               _c("div", { staticClass: "col col-auto pr-0" }, [
                                 _c("p", [
                                   _vm._v(
-                                    _vm._s(
-                                      _vm.getDateWithoutTime(request.created_at)
-                                    )
+                                    "\n                                            " +
+                                      _vm._s(
+                                        _vm.getDateWithoutTime(
+                                          request.created_at
+                                        )
+                                      ) +
+                                      "\n                                        "
                                   )
                                 ])
                               ])
@@ -48549,6 +48644,7 @@ var render = function() {
                         )
                       ]
                     ),
+                    _vm._v(" "),
                     _c("hr"),
                     _vm._v(" "),
                     _c("div", { staticClass: "row py-1" }, [
@@ -48561,7 +48657,7 @@ var render = function() {
                           },
                           attrs: {
                             src:
-                              "../../../images/avatars/" +
+                              "../storage/avatars/" +
                               _vm.currentRequest.author.avatar
                           }
                         })
@@ -48582,7 +48678,11 @@ var render = function() {
                         _vm._v(" "),
                         _c("p", { staticClass: "text-muted mb-0" }, [
                           _vm._v(
-                            _vm._s(_vm.getDate(_vm.currentRequest.created_at))
+                            "\n                                " +
+                              _vm._s(
+                                _vm.getDate(_vm.currentRequest.created_at)
+                              ) +
+                              "\n                            "
                           )
                         ])
                       ])
@@ -48593,7 +48693,7 @@ var render = function() {
                 _c("div", { staticClass: "card-body pt-2 mail-card-body" }, [
                   _c("div", { staticClass: "mb-3" }, [
                     _c("h5", { staticClass: "d-inline" }, [
-                      _vm._v("Module Code: ")
+                      _vm._v("Module Code:")
                     ]),
                     _vm._v(" "),
                     _c(
@@ -48720,7 +48820,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "card border-sharp mb-0 px-0" }, [
       _c("div", { staticClass: "card-header  bg-teal p-2 pl-3" }, [
         _c("h3", { staticClass: "text-white text-left font-weight-bold" }, [
-          _vm._v("Inbox")
+          _vm._v("\n                        Inbox\n                    ")
         ])
       ]),
       _vm._v(" "),

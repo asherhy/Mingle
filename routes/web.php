@@ -64,3 +64,7 @@ Route::put('/mentors/reject/{mentorRequest}', 'MentorRequestController@reject')-
 
 
 
+
+Route::get('/test', function () {
+    return view('mentor.profile');
+});
