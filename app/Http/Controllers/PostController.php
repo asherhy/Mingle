@@ -28,6 +28,7 @@ class PostController extends Controller
      */
     public function index()
     {
+        $this->authorize('student-priv');
         $posts = Post::where('status', 'Active')->get();
         foreach ($posts as $post) {
             $post->route = route('post.show', $post);
@@ -42,6 +43,7 @@ class PostController extends Controller
      */
     public function myposts()
     {
+        $this->authorize('student-priv');
         $posts = Auth::user()->posts;
         foreach ($posts as $post) {
             $post->route = route('post.show', $post);
@@ -56,6 +58,7 @@ class PostController extends Controller
      */
     public function create()
     {
+        $this->authorize('student-priv');
         $modules = Module::all()->pluck('code_title');
         return view('post.create', compact('modules'));
     }
@@ -68,6 +71,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('student-priv');
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
             'modules' => ['required', 'string'],
@@ -96,6 +100,7 @@ class PostController extends Controller
      */
     public function show(Post $post)
     {
+        $this->authorize('student-priv');
         $modules = Module::all()->pluck('code_title');
         $types = ["Active", "Closed"];
         $postRequests = $post->postRequests->where('post_id', $post->id);
@@ -111,6 +116,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
+        $this->authorize('student-priv');
         if($post->user_id !== Auth::user()->id){
             abort(403);
         }
@@ -141,6 +147,7 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
+        $this->authorize('student-priv');
         if($post->user_id !== Auth::user()->id){
             abort(403);
         }

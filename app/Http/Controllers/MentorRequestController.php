@@ -29,6 +29,7 @@ class MentorRequestController extends Controller
      */
     public function mail()
     {
+        $this->authorize('mentor-priv');
         $requests = Auth::user()->mentorRequestsM;
        foreach ($requests as $request) {
            $request->author = $request->user;
@@ -77,6 +78,7 @@ class MentorRequestController extends Controller
      */
     public function store(Request $request, User $user)
     {
+        $this->authorize('student-priv');
         $mentor = $user;
         $request->validate([
             'title' => ['required', 'string', 'max:255'],
@@ -115,6 +117,7 @@ class MentorRequestController extends Controller
      */
     public function showMentees()
     {
+        $this->authorize('mentor-priv');
         $modules = Module::whereHas('mentorRequests', function($mentorRequest) {
             $mentorRequest->where('status', 'Accepted')->where('mentor_id', Auth::user()->id);
         })->get();
@@ -136,6 +139,7 @@ class MentorRequestController extends Controller
      */
     public function showRequests()
     {
+        $this->authorize('student-priv');
         $mentor_requests = Auth::user()->mentorRequests;
         $modules = Module::all();
         foreach($mentor_requests as $r) {
@@ -155,6 +159,7 @@ class MentorRequestController extends Controller
      */
     public function accept(Request $request, MentorRequest $mentorRequest)
     {
+        $this->authorize('mentor-priv');
         if($mentorRequest->mentor_id !== Auth::user()->id || $mentorRequest->status != 'Pending'){
             abort(403);
         }
@@ -177,6 +182,7 @@ class MentorRequestController extends Controller
      */
     public function reject(Request $request, MentorRequest $mentorRequest)
     {
+        $this->authorize('mentor-priv');
         if($mentorRequest->mentor_id !== Auth::user()->id || $mentorRequest->status != 'Pending'){
             abort(403);
         }
