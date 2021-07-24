@@ -235,7 +235,8 @@ export default {
             this.currentPage -= 1;
         },
         isNusEmail(email) {
-            return email.includes('u.nus.edu');
+            var address = email.substring(email.length - 10);
+            return address == '@u.nus.edu';
         },
         isEmailUsed(email) {
             var i;
