@@ -38,6 +38,7 @@ class ModuleMatchController extends Controller
      */
     public function create()
     {
+        $this->authorize('student-priv');
         $modules = Module::all()->pluck('code_title');
         return view('quickmatch.module.create', compact('modules'));
     }
@@ -50,6 +51,7 @@ class ModuleMatchController extends Controller
      */
     public function store(Request $request)
     {
+        $this->authorize('student-priv');
         if (isset($request->telegram) && count($request->telegram) != $request->members) {
             return redirect()->back()->withErrors("Please key in your friend's telegram");
             //add error message;

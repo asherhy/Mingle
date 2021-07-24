@@ -19,7 +19,7 @@ use App\User;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('welcome');
 
 Auth::routes(['verify' => true]);
 

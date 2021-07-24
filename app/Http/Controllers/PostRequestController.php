@@ -28,6 +28,7 @@ class PostRequestController extends Controller
      */
     public function index()
     {
+        $this->authorize('student-priv');
         $postRequests = Auth::user()->postRequests;
         return view('request.post.index', compact('postRequests'));
     }
@@ -49,6 +50,7 @@ class PostRequestController extends Controller
      */
     public function store(Request $request, Post $post)
     {
+        $this->authorize('student-priv');
         if($post->status == "Closed") {
             return redirect()->back();
             //show some message tht unsuccessful
@@ -105,6 +107,7 @@ class PostRequestController extends Controller
      */
     public function update(Request $request, PostRequest $postRequest)
     {
+        $this->authorize('student-priv');
         if($postRequest->post->user_id !== Auth::user()->id && $postRequest->status ==  "Pending"){
             abort(403);
         }
