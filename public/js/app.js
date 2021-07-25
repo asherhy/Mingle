@@ -6468,9 +6468,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     getDate: function getDate(date) {
       var unalteredDate = new Date(date);
-      var day = unalteredDate.getDay();
+      var day = unalteredDate.getDate();
       day = day.toString().length == 1 ? "0" + day : day;
-      var month = unalteredDate.getMonth();
+      var month = unalteredDate.getMonth() + 1;
       month = month.toString().length == 1 ? "0" + month : month;
       var year = unalteredDate.getFullYear();
       var hours = unalteredDate.getHours();
@@ -7151,9 +7151,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     getDate: function getDate(date) {
       var unalteredDate = new Date(date);
-      var day = unalteredDate.getDay();
+      var day = unalteredDate.getDate();
       day = day.toString().length == 1 ? "0" + day : day;
-      var month = unalteredDate.getMonth();
+      var month = unalteredDate.getMonth() + 1;
       month = month.toString().length == 1 ? "0" + month : month;
       var year = unalteredDate.getFullYear();
       var hours = unalteredDate.getHours();
@@ -7496,9 +7496,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     getDate: function getDate(date) {
       var unalteredDate = new Date(date);
-      var day = unalteredDate.getDay();
+      var day = unalteredDate.getDate();
       day = day.toString().length == 1 ? "0" + day : day;
-      var month = unalteredDate.getMonth();
+      var month = unalteredDate.getMonth() + 1;
       month = month.toString().length == 1 ? "0" + month : month;
       var year = unalteredDate.getFullYear();
       var hours = unalteredDate.getHours();
@@ -7932,9 +7932,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     getDate: function getDate(date) {
       var unalteredDate = new Date(date);
-      var day = unalteredDate.getDay();
+      var day = unalteredDate.getDate();
       day = day.toString().length == 1 ? "0" + day : day;
-      var month = unalteredDate.getMonth();
+      var month = unalteredDate.getMonth() + 1;
       month = month.toString().length == 1 ? "0" + month : month;
       var year = unalteredDate.getFullYear();
       var hours = unalteredDate.getHours();
@@ -8097,16 +8097,16 @@ __webpack_require__.r(__webpack_exports__);
     },
     getDate: function getDate(date) {
       var unalteredDate = new Date(date);
-      var day = unalteredDate.getDay();
-      day = day.toString().length == 1 ? '0' + day : day;
-      var month = unalteredDate.getMonth();
-      month = month.toString().length == 1 ? '0' + month : month;
+      var day = unalteredDate.getDate();
+      day = day.toString().length == 1 ? "0" + day : day;
+      var month = unalteredDate.getMonth() + 1;
+      month = month.toString().length == 1 ? "0" + month : month;
       var year = unalteredDate.getFullYear();
       var hours = unalteredDate.getHours();
-      hours = hours.toString().length == 1 ? '0' + hours : hours;
+      hours = hours.toString().length == 1 ? "0" + hours : hours;
       var minutes = unalteredDate.getMinutes();
-      minutes = minutes.toString().length == 1 ? '0' + minutes : minutes;
-      return hours + ':' + minutes + ' ' + day + '/' + month + '/' + year;
+      minutes = minutes.toString().length == 1 ? "0" + minutes : minutes;
+      return hours + ":" + minutes + " " + day + "/" + month + "/" + year;
     },
     showItem: function showItem(index) {
       if (index < this.currentPage * this.items && index >= this.currentPage * this.items - this.items) {
@@ -8506,22 +8506,22 @@ __webpack_require__.r(__webpack_exports__);
     },
     getDate: function getDate(date) {
       var unalteredDate = new Date(date);
-      var day = unalteredDate.getDay();
+      var day = unalteredDate.getDate();
       day = day.toString().length == 1 ? "0" + day : day;
-      var month = unalteredDate.getMonth();
+      var month = unalteredDate.getMonth() + 1;
       month = month.toString().length == 1 ? "0" + month : month;
       var year = unalteredDate.getFullYear();
       var hours = unalteredDate.getHours();
       hours = hours.toString().length == 1 ? "0" + hours : hours;
       var minutes = unalteredDate.getMinutes();
       minutes = minutes.toString().length == 1 ? "0" + minutes : minutes;
-      return day + "/" + month + "/" + year + " " + hours + ":" + minutes;
+      return hours + ":" + minutes + " " + day + "/" + month + "/" + year;
     },
     getDateWithoutTime: function getDateWithoutTime(date) {
       var unalteredDate = new Date(date);
-      var day = unalteredDate.getDay();
+      var day = unalteredDate.getDate();
       day = day.toString().length == 1 ? "0" + day : day;
-      var month = unalteredDate.getMonth();
+      var month = unalteredDate.getMonth() + 1;
       month = month.toString().length == 1 ? "0" + month : month;
       var year = unalteredDate.getFullYear();
       return day + "/" + month + "/" + year;
