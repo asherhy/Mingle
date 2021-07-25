@@ -125,7 +125,7 @@
                         <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Gender') }}</p>
                         <p class="text-dark mb-0 pb-0 pl-4">{{ $user->gender }}</p>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item bg-light">
                         <i class="fas fa-university fa-lg text-muted d-inline"></i>
                         <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Position') }}</p>
                         <p class="text-dark mb-0 pb-0 pl-4">{{ $user->position ?? "-" }}</p>

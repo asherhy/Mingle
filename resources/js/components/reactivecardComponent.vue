@@ -334,22 +334,22 @@ export default {
         },
         getDate(date) {
             const unalteredDate = new Date(date);
-            var day = unalteredDate.getDay();
+            var day = unalteredDate.getDate();
             day = day.toString().length == 1 ? "0" + day : day;
-            var month = unalteredDate.getMonth();
+            var month = unalteredDate.getMonth() + 1;
             month = month.toString().length == 1 ? "0" + month : month;
             const year = unalteredDate.getFullYear();
             var hours = unalteredDate.getHours();
             hours = hours.toString().length == 1 ? "0" + hours : hours;
             var minutes = unalteredDate.getMinutes();
             minutes = minutes.toString().length == 1 ? "0" + minutes : minutes;
-            return day + "/" + month + "/" + year + " " + hours + ":" + minutes;
+            return hours + ":" + minutes + " " + day + "/" + month + "/" + year;
         },
         getDateWithoutTime(date) {
             const unalteredDate = new Date(date);
-            var day = unalteredDate.getDay();
+            var day = unalteredDate.getDate();
             day = day.toString().length == 1 ? "0" + day : day;
-            var month = unalteredDate.getMonth();
+            var month = unalteredDate.getMonth() + 1;
             month = month.toString().length == 1 ? "0" + month : month;
             const year = unalteredDate.getFullYear();
             return day + "/" + month + "/" + year;

@@ -110,16 +110,16 @@
             },
             getDate(date) {
                 const unalteredDate = new Date(date);
-                var day = unalteredDate.getDay();
-                day = day.toString().length == 1 ? '0' + day : day;
-                var month = unalteredDate.getMonth();
-                month = month.toString().length == 1 ? '0' + month : month;
+                var day = unalteredDate.getDate();
+                day = day.toString().length == 1 ? "0" + day : day;
+                var month = unalteredDate.getMonth() + 1;
+                month = month.toString().length == 1 ? "0" + month : month;
                 const year = unalteredDate.getFullYear();
                 var hours = unalteredDate.getHours();
-                hours = hours.toString().length == 1 ? '0' + hours : hours;
+                hours = hours.toString().length == 1 ? "0" + hours : hours;
                 var minutes = unalteredDate.getMinutes();
-                minutes = minutes.toString().length == 1 ? '0' + minutes : minutes;
-                return hours + ':' + minutes + ' ' + day + '/' + month + '/' + year;
+                minutes = minutes.toString().length == 1 ? "0" + minutes : minutes;
+                return hours + ":" + minutes + " " + day + "/" + month + "/" + year;
             },
             showItem(index) {
                 if (index < this.currentPage * this.items && index >= this.currentPage * this.items - this.items) {

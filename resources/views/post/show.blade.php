@@ -109,7 +109,7 @@
                         </button>
                     </div>
                 @endforeach
-            @endifP
+            @endif
             <div class="card shadow-sm border-sharp">
                 <div class="card-header m-0 pt-2 pb-2" style="background:#fefff;">
                     <div class="row pt-2 pb-2">

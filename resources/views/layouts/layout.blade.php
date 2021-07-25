@@ -5,6 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta name="author" content="Li Ming Gao Rickie and Asher" />
+        <link rel="shortcut icon" href="{{ asset('images/logo.png') }}" >
 
         <link href="{{ asset('css/new-app.css') }}" rel="stylesheet">
         <style>

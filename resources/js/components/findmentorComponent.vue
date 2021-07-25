@@ -241,9 +241,9 @@ export default {
         },
         getDate(date) {
             const unalteredDate = new Date(date);
-            var day = unalteredDate.getDay();
+            var day = unalteredDate.getDate();
             day = day.toString().length == 1 ? "0" + day : day;
-            var month = unalteredDate.getMonth();
+            var month = unalteredDate.getMonth() + 1;
             month = month.toString().length == 1 ? "0" + month : month;
             const year = unalteredDate.getFullYear();
             var hours = unalteredDate.getHours();
