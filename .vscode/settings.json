@@ -1,3 +1,4 @@
 {
-    "appService.deploySubpath": "."
+    "appService.deploySubpath": ".",
+    "appService.defaultWebAppToDeploy": "/subscriptions/90c6c1c1-7a08-4ff4-a8e6-59e469032257/resourceGroups/mingle/providers/Microsoft.Web/sites/mingle"
 }
