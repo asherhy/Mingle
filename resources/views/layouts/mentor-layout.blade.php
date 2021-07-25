@@ -59,7 +59,7 @@
                         <ul class="navbar-nav" style="margin-left:30px;">
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="position:relative; padding-left:50px;" v-pre >
-                                <img src="{{ asset('storage/avatars/'.Auth::user()->avatar)}}" style="width:40px; height:40px; position:absolute; top:0px; left:0px; border-radius:50%">
+                                <img src="{{Auth::user()->avatar}}" style="width:40px; height:40px; position:absolute; top:0px; left:0px; border-radius:50%">
                                     {{ Auth::user()->name }}<i class="fas fa-caret-down pl-2"></i>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

@@ -6447,6 +6447,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -7123,9 +7140,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
@@ -7253,9 +7267,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
 //
 //
 //
@@ -7913,6 +7924,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -8078,15 +8094,121 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
-      search: '',
+      search: "",
       items: 4,
       currentPage: 1
     };
   },
-  props: ['requests', 'modules', 'posts', 'postowners'],
+  props: ["requests", "modules", "posts", "postowners"],
   methods: {
     checkDate: function checkDate(created, updated) {
       if (created == updated) {
@@ -8171,15 +8293,6 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -13117,7 +13230,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.multiselect__option--highlight:after,\r\n.multiselect__option--highlight,\r\n.multiselect__tag-icon,\r\n.multiselect__tag,\r\n.multiselect__tag:after {\r\n    background: #3aafa9;\n}\n.multiselect__tag-icon:hover {\r\n    background: #37a29d;\n}\r\n", ""]);
+exports.push([module.i, "\n.multiselect__option--highlight:after,\n.multiselect__option--highlight,\n.multiselect__tag-icon,\n.multiselect__tag,\n.multiselect__tag:after {\n    background: #3aafa9;\n}\n.multiselect__tag-icon:hover {\n    background: #37a29d;\n}\n", ""]);
 
 // exports
 
@@ -13136,7 +13249,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\ndiv.row {\r\n    padding-top: 150px;\n}\ndiv.card {\r\n    border-radius: 10px;\n}\ndiv.card-header {\r\n    border-bottom-color: #f3f2f1;\r\n    border-top-right-radius: 10px;\r\n    border-top-left-radius: 10px;\n}\ndiv.card-body {\r\n    font-size: 15px;\n}\ndiv.card-footer {\r\n    background: none;\r\n    border-top: none;\n}\nspan.module-tag {\r\n    background: #00b3b3;\r\n    border-radius: 10px;\n}\r\n", ""]);
+exports.push([module.i, "\ndiv.row {\n    padding-top: 150px;\n}\ndiv.card {\n    border-radius: 10px;\n}\ndiv.card-header {\n    border-bottom-color: #f3f2f1;\n    border-top-right-radius: 10px;\n    border-top-left-radius: 10px;\n}\ndiv.card-body {\n    font-size: 15px;\n}\ndiv.card-footer {\n    background: none;\n    border-top: none;\n}\nspan.module-tag {\n    background: #00b3b3;\n    border-radius: 10px;\n}\n", ""]);
 
 // exports
 
@@ -45322,7 +45435,7 @@ var render = function() {
               ? _c("div", [
                   _c("h3", { staticClass: "text-dark text-left d-inline" }, [
                     _vm._v(
-                      'There aren\'t any posts yet. Be the first to create one by clicking on the teal "New Post" button! 😃'
+                      '\n                        There aren\'t any posts yet. Be the first to create\n                        one by clicking on the teal "New Post" button!\n                        😃\n                    '
                     )
                   ])
                 ])
@@ -45370,11 +45483,9 @@ var render = function() {
                                       "border-radius": "50%"
                                     },
                                     attrs: {
-                                      src:
-                                        "../../../storage/avatars/" +
-                                        _vm.users.find(function(user) {
-                                          return user.id == post.user_id
-                                        }).avatar
+                                      src: _vm.users.find(function(user) {
+                                        return user.id == post.user_id
+                                      }).avatar
                                     }
                                   })
                                 ]),
@@ -45406,7 +45517,7 @@ var render = function() {
                                       { staticClass: "text-muted mb-0" },
                                       [
                                         _vm._v(
-                                          "\n                                        Posted by: " +
+                                          "\n                                        Posted by:\n                                        " +
                                             _vm._s(
                                               _vm.users.find(function(user) {
                                                 return user.id == post.user_id
@@ -46297,7 +46408,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\r\n                                Previous\r\n                            "
+                              "\n                                Previous\n                            "
                             )
                           ]
                         )
@@ -46318,7 +46429,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\r\n                                Next\r\n                            "
+                              "\n                                Next\n                            "
                             )
                           ]
                         )
@@ -46339,7 +46450,7 @@ var render = function() {
                           },
                           [
                             _vm._v(
-                              "\r\n                                Signup\r\n                            "
+                              "\n                                Signup\n                            "
                             )
                           ]
                         )
@@ -46608,9 +46719,7 @@ var render = function() {
                                       height: "50px",
                                       "border-radius": "50%"
                                     },
-                                    attrs: {
-                                      src: "../storage/avatars/" + mentor.avatar
-                                    }
+                                    attrs: { src: mentor.avatar }
                                   })
                                 ]),
                                 _vm._v(" "),
@@ -47071,10 +47180,7 @@ var render = function() {
                                       height: "50px",
                                       "border-radius": "50%"
                                     },
-                                    attrs: {
-                                      src:
-                                        "../storage/avatars/" + request.m.avatar
-                                    }
+                                    attrs: { src: request.m.avatar }
                                   })
                                 ]),
                                 _vm._v(" "),
@@ -47593,7 +47699,7 @@ var render = function() {
               ? _c("div", [
                   _c("h3", { staticClass: "text-dark text-left d-inline" }, [
                     _vm._v(
-                      'You haven\'t got any posts yet. Create one by clicking on the teal "New Post" button! 😃'
+                      '\n                        You haven\'t got any posts yet. Create one by\n                        clicking on the teal "New Post" button! 😃\n                    '
                     )
                   ])
                 ])
@@ -47640,11 +47746,7 @@ var render = function() {
                                       height: "50px",
                                       "border-radius": "50%"
                                     },
-                                    attrs: {
-                                      src:
-                                        "../../../images/avatars/" +
-                                        _vm.user.avatar
-                                    }
+                                    attrs: { src: _vm.user.avatar }
                                   })
                                 ]),
                                 _vm._v(" "),
@@ -48016,7 +48118,7 @@ var render = function() {
               ? _c("div", [
                   _c("h3", { staticClass: "text-dark text-left d-inline" }, [
                     _vm._v(
-                      "You haven't got any requests yet. Browse the board to see if anything piques your interest! 😃"
+                      "\n                        You haven't got any requests yet. Browse the board\n                        to see if anything piques your interest! 😃\n                    "
                     )
                   ])
                 ])
@@ -48059,9 +48161,7 @@ var render = function() {
                                       "border-radius": "50%"
                                     },
                                     attrs: {
-                                      src:
-                                        "../../../images/avatars/" +
-                                        _vm.getPostOwner(request).avatar
+                                      src: _vm.getPostOwner(request).avatar
                                     }
                                   })
                                 ]),
@@ -48081,9 +48181,11 @@ var render = function() {
                                       },
                                       [
                                         _vm._v(
-                                          _vm._s(
-                                            _vm.getRequestPost(request).title
-                                          )
+                                          "\n                                        " +
+                                            _vm._s(
+                                              _vm.getRequestPost(request).title
+                                            ) +
+                                            "\n                                    "
                                         )
                                       ]
                                     ),
@@ -48093,10 +48195,11 @@ var render = function() {
                                       { staticClass: "text-muted mb-0" },
                                       [
                                         _vm._v(
-                                          "Posted by: " +
+                                          "\n                                        Posted by:\n                                        " +
                                             _vm._s(
                                               _vm.getPostOwner(request).name
-                                            )
+                                            ) +
+                                            "\n                                    "
                                         )
                                       ]
                                     )
@@ -48119,7 +48222,13 @@ var render = function() {
                                       "font-size": "12px"
                                     }
                                   },
-                                  [_vm._v(_vm._s(_vm.getModule(request).code))]
+                                  [
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(_vm.getModule(request).code) +
+                                        "\n                                "
+                                    )
+                                  ]
                                 ),
                                 _vm._v(" "),
                                 _c(
@@ -48136,17 +48245,31 @@ var render = function() {
                                         request.status == "Pending"
                                     }
                                   },
-                                  [_vm._v(_vm._s(request.status))]
+                                  [
+                                    _vm._v(
+                                      "\n                                    " +
+                                        _vm._s(request.status) +
+                                        "\n                                "
+                                    )
+                                  ]
                                 ),
                                 _vm._v(" "),
                                 _c(
                                   "h5",
                                   { staticClass: "card-subtitle mb-2" },
-                                  [_vm._v("Request Details: ")]
+                                  [
+                                    _vm._v(
+                                      "\n                                    Request Details:\n                                "
+                                    )
+                                  ]
                                 ),
                                 _vm._v(" "),
                                 _c("p", { staticClass: "card-text pl-3" }, [
-                                  _vm._v(_vm._s(request.detail))
+                                  _vm._v(
+                                    "\n                                    " +
+                                      _vm._s(request.detail) +
+                                      "\n                                "
+                                  )
                                 ])
                               ]
                             ),
@@ -48160,8 +48283,9 @@ var render = function() {
                                 },
                                 [
                                   _vm._v(
-                                    "Requested on " +
-                                      _vm._s(_vm.getDate(request.created_at))
+                                    "\n                                    Requested on\n                                    " +
+                                      _vm._s(_vm.getDate(request.created_at)) +
+                                      "\n                                "
                                   )
                                 ]
                               )
@@ -48175,18 +48299,27 @@ var render = function() {
                 )
               : _c("div", [
                   _c("h3", { staticClass: "text-dark text-left d-inline" }, [
-                    _vm._v("We've got nothing for ")
+                    _vm._v(
+                      "\n                        We've got nothing for\n                    "
+                    )
                   ]),
                   _vm._v(" "),
                   _c(
                     "h3",
                     { staticClass: "text-dark text-left d-inline font-italic" },
-                    [_vm._v(_vm._s('"' + this.search + '"'))]
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s('"' + this.search + '"') +
+                          "\n                    "
+                      )
+                    ]
                   ),
                   _vm._v(" "),
                   _c("h3", { staticClass: "text-dark text-left d-inline" }, [
-                    _vm._v(" ¯\\_(ツ)_/¯")
+                    _vm._v("¯\\_(ツ)_/¯")
                   ]),
+                  _vm._v(" "),
                   _c("hr")
                 ]),
             _vm._v(" "),
@@ -48236,7 +48369,9 @@ var render = function() {
                             {
                               key: index,
                               staticClass: "page-item",
-                              class: { active: _vm.currentPage == index + 1 }
+                              class: {
+                                active: _vm.currentPage == index + 1
+                              }
                             },
                             [
                               _c(
@@ -48249,7 +48384,13 @@ var render = function() {
                                     }
                                   }
                                 },
-                                [_vm._v(_vm._s(index + 1))]
+                                [
+                                  _vm._v(
+                                    "\n                                    " +
+                                      _vm._s(index + 1) +
+                                      "\n                                "
+                                  )
+                                ]
                               )
                             ]
                           )
@@ -48409,11 +48550,7 @@ var render = function() {
                                     height: "50px",
                                     "border-radius": "50%"
                                   },
-                                  attrs: {
-                                    src:
-                                      "../storage/avatars/" +
-                                      request.author.avatar
-                                  }
+                                  attrs: { src: request.author.avatar }
                                 })
                               ]),
                               _vm._v(" "),
@@ -48547,11 +48684,7 @@ var render = function() {
                                     height: "50px",
                                     "border-radius": "50%"
                                   },
-                                  attrs: {
-                                    src:
-                                      "../storage/avatars/" +
-                                      request.author.avatar
-                                  }
+                                  attrs: { src: request.author.avatar }
                                 })
                               ]),
                               _vm._v(" "),
@@ -48692,11 +48825,7 @@ var render = function() {
                             height: "60px",
                             "border-radius": "50%"
                           },
-                          attrs: {
-                            src:
-                              "../storage/avatars/" +
-                              _vm.currentRequest.author.avatar
-                          }
+                          attrs: { src: _vm.currentRequest.author.avatar }
                         })
                       ]),
                       _vm._v(" "),
@@ -62277,8 +62406,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Rickie\Laravel\code\Mingle\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Rickie\Laravel\code\Mingle\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /home/vagrant/code/Mingle/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /home/vagrant/code/Mingle/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

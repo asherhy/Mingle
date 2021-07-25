@@ -95,10 +95,7 @@
                                 >
                                     <div class="col-auto">
                                         <img
-                                            :src="
-                                                '../storage/avatars/' +
-                                                    request.m.avatar
-                                            "
+                                            :src="request.m.avatar"
                                             style="width:50px; height:50px; border-radius:50%;"
                                         />
                                     </div>

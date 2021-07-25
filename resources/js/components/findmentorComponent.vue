@@ -100,10 +100,7 @@
                                 >
                                     <div class="col-auto">
                                         <img
-                                            :src="
-                                                '../storage/avatars/' +
-                                                    mentor.avatar
-                                            "
+                                            :src="mentor.avatar"
                                             style="width:50px; height:50px; border-radius:50%;"
                                         />
                                     </div>

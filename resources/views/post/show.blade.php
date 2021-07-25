@@ -113,7 +113,7 @@
             <div class="card shadow-sm border-sharp">
                 <div class="card-header m-0 pt-2 pb-2" style="background:#fefff;">
                     <div class="row pt-2 pb-2">
-                        <img class="my-auto ml-4" src="/images/avatars/{{ Auth::user()->avatar }}" style="width:60px; height:60px; position:relative; border-radius:50%">
+                        <img class="my-auto ml-4" src="{{ Auth::user()->avatar }}" style="width:60px; height:60px; position:relative; border-radius:50%">
                         <div class="pl-4 my-auto">
                             <div class="row pl-3 p-0">
                                 <h3 class="mb-0 mr-auto">Author: {{ $post->user->name }}</h3>

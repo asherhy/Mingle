@@ -47,14 +47,20 @@
         </div>
         <div class="row p-3">
             <div class="col-12">
-                <div class="card card-body border-sharp shadow-sm sub-card bg-light">
+                <div
+                    class="card card-body border-sharp shadow-sm sub-card bg-light"
+                >
                     <!-- <div v-if="showQuery()">
                         <h3 class="text-dark text-left d-inline">Showing Results for </h3>
                         <h3 class="text-dark text-left d-inline font-italic">{{'"' + this.query.toLowerCase() + '"'}}</h3>
                         <h3 class="text-dark text-left d-inline">:</h3><hr>
                     </div> -->
                     <div v-if="!posts.length">
-                        <h3 class="text-dark text-left d-inline">There aren't any posts yet. Be the first to create one by clicking on the teal "New Post" button! &#128515;</h3>
+                        <h3 class="text-dark text-left d-inline">
+                            There aren't any posts yet. Be the first to create
+                            one by clicking on the teal "New Post" button!
+                            &#128515;
+                        </h3>
                     </div>
                     <div
                         class="row row-cols-1 row-cols-lg-2 py-2"
@@ -77,8 +83,10 @@
                                     <div class="col-auto">
                                         <img
                                             :src="
-                                                '../../../storage/avatars/' +
-                                                    users.find((user) => user.id == post.user_id).avatar
+                                                users.find(
+                                                    user =>
+                                                        user.id == post.user_id
+                                                ).avatar
                                             "
                                             style="width:50px; height:50px; border-radius:50%;"
                                         />
@@ -92,7 +100,13 @@
                                             {{ post.title }}
                                         </h5>
                                         <p class="text-muted mb-0">
-                                            Posted by: {{ users.find((user) => user.id == post.user_id).name }}
+                                            Posted by:
+                                            {{
+                                                users.find(
+                                                    user =>
+                                                        user.id == post.user_id
+                                                ).name
+                                            }}
                                         </p>
                                     </div>
                                 </div>
@@ -142,7 +156,10 @@
                         <h3 class="text-dark text-left d-inline">¯\_(ツ)_/¯</h3>
                         <hr />
                     </div>
-                    <div class="card-footer mt-auto" v-if="filteredPosts.length">
+                    <div
+                        class="card-footer mt-auto"
+                        v-if="filteredPosts.length"
+                    >
                         <!-- <div class="float-left">
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">

@@ -63,10 +63,7 @@
                                     <div class="row py-1 ml-1">
                                         <div class="col col-auto pl-0">
                                             <img
-                                                :src="
-                                                    '../storage/avatars/' +
-                                                        request.author.avatar
-                                                "
+                                                :src="request.author.avatar"
                                                 style="width:50px; height:50px; border-radius:50%;"
                                             />
                                         </div>
@@ -134,10 +131,7 @@
                                     <div class="row py-1 ml-1">
                                         <div class="col col-auto pl-0">
                                             <img
-                                                :src="
-                                                    '../storage/avatars/' +
-                                                        request.author.avatar
-                                                "
+                                                :src="request.author.avatar"
                                                 style="width:50px; height:50px; border-radius:50%;"
                                             />
                                         </div>
@@ -205,10 +199,7 @@
                         <div class="row py-1">
                             <div class="col-auto my-auto">
                                 <img
-                                    :src="
-                                        '../storage/avatars/' +
-                                            currentRequest.author.avatar
-                                    "
+                                    :src="currentRequest.author.avatar"
                                     style="width:60px; height:60px; border-radius:50%;"
                                 />
                             </div>

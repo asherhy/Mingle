@@ -63,7 +63,7 @@
                                         <div class="card border-sharp shadow-sm col-5 my-3">
                                             <div class="card-body d-inline-flex">
                                                 <div class="col-auto">
-                                                    <img src="/images/avatars/{{ $user->avatar }}" style="width:60px; height:60px; border-radius:50%">
+                                                    <img src="{{ $user->avatar }}" style="width:60px; height:60px; border-radius:50%">
                                                 </div>
                                                 <div class="col my-auto">
                                                     <h5>{{ $user->name }}</h5>
@@ -88,7 +88,7 @@
                                     <div class="card border-sharp shadow-sm col-5 my-3">
                                         <div class="card-body d-inline-flex">
                                             <div class="col-auto">
-                                            <img src="/images/avatars/{{ $m->mentor->avatar }}" style="width:60px; height:60px; border-radius:50%">
+                                            <img src="{{ $m->mentor->avatar }}" style="width:60px; height:60px; border-radius:50%">
                                             </div>
                                             <div class="col my-auto">
                                                 <h5>{{ $m->mentor->name }}</h5>

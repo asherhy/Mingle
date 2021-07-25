@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use App\Rules\MatchOldPassword;
 use Illuminate\Auth\Middleware\Authorize;
+use Illuminate\Support\Facades\Storage;
+
 class UserController extends Controller
 {
     /**
@@ -136,10 +138,10 @@ class UserController extends Controller
         $filename = $file->getClientOriginalName();
         $filename = md5($filename);
         $filename = microtime(true).$filename.'.'.$file->getClientOriginalExtension();
-        $request->avatar->storeAs('public/avatars', $filename);
+        $path = $file->storeAs('images', $filename, 'oci');
 
         $user->update([
-          'avatar' => $filename,
+          'avatar' => Storage::disk('oci')->url($path),
         ]);
         return redirect()->back();
     }

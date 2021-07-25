@@ -76,7 +76,7 @@
         <div class="profile-header border-sharp card col-12 shadow-sm px-0">
             <div class="card-body col-12 d-inline-flex px-5 bg-light">
                 <div class="col-auto pr-4">
-                    <img class="profile-page-img" src="{{ asset('storage/avatars/'.$user->avatar)}}">
+                    <img class="profile-page-img" src="{{Auth::user()->avatar}}">
                 </div>
                 <div class="col my-auto pl-0">
                     <div>
