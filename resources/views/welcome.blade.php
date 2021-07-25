@@ -15,7 +15,7 @@
             </div>
         </div>
         <div class="col-md-9 mt-5">
-            <img class="img"
+            <img class="img-fluid"
                     src="{{ asset('images/welcome.vector.png') }}">
         </div>
         
