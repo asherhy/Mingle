@@ -123,8 +123,8 @@ class MentorRequestController extends Controller
         })->get();
         foreach ($modules as $m) {
             $m->mentees = $m->mentorRequests->where('status', 'Accepted')->where('mentor_id', Auth::user()->id);
-            for($i = 0; $i < count($m->mentees); $i++) {
-                $m->mentees[$i] = $m->mentees[$i]->user;
+            foreach ($m->mentees as $key=>$val) {
+                $m->mentees[$key] = $m->mentees[$key]->user;
             }
             $m->mentees = $m->mentees->unique();
         }
