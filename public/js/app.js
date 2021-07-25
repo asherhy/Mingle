@@ -46285,7 +46285,10 @@ var render = function() {
                           {
                             staticClass:
                               "original-btn welcome-btn welcome-btn-1 mr-auto",
-                            staticStyle: { "text-decoration": "none" },
+                            staticStyle: {
+                              "text-decoration": "none",
+                              "margin-left": "10px"
+                            },
                             on: {
                               click: function($event) {
                                 return _vm.previousPage()
