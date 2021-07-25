@@ -166,27 +166,27 @@
             <div class="card border-sharp mr-3 p-0 shadow-sm">
                 <h5 class="card-header profile-card-header text-left">Personal Information</h5>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">
+                    <li class="list-group-item bg-light">
                         <i class="fas fa-envelope fa-lg text-muted d-inline"></i>
                         <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Email') }}</p>
                         <p class="text-dark mb-0 pb-0 pl-4">{{ Auth::user()->email }}</p>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item bg-light">
                         <i class="fab fa-telegram-plane fa-lg text-muted d-inline"></i>
                         <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Telegram Handle') }}</p>
                         <p class="text-dark mb-0 pb-0 pl-4">&#64;{{ Auth::user()->telegram }}</p>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item bg-light">
                         <i class="fas fa-venus-mars fa-lg text-muted d-inline"></i>
                         <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Gender') }}</p>
                         <p class="text-dark mb-0 pb-0 pl-4">{{ Auth::user()->gender }}</p>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item bg-light">
                         <i class="fas fa-university fa-lg text-muted d-inline"></i>
                         <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Position') }}</p>
                         <p class="text-dark mb-0 pb-0 pl-4">{{ Auth::user()->position ?? "-" }}</p>
                     </li>
-                    <li class="list-group-item">
+                    <li class="list-group-item bg-light">
                         <i class="fas fa-graduation-cap fa-lg text-muted d-inline"></i>
                         <p class="text-muted mb-0 pb-1 pl-1 d-inline">{{ __('Major') }}</p>
                         @if( Auth::user()->majors->first() != null )
@@ -203,7 +203,7 @@
         <div class="col">
             <div class="card border-sharp p-0 mb-4 shadow-sm">
                 <h5 class="card-header profile-card-header text-left">About</h5>
-                <div class="card-body">
+                <div class="card-body bg-light">
                     <!-- Mentor Self-Introduction -->
                     @if( Auth::user()->detail != null)
                         <p>{{ Auth::user()->detail }}</p>
@@ -214,7 +214,7 @@
             </div>
             <div class="card border-sharp p-0 mb-3 shadow-sm">
                 <h5 class="card-header profile-card-header text-left">Modules Taught</h5>
-                <div class="card-body">
+                <div class="card-body bg-light">
                     @if( Auth::user()->modules->first() != null )
                         @foreach(Auth::user()->modules as $m)
                             <p class="text-dark mb-0 pb-0 pl-4">{{ $m->code_title }}</p>

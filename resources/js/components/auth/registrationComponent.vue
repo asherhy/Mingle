@@ -166,7 +166,7 @@
                                 class="original-btn welcome-btn welcome-btn-1 mr-auto"
                                 v-if="currentPage != 1"
                                 @click="previousPage()"
-                                style="text-decoration:none;"
+                                style="text-decoration:none; margin-left:10px;"
                             >
                                 Previous
                             </a>
