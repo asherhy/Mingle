@@ -16,7 +16,7 @@
                     <form method="POST" action="{{ route('request.post.store', $post) }}">
                         @csrf
                         <div class="form-group mb-4">
-                            <label for="description" class="col-form-label"><h5>Why are you applying for this role?</h5></label>
+                            <label for="description" class="col-form-label"><h5>Introduce Yourself!</h5></label>
                             <div class="my-auto">
                                 <textarea type="description" class="form-control" name="detail" id="description" style="height:150px;" placeholder="Start typing here..."></textarea>
                             </div>

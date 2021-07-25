@@ -45372,7 +45372,9 @@ var render = function() {
                                     attrs: {
                                       src:
                                         "../../../storage/avatars/" +
-                                        _vm.users[index].avatar
+                                        _vm.users.find(function(user) {
+                                          return user.id == post.user_id
+                                        }).avatar
                                     }
                                   })
                                 ]),
@@ -45405,7 +45407,11 @@ var render = function() {
                                       [
                                         _vm._v(
                                           "\n                                        Posted by: " +
-                                            _vm._s(_vm.users[index].name) +
+                                            _vm._s(
+                                              _vm.users.find(function(user) {
+                                                return user.id == post.user_id
+                                              }).name
+                                            ) +
                                             "\n                                    "
                                         )
                                       ]

@@ -78,7 +78,7 @@
                                         <img
                                             :src="
                                                 '../../../storage/avatars/' +
-                                                    users[index].avatar
+                                                    users.find((user) => user.id == post.user_id).avatar
                                             "
                                             style="width:50px; height:50px; border-radius:50%;"
                                         />
@@ -92,7 +92,7 @@
                                             {{ post.title }}
                                         </h5>
                                         <p class="text-muted mb-0">
-                                            Posted by: {{ users[index].name }}
+                                            Posted by: {{ users.find((user) => user.id == post.user_id).name }}
                                         </p>
                                     </div>
                                 </div>
