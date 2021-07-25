@@ -1,4 +1,4 @@
-@extends('layouts.layout')
+@extends( (Auth::check()) ? (Auth::user()->allRoles()->contains('student') ? 'layouts.layout' :'layouts.mentor-layout') : 'layouts.layout')
 
 @section('content')
 
