@@ -26,7 +26,7 @@
                             <div class="form-group form-row mb-4">
                                 <label for="module" class="col-form-label col-md-2">Module</label>
                                 <div class="col-md-10 my-auto">
-                                    <singleselect-component :fields="{{ json_encode($modules) }}" attri="{{ __('modules') }}"
+                                    <singleselect-component :fields="{{ json_encode(Auth::User()->modules->pluck('code_title')) }}" attri="{{ __('modules') }}"
                                     pholder="{{ __('Select Your Module') }}"></singleselect-component>
                                     @error('module')
                                         <span class="invalid-feedback" role="alert">

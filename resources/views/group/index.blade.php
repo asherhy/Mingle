@@ -35,7 +35,7 @@
                         </li>
                         @if( $moduleGroups->first() != null )
                             <li class="nav-item dropdown" role="presentation">
-                                <a id="navbarDropdown" class="nav-link under px-0 mx-4" href="#" id="boardDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Module Group <i class="fas fa-caret-down pl-1"></i></a>
+                                <a id="navbarDropdown" class="nav-link under px-0 mx-4" href="#" id="boardDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">QuickMatch Groups <i class="fas fa-caret-down pl-1"></i></a>
                                 <div class="dropdown-menu" aria-labelledby="boardDropdown">
                                     @foreach($moduleGroups as $moduleGroup)
                                         <a class="dropdown-item nav-link" id="board-tab" data-toggle="tab"  href="{{ '#module'.$moduleGroup->id }}" role="tab" aria-controls="{{ $moduleGroup->modules.'-tab' }}" aria-selected="false">{{ $moduleGroup->modules }}</a>
@@ -44,7 +44,7 @@
                             </li>
                         @else
                             <li class="nav-item" role="presentation">
-                                <a class="nav-link under px-0 mx-4" id="module-tab" data-toggle="tab" href="#module" role="tab" aria-controls="module-tab" aria-selected="false">Module Group</a>
+                                <a class="nav-link under px-0 mx-4" id="module-tab" data-toggle="tab" href="#module" role="tab" aria-controls="module-tab" aria-selected="false">QuickMatch Groups</a>
                             </li>
                         @endif
                     </ul>

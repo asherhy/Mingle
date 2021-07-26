@@ -30,7 +30,7 @@
                     <div class="form-group form-row mb-4">
                         <label for="module" class="col-form-label col-md-2">Module</label>
                         <div class="col-md-10 my-auto">
-                            <singleselect-component :fields="{{ json_encode($modules) }}" attri="{{ __('modules') }}"
+                            <singleselect-component :fields="{{ json_encode($user->modules->pluck('code_title')) }}" attri="{{ __('modules') }}"
                             pholder="{{ __('Select Your Module') }}"></singleselect-component>
                             @error('module')
                                 <span class="invalid-feedback" role="alert">
@@ -76,7 +76,7 @@
         <div class="profile-header border-sharp card col-12 shadow-sm px-0">
             <div class="card-body col-12 d-inline-flex px-5 bg-light">
                 <div class="col-auto pr-4">
-                    <img class="profile-page-img" src="{{Auth::user()->avatar}}">
+                    <img class="profile-page-img" src="{{ $user->avatar }}">
                 </div>
                 <div class="col my-auto pl-0">
                     <div>

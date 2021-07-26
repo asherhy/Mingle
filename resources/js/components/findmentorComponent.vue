@@ -224,7 +224,7 @@ export default {
             items: 8,
             currentPage: 1,
             availability: "all",
-            module: "none"
+            module: "None"
         };
     },
     props: ["mentors", "modules"],
@@ -266,7 +266,7 @@ export default {
             this.module = module;
         },
         clearModule() {
-            this.module = "none";
+            this.module = "None";
         },
         hasModule(mentor) {
             var i = 0;
@@ -281,7 +281,7 @@ export default {
     computed: {
         filteredMentors() {
             var query = this.search.toUpperCase();
-            if (this.module != "none") {
+            if (this.module != "None" && this.module != 1) {
                 if (this.availability == "all") {
                     return this.mentors.filter(
                         mentor =>

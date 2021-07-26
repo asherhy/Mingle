@@ -127,22 +127,16 @@
 
     <!-- Right -->
     <div>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="" class="me-4 text-reset">
+      <a href="mailto: orbitalmingle@gmail.com" target="_blank" class="me-4 text-reset">
         <i class="fab fa-google"></i>
       </a>
-      <a href="" class="me-4 text-reset">
+      <a href="https://www.instagram.com/ashereeee/" target="_blank" class="me-4 text-reset">
         <i class="fab fa-instagram"></i>
       </a>
-      <a href="" class="me-4 text-reset">
+      <a href="https://www.linkedin.com/in/asher-wang-9b3a701b3/" target="_blank" class="me-4 text-reset">
         <i class="fab fa-linkedin"></i>
       </a>
-      <a href="" class="me-4 text-reset">
+      <a href="https://github.com/asherhy/Mingle" target="_blank" class="me-4 text-reset">
         <i class="fab fa-github"></i>
       </a>
     </div>
@@ -174,13 +168,13 @@
             Framework
           </h6>
           <p>
-            <a href="#!" class="text-reset">Laravel</a>
+            <a href="https://laravel.com/" target="_blank" class="text-reset">Laravel</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Vue</a>
+            <a href="https://vuejs.org/" target="_blank" class="text-reset">Vue</a>
           </p>
           <p>
-            <a href="#!" class="text-reset">Bootstrap</a>
+            <a href="https://getbootstrap.com/" target="_blank" class="text-reset">Bootstrap</a>
           </p>
         </div>
         <!-- Grid column -->

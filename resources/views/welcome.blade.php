@@ -75,7 +75,7 @@
                 <h3 class="text-light">
                     Drop us an email at OrbitalMingle@gmail.com with your questions and we'll try to reach<br>
                     out as soon as possible! &#128512;<br>
-                    Alternatively, you can check out our user guide on <a href="https://github.com/asherhy/Mingle">github</a>
+                    Alternatively, you can check out our user guide on our <a href="https://docs.google.com/document/d/1rDa6FPz4_KpdWorBJOdOohEuBotqEPuJFXRIyWW8wtQ/edit?usp=sharing" target="_blank">User Guide</a>
                 </h3>
             </div>
             <div class="d-flex picture justify-content-center">
