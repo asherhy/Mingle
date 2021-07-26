@@ -100,6 +100,11 @@
 <div class="container min-vh-100">
     <div class="row d-flex justify-content-center post-row">
         <div class="col-12 col-md-10 col-lg-8">
+            @if(session()->has('message'))
+                <div class="alert alert-success pt-2">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             @if($errors->any())
                 @foreach ($errors->all() as $error)
                             <div class="col-md-12 alert alert-danger alert-dismissible fade show" role="alert">
@@ -147,7 +152,7 @@
                                         <div class="col-12">
                                             <div class="row pt-1 pb-1">
                                                 <div class="col-1 d-flex justify-content-center pr-0">
-                                                    <img class="mx-auto" src="/images/avatars/{{ $postRequest->user->avatar }}" style="width:50px; height:50px; position:relative; border-radius:50%">
+                                                    <img class="mx-auto" src="{{ $postRequest->user->avatar }}" style="width:50px; height:50px; position:relative; border-radius:50%">
                                                 </div>
                                                 <div class="col-10 pl-0 my-auto p-2 pl-3 pr-3 ml-4" style="width:100%; background:#def2f1; height:auto; border-radius: 20px;">
                                                         <p class="pb-0 mb-0 text-left" style="font-size:12px; font-weight:bold;">{{ $postRequest->user->name}}</p>

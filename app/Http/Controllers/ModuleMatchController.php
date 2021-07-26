@@ -109,7 +109,7 @@ class ModuleMatchController extends Controller
             'match_data' => $allDatas
         ]);
 
-        return redirect(route('group.index'));
+        return redirect(route('group.index'))->with('message', 'Quickmatch Requested!');
 
     }
 

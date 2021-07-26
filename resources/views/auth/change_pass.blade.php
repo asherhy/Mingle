@@ -5,6 +5,11 @@
 <div class="container min-vh-100">
     <div class="row d-flex justify-content-center signup-row">
         <div class="col-10 col-md-7 col-lg-5">
+            @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <div class="card signup border-sharp px-0 shadow-sm" id="signup-form">
                 <div class="card-header signup-card-header">
                     <h3 class="text-left card-title mb-1 font-weight-bold">Change Password</h3>

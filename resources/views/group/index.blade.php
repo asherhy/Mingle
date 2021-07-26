@@ -5,6 +5,11 @@
 <div class="container min-vh-100">
 <div class="row row-top">
         <div class="col-12">
+        @if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
             <div class="card border-sharp shadow-sm">
                 <div class="card-header bg-teal">
                     <h2 class="mb-0 pl-2 text-white">My Groups</h2>

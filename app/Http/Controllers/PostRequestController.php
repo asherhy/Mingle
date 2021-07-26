@@ -72,7 +72,7 @@ class PostRequestController extends Controller
             'info' => $info,
         ]);
 
-        return redirect(route('request.post.index'));
+        return redirect(route('request.post.index'))->with('message', 'Post request sent!');
         // return to page with all request sent
     }
 
@@ -115,7 +115,7 @@ class PostRequestController extends Controller
         if( $request->status == 1) {
             $status = "Accepted";
             if (count($post->postRequests->where('status', 'Accepted')->where('user_id', $postRequest->user_id)) > 0) {
-                return redirect()->back();
+                return redirect()->back()->withErrors('This User has already been accepted.');
                 // return message that this guy is already accepted.
             } else if (count($post->postRequests->where('status','=', 'Accepted')) == 0){
                 $group = Group::create([
@@ -137,7 +137,7 @@ class PostRequestController extends Controller
             'status' => $status
         ]);
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'status of request updated!');
     }
 
 

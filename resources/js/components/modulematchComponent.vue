@@ -1,7 +1,7 @@
 <template>
     <div class="form-group form-row mb-4">
         <label for="type" class="col-form-label col-md-2"
-            ># of current members</label
+            >no. of members excluding myself</label
         >
         <div class="col-md-10">
             <select

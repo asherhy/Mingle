@@ -47516,7 +47516,7 @@ var render = function() {
     _c(
       "label",
       { staticClass: "col-form-label col-md-2", attrs: { for: "type" } },
-      [_vm._v("# of current members")]
+      [_vm._v("no. of members excluding myself")]
     ),
     _vm._v(" "),
     _c("div", { staticClass: "col-md-10" }, [
