@@ -17,7 +17,7 @@
 ---
 ## Documentations
 - [Poster](https://drive.google.com/file/d/1hSSSFwsFvxNulO4DnH4-m_zSkJjgX59e/view?usp=sharing)
-- [Video](https://drive.google.com/file/d/1ORkxYJhm3nbASeL9x0V5Z1Gok16BwiRY/view?usp=sharing)
+- [Video](https://drive.google.com/file/d/1A9J-krnBzOBfQrbq-fVUUIA2wU2bPPOb/view?usp=sharing)
 
 ---
 ## Project Log
