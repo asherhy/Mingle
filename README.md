@@ -4,7 +4,7 @@
 
 **Match** Match with a study buddy!
 
-![alt text](https://github.com/asherhy/Mingle/blob/main/public/images/mingle%20poster%20(1).pdf?raw=true)
+![alt text](https://github.com/asherhy/Mingle/blob/main/public/images/2661.png?raw=true)
 
 
 ## Documentations
