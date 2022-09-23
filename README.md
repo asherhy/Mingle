@@ -2,7 +2,7 @@
 
 ## Description
 
-**Match** Match with a study buddy!
+**Match** with a study buddy!
 
 ![alt text](https://github.com/asherhy/Mingle/blob/main/public/images/2661.png?raw=true)
 
